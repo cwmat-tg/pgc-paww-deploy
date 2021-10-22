@@ -1,2 +1,16 @@
-<p>main works!</p>
-<router-outlet></router-outlet>
+<!-- Header bar -->
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <span>{{ this.appName }}</span>
+        <span class="appSpacer"></span>
+        <!-- Currently do not need a navigation panel but may in the future -->
+        <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+            <mat-icon>menu</mat-icon>
+        </button> -->
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<!-- Main content -->
+<main>
+    <router-outlet></router-outlet>
+</main>

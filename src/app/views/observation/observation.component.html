@@ -1,1 +1,26 @@
-<p>observation works!</p>
+<div class="appStepperContainer">
+
+    <mat-stepper [linear]="this.isLinear" [orientation]="(this.stepperOrientation | async)!" #stepper>
+
+        <mat-step>
+            <ng-template matStepLabel>Location</ng-template>
+            <div>test 1</div>
+        </mat-step>
+
+        <mat-step>
+            <ng-template matStepLabel>Contact</ng-template>
+          <div>test 2</div>
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel>Observation</ng-template>
+          <p>You are now done.</p>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+          </div>
+        </mat-step>
+
+      </mat-stepper>
+
+</div>
