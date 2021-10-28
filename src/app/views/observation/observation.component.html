@@ -2,17 +2,25 @@
 
     <mat-stepper [linear]="this.isLinear" [orientation]="(this.stepperOrientation | async)!" #stepper>
 
+        <!-- Step 1 -->
         <mat-step>
+
             <ng-template matStepLabel>Location</ng-template>
             <div>test 1</div>
+
         </mat-step>
 
+        <!-- Step 2 -->
         <mat-step>
+
             <ng-template matStepLabel>Contact</ng-template>
           <div>test 2</div>
+
         </mat-step>
 
+        <!-- Step 3 -->
         <mat-step>
+
           <ng-template matStepLabel>Observation</ng-template>
           <p>You are now done.</p>
           <div>
@@ -24,3 +32,29 @@
       </mat-stepper>
 
 </div>
+
+<footer id="appObservationFooter">
+
+  <div fxFlex fxLayoutAlign="end center">
+
+    <button 
+      *ngIf="stepper.selectedIndex > 0" 
+      mat-flat-button color="primary" 
+      class="appStepperButton" 
+      type="button" 
+      (click)="stepper.previous()">
+        Back
+    </button>
+
+    <button 
+      *ngIf="stepper.selectedIndex < this.totalSteps - 1" 
+      mat-flat-button color="primary" 
+      class="appStepperButton" 
+      type="button" 
+      (click)="stepper.next()">
+        Next
+    </button>
+
+  </div>
+
+</footer>

@@ -1,6 +1,6 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
-import { StepperOrientation } from '@angular/material/stepper';
+import { MatStepper, StepperOrientation } from '@angular/material/stepper';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
 
@@ -10,8 +10,10 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./observation.component.scss']
 })
 export class ObservationComponent implements OnInit {
+  // Stepper config
   isLinear = true;
   stepperOrientation: Observable<StepperOrientation>;
+  totalSteps = 3;
 
   constructor(
     breakpointObserver: BreakpointObserver,
@@ -21,6 +23,14 @@ export class ObservationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  goBack(stepper: MatStepper) {
+    stepper.previous();
+  }
+
+  goForward(stepper: MatStepper) {
+    stepper.next();
   }
 
 }
