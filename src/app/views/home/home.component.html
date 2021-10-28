@@ -1,5 +1,49 @@
 <p>home works - temp component</p>
 <button (click)="this.createObservation()">temp create observation</button>
 <div id="appHomeContainer">
+
+    <!-- Full page image defined in SCSS -->
     <div id="appHomeImage"></div>
+
+    <div id="appHomepageContent">
+
+        <div class="appFillContainer">
+
+            <div 
+                fxLayout="row" 
+                fxLayout.xs="column" 
+                fxLayout.sm="column" 
+                fxLayoutAlign="end center" 
+                fxLayoutAlign.xs="start center" 
+                fxLayoutAlign.sm="start center"
+                fxFlex>
+
+                <div 
+                    fxFlex="50" 
+                    fxFlex.xs="100" 
+                    fxFlex.sm="100" 
+                    id="appHeroContainer">
+                    
+                    <h1 class="appHomepageText" id="appHeroHeader">{{ this.appName }}</h1>
+
+                    <div class="appHomepageText" id="appHeroContent">
+                        {{this.appName}} ({{ this.appAbbrev }}) is lorem ipsum dolor sit amet, 
+                        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
+                        dolore magna aliqua. Lobortis mattis aliquam faucibus purus in massa 
+                        tempor. Quam quisque id diam vel quam. Cursus eget nunc scelerisque 
+                        viverra mauris. Aliquam purus sit amet luctus venenatis. 
+                    </div>
+
+                    <button mat-flat-button color="basic" id="appObservationButton" type="button">
+                        Submit an Observation
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>

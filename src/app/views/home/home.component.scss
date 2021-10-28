@@ -13,3 +13,51 @@
     background-size: cover;
     background-position: center;
 }
+
+#appHomepageContent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+.appFillContainer {
+    background: linear-gradient(270deg, #000000 0%, rgba(0,0,0,0.5) 100%);
+}
+
+#appHeroContainer {
+    margin-right: 3rem;
+}
+
+.appHomepageText {
+    text-align: end;
+    color: #fff;
+}
+
+#appHeroHeader {
+    font-size: 2.75rem;
+    font-weight: 800;
+    letter-spacing: 0;
+    line-height: 3.75rem;
+}
+
+#appHeroContent {
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.875rem;
+}
+
+#appObservationButton {
+    float: right;
+    color: #0B0603;
+    font-size: 1.438rem;
+    font-weight: 800;
+    letter-spacing: 0;
+    line-height: 2rem;
+    margin-top: 2rem;
+    min-height: 3.75rem;
+    min-width: 21.875rem;
+}
+
