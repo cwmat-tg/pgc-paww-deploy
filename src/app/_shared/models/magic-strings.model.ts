@@ -4,4 +4,7 @@ export class MagicStrings {
 
     // Abbreviation for app
     public static AppAbbrev: string = 'PAWW';
+
+    // Location page
+    public static LocationHeader: string = 'Observation Location';
 }

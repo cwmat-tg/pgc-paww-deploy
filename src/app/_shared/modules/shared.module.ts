@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './material.module';
 import { VersionComponent } from '../components/version/version.component';
+import { IntroHelperTextComponent } from '../components/intro-helper-text/intro-helper-text.component';
 
 
 @NgModule({
@@ -18,10 +19,12 @@ import { VersionComponent } from '../components/version/version.component';
     ReactiveFormsModule,
     FlexLayoutModule,
     MaterialModule,
-    VersionComponent
+    VersionComponent,
+    IntroHelperTextComponent
   ],
   declarations: [
-    VersionComponent
+    VersionComponent,
+    IntroHelperTextComponent
   ]
 })
 export class SharedModule {}
