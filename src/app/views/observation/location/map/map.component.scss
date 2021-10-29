@@ -1,3 +1,5 @@
+@import "../../../../app.global.scss";
+
 mgl-map {
     height: 100%;
     width: 100%;
@@ -5,5 +7,21 @@ mgl-map {
 
 #appMapContainer {
     width: 100%;
-    height: 60vh;
+    height: 65vh;
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width: $screen-width-desktop) {
+    /* Styles */
+    #appMapContainer {
+        height: 50vh;
+    }
+}
+
+/* Large screens ----------- */
+@media only screen and (min-width: $screen-width-monitor) {
+    /* Styles */
+    #appMapContainer {
+        height: 65vh;
+    }
 }
