@@ -1,0 +1,19 @@
+@import "../../../app.global.scss";
+
+
+
+.appHelperText {
+    color: $color-helper-text;
+    line-height: 2.625rem;
+    font-size: 1.125rem;
+}
+
+.appHelperHeader {
+    font-weight: 800;
+    line-height: 2.625rem;
+    margin-bottom: 0;
+}
+
+.appHelperContent {
+    font-weight: 600;
+}
