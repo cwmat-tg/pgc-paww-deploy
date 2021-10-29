@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { MagicStrings } from 'src/app/_shared/models/magic-strings.model';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent  {
+
+  appName = MagicStrings.AppName;
+  appAbbrev = MagicStrings.AppAbbrev;
 
   constructor(
     private router: Router,

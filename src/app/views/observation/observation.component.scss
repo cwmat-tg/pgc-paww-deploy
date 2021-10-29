@@ -1,3 +1,37 @@
-.appStepperContainer {
-    margin: 1rem 5rem 0 5rem;
+@import "../../app.global.scss";
+
+$stepper-padding: 5rem;
+::ng-deep .appStepperContainer .mat-stepper-horizontal .mat-horizontal-stepper-header-container {
+    background-color: $color-subtitle-light;
+    padding-left: $stepper-padding;
+    padding-right: $stepper-padding;
+}
+
+#appObservationFooter {
+    background-color: $color-subtitle-light;
+    width: 100vw;
+    height: 7.875rem;
+    position: fixed;
+    bottom: 0;
+    padding-left: $stepper-padding;
+    padding-right: $stepper-padding;
+}
+
+.appStepperButton {
+    min-width: 9rem;
+}
+
+.appStepperButton:first-of-type {
+    margin-right: 2rem;
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width: $screen-width-mobile) {
+    /* Styles */
+    $stepper-padding-mobile: 0.5rem;
+    #appObservationFooter {
+        height: 3.5rem;
+        padding-left: $stepper-padding-mobile;
+        padding-right: $stepper-padding-mobile;
+    }
 }
