@@ -1,8 +1,11 @@
-import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
-import { Geometry } from 'geojson';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { LngLatLike, Map } from 'maplibre-gl';
+import { PointGeom } from 'src/app/_shared/models/observation.model';
 import { environment } from 'src/environments/environment';
 import { MapModel } from './map.model';
+import booleanIntersects from '@turf/boolean-intersects';
+import * as turf from '@turf/turf';
+import * as paBoundary from 'src/assets/gis/pa.json';
 
 @Component({
   selector: 'app-map',
@@ -24,6 +27,11 @@ export class MapComponent implements OnInit {
   showPoint = true;
   coordinates: number[] = [];
   layerPaint = MapModel.PointPaintStyle;
+  inState = true;
+
+  // Outputs
+  @Output() newLocation = new EventEmitter<PointGeom>();
+  @Output() newIntersectStatus = new EventEmitter<boolean>();
 
   constructor(
     private cd: ChangeDetectorRef,
@@ -47,6 +55,7 @@ export class MapComponent implements OnInit {
   setCoordinates(newCoords: number[]) {
     this.coordinates = newCoords;
     this.refreshPoint();
+    this.inState = this.checkIntersection(this.coordinates);
   }
 
   clearCoordinates() {
@@ -66,6 +75,8 @@ export class MapComponent implements OnInit {
 
   saveLocation() {
     this.endSelect();
+    this.newLocation.emit({ lat: this.coordinates[0] || 0.0, long: this.coordinates[1] || 0.0 });
+    this.newIntersectStatus.emit(this.inState);
   }
 
   mapMoved(event: any) {
@@ -82,6 +93,13 @@ export class MapComponent implements OnInit {
     this.showPoint = false;
     this.cd.detectChanges()
     this.showPoint = true;
+  }
+
+  checkIntersection(coords: number[]) {
+    const polyRaw = paBoundary;
+    const poly = turf.polygon(polyRaw.coordinates);
+    const point = turf.point(coords);
+    return booleanIntersects(poly, point);
   }
 
 }

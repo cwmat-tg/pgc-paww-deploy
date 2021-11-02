@@ -7,7 +7,11 @@ import { Observation } from '../models/observation.model';
 })
 export class ObservationService {
 
-  private _observation: BehaviorSubject<Observation> = new BehaviorSubject({});
+  private _initialState: Observation = {
+    geometry: {},
+    inState: true
+  };
+  private _observation: BehaviorSubject<Observation> = new BehaviorSubject(this._initialState);
 
   constructor() { }
 

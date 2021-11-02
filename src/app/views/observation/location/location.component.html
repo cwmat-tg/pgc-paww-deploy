@@ -3,4 +3,4 @@
     [content]="this.content"
 ></app-intro-helper-text>
 
-<app-map></app-map>
+<app-map (newLocation)="this.updateLocation($event)" (newIntersectStatus)="this.updateIntersectStatus($event)"></app-map>
