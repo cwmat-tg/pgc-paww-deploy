@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Geometry } from 'geojson';
 import { LngLatLike, Map } from 'maplibre-gl';
 import { environment } from 'src/environments/environment';
@@ -21,33 +21,32 @@ export class MapComponent implements OnInit {
 
   // Location Select State
   isActive = false;
+  showPoint = true;
   coordinates: number[] = [];
   layerPaint = MapModel.PointPaintStyle;
-  test: Geometry = {
-    type: 'Point',
-    coordinates: [0, 0]
-  };
 
-
-  constructor() { }
+  constructor(
+    private cd: ChangeDetectorRef,
+  ) { }
 
   ngOnInit(): void {
   }
 
   startSelect() {
-    // Start active session and change cursor
-    this.cursorStyle = 'crosshair';
+    // Start active session
+    const mapCenter = this.map.getCenter();
+    this.setCoordinates([mapCenter.lng, mapCenter.lat]);
     this.isActive = true;
   }
 
   endSelect() {
-    // End active session and change cursor to default
-    this.cursorStyle = '';
+    // End active session
     this.isActive = false;
   }
 
   setCoordinates(newCoords: number[]) {
     this.coordinates = newCoords;
+    this.refreshPoint();
   }
 
   clearCoordinates() {
@@ -61,14 +60,28 @@ export class MapComponent implements OnInit {
     // Set coords and end active session
     console.log('Map Clicked', event);
     this.setCoordinates([event.lngLat.lng, event.lngLat.lat]);
-
-    this.test = {
-      type: 'Point',
-      coordinates: [event.lngLat.lng, event.lngLat.lat]
-  }
     
     this.endSelect();
-    
+  }
+
+  saveLocation() {
+    this.endSelect();
+  }
+
+  mapMoved(event: any) {
+    // Ensure an active edit session
+    if (!this.isActive) return;
+
+    // Set Coords and refresh draw
+    const mapCenter = this.map.getCenter();
+    console.log('Map Moved', event, mapCenter);
+    this.setCoordinates([mapCenter.lng, mapCenter.lat]);
+  }
+
+  refreshPoint() {
+    this.showPoint = false;
+    this.cd.detectChanges()
+    this.showPoint = true;
   }
 
 }

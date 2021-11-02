@@ -5,8 +5,8 @@
         [style]="this.basemapStyle"
         [zoom]="[this.zoom]"
         [center]="this.center"
-        (click)="this.mapClicked($event)"
         (mapLoad)="this.map = $event"
+        (moveEnd)="this.mapMoved($event)"
         [cursorStyle]="this.cursorStyle"
     >
         <!-- Map Controls -->
@@ -16,7 +16,7 @@
         <!-- Map Features -->
         <mgl-geojson-source id="point">
             <mgl-feature
-                *ngIf="!this.isActive"
+                *ngIf="this.showPoint"
                 [properties]=""
                 [geometry]="{
                     type: 'Point',
@@ -37,10 +37,14 @@
     <!-- End Main Map -->
     </mgl-map>
 
+    <div class="appSelectLocationContainer">
+        <button mat-flat-button color="basic" *ngIf="!this.isActive" [disabled]="this.isActive" (click)="this.startSelect()">Select Location</button>
+        <button mat-flat-button color="basic"  *ngIf="this.isActive" [disabled]="!this.isActive" (click)="this.saveLocation()">Save Location</button>
+    </div>
+
 </div>
 
-<div class="appSelectLocationContainer">
-    <app-select-location [disabled]="this.isActive" (startSelect)="startSelect()"></app-select-location>
+<!-- Show Coordinates -->
+<div *ngIf="this.coordinates?.length && this.coordinates.length > 0">
+    {{ this.coordinates[0] | number }}, {{ this.coordinates[1] | number }}
 </div>
-
-<div>{{this.coordinates}}</div>
