@@ -1,12 +1,46 @@
 <div id="appMapContainer">
 
+    <!-- Main Map -->
     <mgl-map
         [style]="this.basemapStyle"
         [zoom]="[this.zoom]"
         [center]="this.center"
+        (click)="this.mapClicked($event)"
+        (mapLoad)="this.map = $event"
+        [cursorStyle]="this.cursorStyle"
     >
+        <!-- Map Controls -->
         <mgl-control mglNavigation position="top-right"></mgl-control>
         <mgl-control mglScale position="bottom-left"></mgl-control>
+
+        <!-- Map Features -->
+        <mgl-geojson-source id="point">
+            <mgl-feature
+                *ngIf="!this.isActive"
+                [properties]=""
+                [geometry]="{
+                    type: 'Point',
+                    coordinates: this.coordinates
+                }"
+            ></mgl-feature>
+        </mgl-geojson-source>
+
+        <!-- Map Layers -->
+        <mgl-layer
+            #targetLayer
+            id="point"
+            type="circle"
+            source="point"
+            [paint]="layerPaint"
+        ></mgl-layer>
+    
+    <!-- End Main Map -->
     </mgl-map>
 
 </div>
+
+<div class="appSelectLocationContainer">
+    <app-select-location [disabled]="this.isActive" (startSelect)="startSelect()"></app-select-location>
+</div>
+
+<div>{{this.coordinates}}</div>

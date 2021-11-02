@@ -6,6 +6,7 @@ import { ObservationComponent } from './observation.component';
 import { LocationComponent } from './location/location.component';
 import { MapComponent } from './location/map/map.component';
 import { NgxMapLibreGLModule } from 'ngx-maplibre-gl';
+import { SelectLocationComponent } from './location/select-location/select-location.component';
 
 
 
@@ -13,7 +14,8 @@ import { NgxMapLibreGLModule } from 'ngx-maplibre-gl';
   declarations: [
     ObservationComponent,
     LocationComponent,
-    MapComponent
+    MapComponent,
+    SelectLocationComponent
   ],
   imports: [
     CommonModule,
