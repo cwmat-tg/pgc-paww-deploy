@@ -21,6 +21,11 @@ export class ObservationService {
 
   updateObservation(newObs: Observation) {
     this._observation.next({ ...newObs });
-    return this._observation.asObservable();
+    return this.getObservation();
+  }
+
+  resetObservation() {
+    this._observation.next({ ...this._initialState });
+    return this.getObservation();
   }
 }

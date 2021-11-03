@@ -7,4 +7,7 @@ export class MagicStrings {
 
     // Location page
     public static LocationHeader: string = 'Observation Location';
+
+    // Out of state page
+    public static OutOfStateHeader: string = 'Out of State';
 }

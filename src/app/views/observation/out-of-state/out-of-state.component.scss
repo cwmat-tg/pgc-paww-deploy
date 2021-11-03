@@ -1,0 +1,74 @@
+@import '../../../app.global.scss';
+
+.appOutOfStateContainer {
+    margin: 5rem;
+}
+
+.appOutOfStateContent {
+    margin: 10rem;
+    text-align: center;
+    font-weight: 500;
+    color: $color-helper-text;
+    line-height: 2.625rem;
+    font-size: 1.125rem;
+}
+
+.appOutOfStateContent a {
+    color: $color-helper-text;
+}
+
+.appBackToHomeButton {
+    font-size: 1.125rem;
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width: $screen-width-mobile) {
+    /* Styles */
+    .appOutOfStateContent {
+        margin: 1rem;
+    }
+
+    .appOutOfStateContainer {
+        margin: 0.5rem;
+    }
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width: $screen-width-mobile-small-landscape) {
+    /* Styles */
+    .appOutOfStateContent {
+        margin: 1rem;
+    }
+
+    .appOutOfStateContainer {
+        margin: 0.5rem;
+    }
+
+    .appBackToHomeButton{
+        z-index: 5000;
+    }
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width: $screen-width-desktop) {
+    /* Styles */
+    .appOutOfStateContent {
+        margin: 10rem;
+    }
+
+    .appOutOfStateContainer {
+        margin: 5rem;
+    }
+}
+
+/* Large screens ----------- */
+@media only screen and (min-width: $screen-width-monitor) {
+    /* Styles */
+    .appOutOfStateContent {
+        margin: 10rem;
+    }
+
+    .appOutOfStateContainer {
+        margin: 5rem;
+    }
+}
