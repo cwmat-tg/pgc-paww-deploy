@@ -28,6 +28,7 @@
                         <input matInput id="contact-name" type="text" formControlName="name">
                         <mat-hint>First and last name</mat-hint>
                         <mat-error *ngIf="this.name?.invalid && this.name?.errors?.required">This field is required.</mat-error>
+                        <mat-error *ngIf="this.name?.invalid && this.name?.errors?.maxLength">Please enter no more than 50 characters.</mat-error>
                     </mat-form-field>
                 </div>
 
@@ -59,6 +60,7 @@
                         <mat-hint>example@gmail.com</mat-hint>
                         <mat-error *ngIf="this.email?.invalid && this.email?.errors?.pattern">Email must be in the following format: example@gmail.com</mat-error>
                         <mat-error *ngIf="this.email?.invalid && this.email?.errors?.required">This field is required.</mat-error>
+                        <mat-error *ngIf="this.name?.invalid && this.name?.errors?.maxLength">Please enter no more than 50 characters.</mat-error>
                     </mat-form-field>
                 </div>
 
@@ -79,9 +81,4 @@
 
     </form>
 
-</div>
-
-
-<div>
-    <!-- {{ this.data | json }} -->
 </div>
