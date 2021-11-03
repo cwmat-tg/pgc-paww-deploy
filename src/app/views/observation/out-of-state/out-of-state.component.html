@@ -1,0 +1,38 @@
+<div class="appOutOfStateContainer">
+
+    <app-intro-helper-text
+        [header]="this.header"
+    ></app-intro-helper-text>
+
+    <!-- If the user gets here and the obs is out of state -->
+    <div *ngIf="this.obsStore.getObservation() | async as obsData;" class="appOutOfStateContent">
+        <div *ngIf="!obsData.inState">
+            <p>Observations occurring outside of Pennsylvania should be directed to the appropriate state agency.</p>
+            <p>A list of agencies can be found on the Association of Fish & Wildlife Agencies website <a target="_blank" href="https://www.fishwildlife.org/landing/membership/member-list">here</a>.</p>
+            <button 
+                mat-flat-button color="accent" 
+                class="appBackToHomeButton" 
+                type="button" 
+                (click)="this.home()">
+                    Return Home
+            </button>
+        </div>
+    </div>
+
+    <!-- If the user gets here and the obs is in state -->
+    <div *ngIf="this.obsStore.getObservation() | async as obsData;" class="appOutOfStateContent">
+        <div *ngIf="obsData.inState">
+            <p>You may have arrived on this page in error.  Please return home and start over.</p>
+            <button 
+                mat-flat-button color="accent" 
+                class="appBackToHomeButton" 
+                type="button" 
+                (click)="this.homeNoReset()">
+                    Return Home
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<footer id="appObservationFooter"></footer>

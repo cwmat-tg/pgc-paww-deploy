@@ -38,23 +38,43 @@
 
   <div fxFlex fxLayoutAlign="end center">
 
-    <button 
-      *ngIf="stepper.selectedIndex > 0" 
-      mat-flat-button color="primary" 
-      class="appStepperButton" 
-      type="button" 
-      (click)="stepper.previous()">
-        Back
-    </button>
+    <ng-container *ngIf="this.obsStore.getObservation() | async as obsData;">
 
-    <button 
-      *ngIf="stepper.selectedIndex < this.totalSteps - 1" 
-      mat-flat-button color="primary" 
-      class="appStepperButton" 
-      type="button" 
-      (click)="stepper.next()">
-        Next
-    </button>
+      <ng-container *ngIf="obsData.inState">
+
+        <button 
+          *ngIf="stepper.selectedIndex > 0" 
+          mat-flat-button color="primary" 
+          class="appStepperButton" 
+          type="button" 
+          (click)="stepper.previous()">
+            Back
+        </button>
+
+        <button 
+          *ngIf="stepper.selectedIndex < this.totalSteps - 1" 
+          mat-flat-button color="primary" 
+          class="appStepperButton" 
+          type="button" 
+          (click)="stepper.next()">
+            Next
+        </button>
+
+      </ng-container>
+
+      <ng-container *ngIf="!obsData.inState">
+
+        <button 
+          mat-flat-button color="primary" 
+          class="appStepperButton" 
+          type="button" 
+          (click)="this.routeOutOfState()">
+            Next
+        </button>
+
+      </ng-container>
+
+    </ng-container>
 
   </div>
 

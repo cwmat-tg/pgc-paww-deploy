@@ -1,12 +1,50 @@
 <div id="appMapContainer">
 
+    <!-- Main Map -->
     <mgl-map
         [style]="this.basemapStyle"
         [zoom]="[this.zoom]"
         [center]="this.center"
+        (mapLoad)="this.map = $event"
+        (moveEnd)="this.mapMoved($event)"
+        [cursorStyle]="this.cursorStyle"
     >
+        <!-- Map Controls -->
         <mgl-control mglNavigation position="top-right"></mgl-control>
         <mgl-control mglScale position="bottom-left"></mgl-control>
+
+        <!-- Map Features -->
+        <mgl-geojson-source id="point">
+            <mgl-feature
+                *ngIf="this.showPoint"
+                [properties]=""
+                [geometry]="{
+                    type: 'Point',
+                    coordinates: this.coordinates
+                }"
+            ></mgl-feature>
+        </mgl-geojson-source>
+
+        <!-- Map Layers -->
+        <mgl-layer
+            #targetLayer
+            id="point"
+            type="circle"
+            source="point"
+            [paint]="layerPaint"
+        ></mgl-layer>
+    
+    <!-- End Main Map -->
     </mgl-map>
 
+    <div class="appSelectLocationContainer">
+        <button mat-flat-button color="basic" *ngIf="!this.isActive" [disabled]="this.isActive" (click)="this.startSelect()">Select Location</button>
+        <button mat-flat-button color="basic"  *ngIf="this.isActive" [disabled]="!this.isActive" (click)="this.saveLocation()">Save Location</button>
+    </div>
+
+</div>
+
+<!-- Show Coordinates -->
+<div *ngIf="this.coordinates?.length && this.coordinates.length > 0">
+    {{ this.coordinates[0] | number }}, {{ this.coordinates[1] | number }}
 </div>

@@ -6,14 +6,15 @@ import { ObservationComponent } from './observation.component';
 import { LocationComponent } from './location/location.component';
 import { MapComponent } from './location/map/map.component';
 import { NgxMapLibreGLModule } from 'ngx-maplibre-gl';
-
+import { OutOfStateComponent } from './out-of-state/out-of-state.component';
 
 
 @NgModule({
   declarations: [
     ObservationComponent,
     LocationComponent,
-    MapComponent
+    MapComponent,
+    OutOfStateComponent
   ],
   imports: [
     CommonModule,

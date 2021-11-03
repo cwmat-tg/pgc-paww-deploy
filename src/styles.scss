@@ -1,7 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
-@import "rfs/scss";
+@import 'rfs/scss';
 @import '~maplibre-gl/dist/maplibre-gl.css';
+@import './app/app.global.scss';
 
+// Vars
+$stepper-padding: 5rem;
+
+// Whole page
 html,
 body {
   height: 100%;
@@ -11,6 +16,29 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+// App specific
 .appFillContainer {
   height: 100%;
+}
+
+#appObservationFooter {
+  background-color: $color-subtitle-light;
+  width: 100vw;
+  height: 4rem;
+  position: fixed;
+  bottom: 0;
+  padding-left: $stepper-padding;
+  padding-right: $stepper-padding;
+  z-index: 500;
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width: $screen-width-mobile) {
+  /* Styles */
+  $stepper-padding-mobile: 0.5rem;
+  #appObservationFooter {
+      height: 3.5rem;
+      padding-left: $stepper-padding-mobile;
+      padding-right: $stepper-padding-mobile;
+  }
 }

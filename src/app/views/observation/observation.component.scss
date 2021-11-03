@@ -7,17 +7,6 @@ $stepper-padding: 5rem;
     padding-right: $stepper-padding;
 }
 
-#appObservationFooter {
-    background-color: $color-subtitle-light;
-    width: 100vw;
-    height: 4rem;
-    position: fixed;
-    bottom: 0;
-    padding-left: $stepper-padding;
-    padding-right: $stepper-padding;
-    z-index: 500;
-}
-
 .appStepperButton {
     min-width: 9rem;
 }
@@ -35,12 +24,6 @@ $stepper-padding: 5rem;
 @media only screen and (max-width: $screen-width-mobile) {
     /* Styles */
     $stepper-padding-mobile: 0.5rem;
-    #appObservationFooter {
-        height: 3.5rem;
-        padding-left: $stepper-padding-mobile;
-        padding-right: $stepper-padding-mobile;
-    }
-
     ::ng-deep .mat-horizontal-content-container {
         margin-left: $stepper-padding-mobile;
         margin-right: $stepper-padding-mobile;
