@@ -1,14 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { debounceTime, first, switchMap } from 'rxjs/operators';
 import { MagicStrings } from 'src/app/_shared/models/magic-strings.model';
+import { Contact } from 'src/app/_shared/models/observation.model';
 import { UserMessages } from 'src/app/_shared/models/user-messages.model';
+import { ObservationService } from 'src/app/_shared/services/observation.service';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
-export class ContactComponent implements OnInit {
+export class ContactComponent implements OnInit, OnDestroy {
   // Config
   header = MagicStrings.ContactHeader;
   content = UserMessages.ContactHelperText;
@@ -38,9 +42,35 @@ export class ContactComponent implements OnInit {
   // Dropdowns
   affiliations: any[] = [{value: 1, alias: 'test1'},{value: 2, alias: 'test2'},{value: 3, alias: 'test3'}];
 
-  constructor() { }
+  // Subscriptions
+  formChangeSub!: Subscription;
+
+  constructor(
+    public obsStore: ObservationService,
+  ) { }
 
   ngOnInit(): void {
+    this.formChangeSub = this.contactForm.valueChanges
+      .pipe(
+        debounceTime(200)
+      )
+      .subscribe({
+          next: (contact) => {
+            this.obsStore.getObservation()
+              .pipe(first())
+              .subscribe(res => {
+                if (this.contactForm.valid) {
+                  const newData = { ...res };
+                  newData.contact = { ...contact as Contact};
+                  this.obsStore.updateObservation(newData);
+                }
+              });
+          }
+      });
+  }
+
+  ngOnDestroy() {
+    this.formChangeSub.unsubscribe();
   }
 
   get name() { return this.contactForm.get('name'); }
