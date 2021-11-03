@@ -1,9 +1,7 @@
 {
-  "posts": [
-    { "id": 1, "title": "json-server", "author": "typicode" }
-  ],
-  "comments": [
-    { "id": 1, "body": "some comment", "postId": 1 }
-  ],
-  "profile": { "name": "typicode" }
+  "affiliation": [
+    { "AffiliationId": 1, "Name": "Test 1", "SortKey": null },
+    { "AffiliationId": 2, "Name": "Test 2", "SortKey": null },
+    { "AffiliationId": 3, "Name": "Test 3", "SortKey": null }
+  ]
 }

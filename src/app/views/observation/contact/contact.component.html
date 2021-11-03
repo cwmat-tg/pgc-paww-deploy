@@ -36,8 +36,8 @@
                     <mat-form-field>
                         <mat-label for="contact-affiliation">Affiliation</mat-label>
                         <mat-select id="contact-affiliation" formControlName="affiliation">
-                            <mat-option *ngFor="let aff of this.affiliations" [value]="aff?.value">
-                                {{aff?.alias}}
+                            <mat-option *ngFor="let aff of this.affiliations" [value]="aff?.AffiliationId">
+                                {{aff?.Name}}
                             </mat-option>
                         </mat-select>
                         <mat-hint>Affiliation</mat-hint>
@@ -83,4 +83,4 @@
 
 </div>
 
-<div>{{ this.obsStore.getObservation() | async | json }}</div>
+<!-- <div>{{ this.obsStore.getObservation() | async | json }}</div> -->

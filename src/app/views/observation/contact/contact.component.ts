@@ -5,6 +5,7 @@ import { debounceTime, first, switchMap } from 'rxjs/operators';
 import { MagicStrings } from 'src/app/_shared/models/magic-strings.model';
 import { Contact } from 'src/app/_shared/models/observation.model';
 import { UserMessages } from 'src/app/_shared/models/user-messages.model';
+import { ApiService } from 'src/app/_shared/services/api.service';
 import { ObservationService } from 'src/app/_shared/services/observation.service';
 
 @Component({
@@ -40,16 +41,18 @@ export class ContactComponent implements OnInit, OnDestroy {
   });
 
   // Dropdowns
-  affiliations: any[] = [{value: 1, alias: 'test1'},{value: 2, alias: 'test2'},{value: 3, alias: 'test3'}];
+  affiliations: any[] = [];
 
   // Subscriptions
   formChangeSub!: Subscription;
 
   constructor(
     public obsStore: ObservationService,
+    public api: ApiService,
   ) { }
 
   ngOnInit(): void {
+    // Sub to form changes to update store on valid entries
     this.formChangeSub = this.contactForm.valueChanges
       .pipe(
         debounceTime(200)
@@ -67,6 +70,9 @@ export class ContactComponent implements OnInit, OnDestroy {
               });
           }
       });
+
+    // Init dropdowns
+    this.initializeDropdowns();
   }
 
   ngOnDestroy() {
@@ -80,5 +86,14 @@ export class ContactComponent implements OnInit, OnDestroy {
   get email() { return this.contactForm.get('email'); }
 
   get phone() { return this.contactForm.get('phone'); }
+
+  initializeDropdowns() {
+      this.api.getAffiliation().subscribe(res => {
+        this.affiliations = res;
+      },
+      error => {
+        console.error(error);
+      });
+  }
 
 }

@@ -13,4 +13,8 @@ export class MagicStrings {
 
     // Out of state page
     public static OutOfStateHeader: string = 'Out-of-State Confirmation';
+
+    // API endpoints
+    public static AnimalCount: string = 'animalcount';
+    public static Affiliation: string = 'affiliation';
 }
