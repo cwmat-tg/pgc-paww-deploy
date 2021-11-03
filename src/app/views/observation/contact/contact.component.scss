@@ -1,0 +1,27 @@
+.appContactContainer {
+    min-height: 20vh;
+    margin-top: 1rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
+}
+
+.mat-form-field {
+    min-width: 60%;
+    font-size: 1rem;
+}
+
+.appFormContainer {
+    margin-bottom: 1.5rem;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
