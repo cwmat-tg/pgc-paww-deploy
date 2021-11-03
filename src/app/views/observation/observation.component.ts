@@ -1,8 +1,10 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { MatStepper, StepperOrientation } from '@angular/material/stepper';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
+import { ObservationService } from 'src/app/_shared/services/observation.service';
 
 @Component({
   selector: 'app-observation',
@@ -17,7 +19,10 @@ export class ObservationComponent implements OnInit {
 
   constructor(
     breakpointObserver: BreakpointObserver,
-    ) {
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    public obsStore: ObservationService,
+  ) {
     this.stepperOrientation = breakpointObserver.observe('(min-width: 800px)')
       .pipe(map(({matches}) => matches ? 'horizontal' : 'vertical'));
   }
@@ -31,6 +36,10 @@ export class ObservationComponent implements OnInit {
 
   goForward(stepper: MatStepper) {
     stepper.next();
+  }
+
+  routeOutOfState() {
+    this.router.navigate(['/app/observation/outofstate']);
   }
 
 }
