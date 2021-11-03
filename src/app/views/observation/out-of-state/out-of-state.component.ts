@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MagicStrings } from 'src/app/_shared/models/magic-strings.model';
 import { ObservationService } from 'src/app/_shared/services/observation.service';
@@ -8,7 +8,7 @@ import { ObservationService } from 'src/app/_shared/services/observation.service
   templateUrl: './out-of-state.component.html',
   styleUrls: ['./out-of-state.component.scss']
 })
-export class OutOfStateComponent implements OnInit {
+export class OutOfStateComponent {
   // Config
   header = MagicStrings.OutOfStateHeader;
 
@@ -16,10 +16,6 @@ export class OutOfStateComponent implements OnInit {
     private router: Router,
     public obsStore: ObservationService,
   ) { }
-
-  ngOnInit() {
-
-  }
 
   home() {
     this.obsStore.resetObservation();
