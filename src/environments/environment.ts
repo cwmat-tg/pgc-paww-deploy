@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   appVersion: require('../../package.json').version + '-dev',
-  esriApiKey: 'AAPK906c33edfc014bb58ad9eccf7243114d6wSECkZmaVfQ719ZvrMOReTtcPuSjk91PfM6KVbRNojvoO6wUSdgrI0SaKXnRf_E'
+  esriApiKey: 'AAPK906c33edfc014bb58ad9eccf7243114d6wSECkZmaVfQ719ZvrMOReTtcPuSjk91PfM6KVbRNojvoO6wUSdgrI0SaKXnRf_E',
+  apiEndpoint: 'http://localhost:3000',
 };
 
 /*

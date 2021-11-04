@@ -8,6 +8,13 @@ export class MagicStrings {
     // Location page
     public static LocationHeader: string = 'Observation Location';
 
+    // Contact page
+    public static ContactHeader: string = 'Contact Information';
+
     // Out of state page
-    public static OutOfStateHeader: string = 'Out of State';
+    public static OutOfStateHeader: string = 'Out-of-State Confirmation';
+
+    // API endpoints
+    public static AnimalCount: string = 'animalcount';
+    public static Affiliation: string = 'affiliation';
 }

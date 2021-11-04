@@ -5,6 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './material.module';
 import { VersionComponent } from '../components/version/version.component';
 import { IntroHelperTextComponent } from '../components/intro-helper-text/intro-helper-text.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { IntroHelperTextComponent } from '../components/intro-helper-text/intro-
     CommonModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule 
   ],
   exports: [
     CommonModule,
