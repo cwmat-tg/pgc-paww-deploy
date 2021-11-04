@@ -21,19 +21,15 @@ export class ContactComponent implements OnInit, OnDestroy {
   // Forms
   contactForm = new FormGroup({
     name: new FormControl('', [
-      Validators.required,
       Validators.maxLength(50),
     ]),
     affiliation: new FormControl('', [
-      Validators.required,
     ]),
     email: new FormControl('', [
-      Validators.required,
       Validators.maxLength(50),
       Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
     ]),
     phone: new FormControl('', [
-      Validators.required,
       Validators.maxLength(10),
       Validators.minLength(10),
       Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$'),
