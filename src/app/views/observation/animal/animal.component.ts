@@ -2,43 +2,38 @@ import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/cor
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { debounceTime, first } from 'rxjs/operators';
-import { Affiliation } from 'src/app/_shared/models/config.model';
+import { AnimalCount } from 'src/app/_shared/models/config.model';
 import { MagicStrings } from 'src/app/_shared/models/magic-strings.model';
-import { Contact } from 'src/app/_shared/models/observation.model';
+import { Information } from 'src/app/_shared/models/observation.model';
 import { UserMessages } from 'src/app/_shared/models/user-messages.model';
 import { ApiService } from 'src/app/_shared/services/api.service';
 import { ObservationService } from 'src/app/_shared/services/observation.service';
 
 @Component({
-  selector: 'app-contact',
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss']
+  selector: 'app-animal',
+  templateUrl: './animal.component.html',
+  styleUrls: ['./animal.component.scss']
 })
-export class ContactComponent implements OnInit, OnDestroy {
+export class AnimalComponent implements OnInit, OnDestroy {
   // Config
-  header = MagicStrings.ContactHeader;
-  content = UserMessages.ContactHelperText;
+  header = MagicStrings.AnimalHeader;
+  content = UserMessages.AnimalHelperText;
 
   // Forms
-  contactForm = new FormGroup({
-    name: new FormControl('', [
-      Validators.maxLength(50),
+  animalForm = new FormGroup({
+    date: new FormControl('', [
+      Validators.required,
     ]),
-    affiliation: new FormControl('', [
-    ]),
-    email: new FormControl('', [
-      Validators.maxLength(50),
-      Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
-    ]),
-    phone: new FormControl('', [
-      Validators.maxLength(10),
-      Validators.minLength(10),
-      Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$'),
+    numberOfAnimals: new FormControl('', [
+      Validators.required,
     ]),
   });
 
   // Dropdowns
-  affiliations: Affiliation[] = [];
+  numberOfAnimalsList: AnimalCount[] = [];
+
+  // Date Validation
+  maxDate = new Date();
 
   // Subscriptions
   formChangeSub!: Subscription;
@@ -53,7 +48,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // Sub to form changes to update store on valid entries
-    this.formChangeSub = this.contactForm.valueChanges
+    this.formChangeSub = this.animalForm.valueChanges
       .pipe(
         debounceTime(200)
       )
@@ -62,12 +57,12 @@ export class ContactComponent implements OnInit, OnDestroy {
             this.obsStore.getObservation()
               .pipe(first())
               .subscribe(res => {
-                if (this.contactForm.valid) {
+                if (this.animalForm.valid) {
                   const newData = { ...res };
-                  newData.contact = { ...contact as Contact};
+                  newData.information = { ...contact as Information};
                   this.obsStore.updateObservation(newData);
                 }
-                this.isValid.emit(this.contactForm.valid);
+                this.isValid.emit(this.animalForm.valid);
               });
           }
       });
@@ -80,17 +75,13 @@ export class ContactComponent implements OnInit, OnDestroy {
     this.formChangeSub.unsubscribe();
   }
 
-  get name() { return this.contactForm.get('name'); }
+  get date() { return this.animalForm.get('date'); }
 
-  get affiliation() { return this.contactForm.get('affiliation'); }
-
-  get email() { return this.contactForm.get('email'); }
-
-  get phone() { return this.contactForm.get('phone'); }
+  get numberOfAnimals() { return this.animalForm.get('numberOfAnimals'); }
 
   initializeDropdowns() {
       this.api.getAnimalCount().subscribe(res => {
-        this.affiliations = res;
+        this.numberOfAnimalsList = res;
       },
       error => {
         console.error(error);

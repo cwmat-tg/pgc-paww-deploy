@@ -24,7 +24,9 @@
         <mat-step [completed]="this.observationIsValid" class="appLastStep">
 
           <ng-template matStepLabel>Observation</ng-template>
-          <p>WIP</p>
+
+          <app-animal (isValid)="this.observationIsValid = $event; this.checkValid()" #animal></app-animal>
+
         </mat-step>
 
       </mat-stepper>

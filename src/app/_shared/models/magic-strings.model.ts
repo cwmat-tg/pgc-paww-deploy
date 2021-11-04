@@ -11,6 +11,9 @@ export class MagicStrings {
     // Contact page
     public static ContactHeader: string = 'Contact Information';
 
+    // Animal page
+    public static AnimalHeader: string = 'Observation Information';
+
     // Out of state page
     public static OutOfStateHeader: string = 'Out-of-State Confirmation';
 

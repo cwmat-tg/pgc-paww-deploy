@@ -3,5 +3,20 @@
     { "AffiliationId": 1, "Name": "Test 1", "SortKey": null },
     { "AffiliationId": 2, "Name": "Test 2", "SortKey": null },
     { "AffiliationId": 3, "Name": "Test 3", "SortKey": null }
+  ],
+
+  "animalcount": [ 
+    { "AminalCountId": 1, "Name": "1", "SortKey": null },
+    { "AminalCountId": 2, "Name": "2", "SortKey": null },
+    { "AminalCountId": 3, "Name": "3", "SortKey": null },
+    { "AminalCountId": 4, "Name": "4", "SortKey": null },
+    { "AminalCountId": 5, "Name": "5", "SortKey": null },
+    { "AminalCountId": 6, "Name": "6", "SortKey": null },
+    { "AminalCountId": 7, "Name": "7", "SortKey": null },
+    { "AminalCountId": 8, "Name": "8", "SortKey": null },
+    { "AminalCountId": 9, "Name": "9", "SortKey": null },
+    { "AminalCountId": 10, "Name": "10", "SortKey": null },
+    { "AminalCountId": 11, "Name": "10+", "SortKey": null }
   ]
+    
 }

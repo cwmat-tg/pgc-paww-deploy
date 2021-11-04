@@ -10,8 +10,14 @@ export interface Contact {
     phone?: number;
 }
 
+export interface Information {
+    date?: Date;
+    numberOfAnimals?: string;
+}
+
 export interface Observation {
     geometry?: PointGeom;
     inState?: boolean;
     contact?: Contact;
+    information?: Information;
 }
