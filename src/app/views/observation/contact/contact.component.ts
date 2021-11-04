@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { debounceTime, first, switchMap } from 'rxjs/operators';
@@ -46,6 +46,9 @@ export class ContactComponent implements OnInit, OnDestroy {
   // Subscriptions
   formChangeSub!: Subscription;
 
+  // Outputs
+  @Output() isValid = new EventEmitter<boolean>(false);
+
   constructor(
     public obsStore: ObservationService,
     public api: ApiService,
@@ -67,6 +70,7 @@ export class ContactComponent implements OnInit, OnDestroy {
                   newData.contact = { ...contact as Contact};
                   this.obsStore.updateObservation(newData);
                 }
+                this.isValid.emit(this.contactForm.valid);
               });
           }
       });

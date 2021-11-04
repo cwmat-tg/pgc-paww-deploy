@@ -3,32 +3,28 @@
     <mat-stepper [linear]="this.isLinear" [orientation]="(this.stepperOrientation | async)!" #stepper>
 
         <!-- Step 1 -->
-        <mat-step>
+        <mat-step [completed]="this.locationIsValid">
 
             <ng-template matStepLabel>Location</ng-template>
             
-            <app-location></app-location>
+            <app-location (isValid)="this.locationIsValid = $event; this.checkValid()" #location></app-location>
 
         </mat-step>
 
         <!-- Step 2 -->
-        <mat-step>
+        <mat-step [completed]="this.contactIsValid">
 
             <ng-template matStepLabel>Contact</ng-template>
             
-            <app-contact></app-contact>
+            <app-contact (isValid)="this.contactIsValid = $event; this.checkValid()" #contact></app-contact>
 
         </mat-step>
 
         <!-- Step 3 -->
-        <mat-step class="appLastStep">
+        <mat-step [completed]="this.observationIsValid" class="appLastStep">
 
           <ng-template matStepLabel>Observation</ng-template>
-          <p>You are now done.</p>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
-          </div>
+          <p>WIP</p>
         </mat-step>
 
       </mat-stepper>
@@ -57,6 +53,7 @@
           mat-flat-button color="primary" 
           class="appStepperButton" 
           type="button" 
+          [disabled]="!this.isValid"
           (click)="stepper.next()">
             Next
         </button>
