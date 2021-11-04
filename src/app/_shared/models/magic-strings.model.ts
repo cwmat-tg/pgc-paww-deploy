@@ -20,4 +20,5 @@ export class MagicStrings {
     // API endpoints
     public static AnimalCount: string = 'animalcount';
     public static Affiliation: string = 'affiliation';
+    public static Species: string = 'species';
 }

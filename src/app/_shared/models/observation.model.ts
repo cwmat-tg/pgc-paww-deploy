@@ -13,6 +13,7 @@ export interface Contact {
 export interface Information {
     date?: Date;
     numberOfAnimals?: string;
+    species?: string;
 }
 
 export interface Observation {

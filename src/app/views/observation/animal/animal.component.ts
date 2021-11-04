@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/cor
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { debounceTime, first } from 'rxjs/operators';
-import { AnimalCount } from 'src/app/_shared/models/config.model';
+import { AnimalCount, Species } from 'src/app/_shared/models/config.model';
 import { MagicStrings } from 'src/app/_shared/models/magic-strings.model';
 import { Information } from 'src/app/_shared/models/observation.model';
 import { UserMessages } from 'src/app/_shared/models/user-messages.model';
@@ -27,10 +27,14 @@ export class AnimalComponent implements OnInit, OnDestroy {
     numberOfAnimals: new FormControl('', [
       Validators.required,
     ]),
+    species: new FormControl('', [
+      Validators.required,
+    ]),
   });
 
   // Dropdowns
   numberOfAnimalsList: AnimalCount[] = [];
+  speciesList: Species[] = [];
 
   // Date Validation
   maxDate = new Date();
@@ -79,9 +83,18 @@ export class AnimalComponent implements OnInit, OnDestroy {
 
   get numberOfAnimals() { return this.animalForm.get('numberOfAnimals'); }
 
+  get species() { return this.animalForm.get('species'); }
+
   initializeDropdowns() {
       this.api.getAnimalCount().subscribe(res => {
         this.numberOfAnimalsList = res;
+      },
+      error => {
+        console.error(error);
+      });
+
+      this.api.getSpecies().subscribe(res => {
+        this.speciesList = res;
       },
       error => {
         console.error(error);

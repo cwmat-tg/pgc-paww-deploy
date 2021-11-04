@@ -9,3 +9,9 @@ export interface Affiliation {
     Name?: string;
     SortKey?: number;
 }
+
+export interface Species {
+    SpeciesId?: number;
+    Name?: string;
+    SortKey?: number;
+}

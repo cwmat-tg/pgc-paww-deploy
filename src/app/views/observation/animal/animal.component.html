@@ -56,6 +56,27 @@
 
             </div>
 
+            <div 
+            fxFlex="50" 
+            fxFlex.xs="100" 
+            fxFlex.sm="100" 
+            class="appFormRowContainer">
+    
+            <div class="appFormContainer">
+                <mat-form-field>
+                    <mat-label for="observation-species">Species</mat-label>
+                    <mat-select id="observation-species" formControlName="species">
+                        <mat-option *ngFor="let spec of this.speciesList" [value]="spec?.SpeciesId">
+                            {{spec?.Name}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-hint>What species is the majority of the animals that were observed?</mat-hint>
+                    <mat-error *ngIf="this.species?.invalid && this.species?.errors?.required">This field is required.</mat-error>
+                </mat-form-field>
+            </div>
+
+        </div>
+
         </div>
 
     </form>

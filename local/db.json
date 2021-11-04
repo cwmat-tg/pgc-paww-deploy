@@ -17,6 +17,12 @@
     { "AminalCountId": 9, "Name": "9", "SortKey": null },
     { "AminalCountId": 10, "Name": "10", "SortKey": null },
     { "AminalCountId": 11, "Name": "10+", "SortKey": null }
+  ],
+
+  "species": [
+    { "SpeciesId": 1, "Name": "Test 1", "SortKey": null },
+    { "SpeciesId": 2, "Name": "Test 2", "SortKey": null },
+    { "SpeciesId": 3, "Name": "Test 3", "SortKey": null }
   ]
     
 }
