@@ -17,6 +17,11 @@ mgl-map {
     left: 0.5rem;
 }
 
+.mapboxgl-user-location-dot,
+.maplibregl-user-location-dot {
+    background-color: #3E0000;
+}
+
 /* Desktops and laptops ----------- */
 @media only screen and (min-width: $screen-width-desktop) {
     /* Styles */

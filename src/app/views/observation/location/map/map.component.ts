@@ -6,6 +6,7 @@ import { MapModel } from './map.model';
 import booleanIntersects from '@turf/boolean-intersects';
 import * as turf from '@turf/turf';
 import * as paBoundary from 'src/assets/gis/pa.json';
+import { Position } from 'ngx-maplibre-gl';
 
 @Component({
   selector: 'app-map',
@@ -100,6 +101,16 @@ export class MapComponent implements OnInit {
     const poly = turf.polygon(polyRaw.coordinates);
     const point = turf.point(coords);
     return booleanIntersects(poly, point);
+  }
+
+  newGPSLocation(event: Position) {
+    console.log('New Location', event);
+    this.setCoordinates([event.coords?.longitude || 0.0, event.coords?.latitude || 0.0]);
+    this.saveLocation();
+  }
+
+  noGPSLocation(event: ErrorEvent) {
+    console.log('Location Error', event);
   }
 
 }
