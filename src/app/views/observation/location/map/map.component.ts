@@ -1,12 +1,12 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { LngLatLike, Map } from 'maplibre-gl';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { GeolocateControl, LngLatLike, Map } from 'maplibre-gl';
 import { PointGeom } from 'src/app/_shared/models/observation.model';
 import { environment } from 'src/environments/environment';
 import { MapModel } from './map.model';
 import booleanIntersects from '@turf/boolean-intersects';
 import * as turf from '@turf/turf';
 import * as paBoundary from 'src/assets/gis/pa.json';
-import { Position } from 'ngx-maplibre-gl';
+import { ControlComponent, Position } from 'ngx-maplibre-gl';
 
 @Component({
   selector: 'app-map',
@@ -33,6 +33,9 @@ export class MapComponent implements OnInit {
   // Outputs
   @Output() newLocation = new EventEmitter<PointGeom>();
   @Output() newIntersectStatus = new EventEmitter<boolean>();
+
+  // View Children
+  @ViewChild('geolocater') geolocater!: ControlComponent<GeolocateControl>;
 
   constructor(
     private cd: ChangeDetectorRef,
@@ -107,6 +110,10 @@ export class MapComponent implements OnInit {
     console.log('New Location', event);
     this.setCoordinates([event.coords?.longitude || 0.0, event.coords?.latitude || 0.0]);
     this.saveLocation();
+
+    // Turn off the geolocate
+    const geoControl = this.geolocater.control as GeolocateControl;
+    geoControl.trigger()
   }
 
   noGPSLocation(event: ErrorEvent) {
