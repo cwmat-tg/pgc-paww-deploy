@@ -120,4 +120,11 @@ export class MapComponent implements OnInit {
     console.log('Location Error', event);
   }
 
+  zoomToCandidates(event: any ) {
+    console.log(event);
+  }
+
+  clearPoints() {
+  }
+
 }

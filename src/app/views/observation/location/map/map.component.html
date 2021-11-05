@@ -52,9 +52,17 @@
         <button mat-flat-button color="basic"  *ngIf="this.isActive" [disabled]="!this.isActive" (click)="this.saveLocation()">Save Location</button>
     </div>
 
+    <!-- Search bar -->
+    <div class="appSearchContainer">
+        <app-geo-search [ngStyle]="{ top: '0.75rem', right: '5rem' }" (zoomToCandidates)="zoomToCandidates($event)" (clearPoints)="clearPoints()"
+            [mapCenter]="this.center">
+        </app-geo-search>
+    </div>
+
 </div>
 
 <!-- Show Coordinates -->
 <div *ngIf="this.coordinates?.length && this.coordinates.length > 0">
     {{ this.coordinates[0] | number }}, {{ this.coordinates[1] | number }}
 </div>
+
