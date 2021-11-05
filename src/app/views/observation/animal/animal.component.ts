@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -12,12 +13,25 @@ import { ObservationService } from 'src/app/_shared/services/observation.service
 @Component({
   selector: 'app-animal',
   templateUrl: './animal.component.html',
-  styleUrls: ['./animal.component.scss']
+  styleUrls: ['./animal.component.scss'],
+  animations: [
+    trigger('state', [
+        state('hidden', style({
+            opacity: '0',
+        })),
+        state('visible', style({
+          opacity: '1'
+        })),
+        transition('* => visible', [animate('500ms ease-out')]),
+        transition('visible => hidden', [animate('500ms ease-out')])
+    ]),
+  ]
 })
 export class AnimalComponent implements OnInit, OnDestroy {
   // Config
   header = MagicStrings.AnimalHeader;
   content = UserMessages.AnimalHelperText;
+  state = 'hidden';
 
   // Forms
   animalForm = new FormGroup({
@@ -67,6 +81,7 @@ export class AnimalComponent implements OnInit, OnDestroy {
                   this.obsStore.updateObservation(newData);
                 }
                 this.isValid.emit(this.animalForm.valid);
+                this.checkHiddenFields();
               });
           }
       });
@@ -99,6 +114,12 @@ export class AnimalComponent implements OnInit, OnDestroy {
       error => {
         console.error(error);
       });
+  }
+
+  checkHiddenFields() {
+    if (this.state === 'hidden' && this.date?.valid && this.numberOfAnimals?.valid) {
+      this.state = 'visible';
+    }
   }
 
 }

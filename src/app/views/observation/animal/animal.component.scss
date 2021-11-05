@@ -16,6 +16,19 @@
     margin-bottom: 1.5rem;
 }
 
+.appFieldRow {
+    width: 100%;
+}
+
+.appSpacer {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.appHide {
+    opacity: 0;
+}
+
 
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width: $screen-width-mobile) {
