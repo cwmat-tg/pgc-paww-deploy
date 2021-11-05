@@ -12,6 +12,16 @@
         <!-- Map Controls -->
         <mgl-control mglNavigation position="top-right"></mgl-control>
         <mgl-control mglScale position="bottom-left"></mgl-control>
+        <mgl-control
+            #geolocater
+            mglGeolocate
+            [positionOptions]="{
+                enableHighAccuracy: true
+            }"
+            [trackUserLocation]="true"
+            (geolocate)="this.newGPSLocation($event)"
+            (error)="this.noGPSLocation($event)"
+        ></mgl-control>
 
         <!-- Map Features -->
         <mgl-geojson-source id="point">
