@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Affiliation, AnimalCount } from '../models/config.model';
+import { Affiliation, AnimalCount, Species } from '../models/config.model';
 import { MagicStrings } from '../models/magic-strings.model';
 
 @Injectable({
@@ -32,6 +32,17 @@ export class ApiService {
   getAffiliation(): Observable<Affiliation[]> {
     return this.http.get<Affiliation[]>(
       `${this.apiEndpoint}/${MagicStrings.Affiliation}`
+    )
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  // Species
+  getSpecies(): Observable<AnimalCount[]> {
+    return this.http.get<Species[]>(
+      `${this.apiEndpoint}/${MagicStrings.Species}`
     )
     .pipe(
       retry(1),

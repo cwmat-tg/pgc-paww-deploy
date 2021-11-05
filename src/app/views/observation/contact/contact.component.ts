@@ -1,7 +1,8 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { debounceTime, first, switchMap } from 'rxjs/operators';
+import { debounceTime, first } from 'rxjs/operators';
+import { Affiliation } from 'src/app/_shared/models/config.model';
 import { MagicStrings } from 'src/app/_shared/models/magic-strings.model';
 import { Contact } from 'src/app/_shared/models/observation.model';
 import { UserMessages } from 'src/app/_shared/models/user-messages.model';
@@ -37,7 +38,7 @@ export class ContactComponent implements OnInit, OnDestroy {
   });
 
   // Dropdowns
-  affiliations: any[] = [];
+  affiliations: Affiliation[] = [];
 
   // Subscriptions
   formChangeSub!: Subscription;
@@ -88,7 +89,7 @@ export class ContactComponent implements OnInit, OnDestroy {
   get phone() { return this.contactForm.get('phone'); }
 
   initializeDropdowns() {
-      this.api.getAffiliation().subscribe(res => {
+      this.api.getAnimalCount().subscribe(res => {
         this.affiliations = res;
       },
       error => {

@@ -23,6 +23,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDividerModule} from '@angular/material/divider';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 @NgModule({
   imports: [
@@ -49,7 +50,8 @@ import {MatDividerModule} from '@angular/material/divider';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatDividerModule
+    MatDividerModule,
+    MatMomentDateModule
   ],
   exports: [
     MatDatepickerModule,
@@ -75,7 +77,8 @@ import {MatDividerModule} from '@angular/material/divider';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatDividerModule
+    MatDividerModule,
+    MatMomentDateModule
   ]
 })
 export class MaterialModule {}

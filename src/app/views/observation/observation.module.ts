@@ -8,6 +8,7 @@ import { MapComponent } from './location/map/map.component';
 import { NgxMapLibreGLModule } from 'ngx-maplibre-gl';
 import { OutOfStateComponent } from './out-of-state/out-of-state.component';
 import { ContactComponent } from './contact/contact.component';
+import { AnimalComponent } from './animal/animal.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ContactComponent } from './contact/contact.component';
     LocationComponent,
     MapComponent,
     OutOfStateComponent,
-    ContactComponent
+    ContactComponent,
+    AnimalComponent
   ],
   imports: [
     CommonModule,
