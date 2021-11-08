@@ -2,17 +2,12 @@
 
     <form class="appSearchForm" [matTooltip]="!searchCtrl.value || searchCtrl.value.length < 1 ? tooltipMessage : ''">
   
-      <mat-form-field class="appSearchFullWidth">
+      <mat-form-field class="appSearchFullWidth" [style]="'width: 100%;'">
         <input matInput placeholder="Search" aria-label="Search" [matAutocomplete]="auto" [formControl]="searchCtrl">
-        <mat-icon class="appSearchIcon">search</mat-icon>
-        <mat-icon *ngIf="(searchCtrl.value && searchCtrl.value.length > 0) || searchCtrl.value && searchCtrl.value.name"
-          class="appClearIcon" (click)="clearValues()">
-          clear</mat-icon>
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"
           (optionSelected)="goToLocation($event.option.value)" [displayWith]="getOptionName">
           <mat-option class="search-option" *ngFor="let candidate of candidates" [value]="candidate">
-            <span>{{candidate.name}}</span> |
-            <small>Source: {{candidate.source}}</small>
+            <span>{{candidate.name}}</span>
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>

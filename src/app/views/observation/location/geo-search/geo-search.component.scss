@@ -1,57 +1,30 @@
 
-.search-form {
-    min-width: 9.375rem;
-    max-width: 31.25rem;
-    width: 100%;
-    /*background: #f3f3f3b5;*/
-    padding-left: 0.3125rem;
-    padding-right: 0.3125rem;
-    height: 3.25rem;
-  }
-
-.search-full-width {
-    width: 100%;
-  }
-
-
-.search-option-img {
-  vertical-align: middle;
-  margin-right: 0.5rem;
+.appSearchForm {
+  min-width: 9.375rem;
+  max-width: 31.25rem;
+  width: 100%;
+  padding-left: 0.3125rem;
+  padding-right: 0.3125rem;
+  height: 3.25rem;
 }
 
-[dir='rtl'] .search-option-img {
-  margin-right: 0;
-  margin-left: 0.5rem;
-}
-
-.search-container {
+.appSearchContainer {
   width: 30rem;
   padding: 0.1rem 1rem;
   background-color: rgba(243, 243, 243, 0.71);
   border-radius: 1rem;
 }
 
-// :host {
-//   z-index: 5;
-//   position: absolute;
-//   width: 22rem;
-// }
-
-// :host input.mat-input-element {
-//   font-size: 0.85rem;
-// }
-
-
 .appSearchIcon {
-    position: absolute;
-    right: 1.0rem;
-    color: #757575;
-  }
+  position: absolute;
+  right: 1.0rem;
+  color: #757575;
+}
   
-  .appClearIcon {
-    position: absolute;
-    right: 2.35rem;
-    color: #f32b2b;
-    cursor: pointer;
-  }
+.appClearIcon {
+  position: absolute;
+  right: 2.35rem;
+  color: #f32b2b;
+  cursor: pointer;
+}
   
