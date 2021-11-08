@@ -90,10 +90,6 @@ export class GeoSearchService {
             singleLine: suggestion.text,
             magicKey: suggestion.magicKey,
             countryCode: 'USA',
-            // params: {
-            //   maxLocations: maxCandidates,
-            //   outSR: 102100 // WKID Web Mercator - EPSG 3857
-            // } as IGeocodeOptions
           }).then(result => {
             let candidates = result.candidates.map(item => {
               return {
