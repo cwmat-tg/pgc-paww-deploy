@@ -26,7 +26,7 @@ export class ObservationComponent implements AfterViewInit {
 
   // Valid Check
   locationIsValid = false;
-  contactIsValid = false;
+  contactIsValid = true;
   observationIsValid = false;
   isValid = false;
 
@@ -58,6 +58,7 @@ export class ObservationComponent implements AfterViewInit {
   }
 
   checkValid(newStepperIndex?: number) {
+    debugger;
     let currentIdx: number;
     if (newStepperIndex === undefined) {
       currentIdx = this.stepper.selectedIndex;
