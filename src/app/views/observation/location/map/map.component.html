@@ -8,6 +8,11 @@
         (mapLoad)="this.map = $event"
         (moveEnd)="this.mapMoved($event)"
         [cursorStyle]="this.cursorStyle"
+        [fitBounds]="this.bounds"
+        [fitBoundsOptions]="{
+            padding: 200,
+            maxZoom: 12
+        }"
     >
         <!-- Map Controls -->
         <mgl-control mglNavigation position="top-right"></mgl-control>
@@ -54,7 +59,8 @@
 
     <!-- Search bar -->
     <div class="appSearchContainer">
-        <app-geo-search [ngStyle]="{ top: '0.75rem', right: '5rem' }" (zoomToCandidates)="zoomToCandidates($event)" (clearPoints)="clearPoints()"
+        <app-geo-search 
+            (zoomToCandidates)="zoomToCandidates($event)"
             [mapCenter]="this.center">
         </app-geo-search>
     </div>

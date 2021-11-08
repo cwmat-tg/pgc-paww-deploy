@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { GeolocateControl, LngLatLike, Map } from 'maplibre-gl';
+import { GeolocateControl, LngLatBounds, LngLatLike, Map } from 'maplibre-gl';
 import { PointGeom } from 'src/app/_shared/models/observation.model';
 import { environment } from 'src/environments/environment';
 import { MapModel } from './map.model';
@@ -22,6 +22,7 @@ export class MapComponent implements OnInit {
   basemapStyle = `https://basemaps-api.arcgis.com/arcgis/rest/services/styles/${this.styleEnum}?type=style&token=${this.apiKey}`;
   map!: Map;
   cursorStyle!: string;
+  bounds!: LngLatBounds;
 
   // Location Select State
   isActive = false;
@@ -44,11 +45,15 @@ export class MapComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  activate() {
+    this.isActive = true;
+  }
+
   startSelect() {
     // Start active session
     const mapCenter = this.map.getCenter();
     this.setCoordinates([mapCenter.lng, mapCenter.lat]);
-    this.isActive = true;
+    this.activate();
   }
 
   endSelect() {
@@ -121,10 +126,17 @@ export class MapComponent implements OnInit {
   }
 
   zoomToCandidates(event: any ) {
-    console.log(event);
-  }
+    console.log('New Search Location', event);
+    
+    if (event?.candidates?.length > 0) {
+      this.setCoordinates([event.candidates[0]?.location?.x || 0.0, event.candidates[0]?.location?.y || 0.0]);
+      this.bounds = this.coordinates.reduce((bounds, coord) => {
+        return bounds.extend(<any>coord);
+      }, new LngLatBounds([this.coordinates[0], this.coordinates[1]], [this.coordinates[0], this.coordinates[1]]));
 
-  clearPoints() {
+      this.activate();
+    }
+
   }
 
 }

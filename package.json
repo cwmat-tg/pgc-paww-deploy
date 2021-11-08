@@ -28,6 +28,7 @@
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
     "@angular/service-worker": "~12.2.0",
+    "@esri/arcgis-rest-auth": "^3.4.3",
     "@esri/arcgis-rest-geocoding": "^3.4.3",
     "@esri/arcgis-rest-request": "^3.4.3",
     "@esri/arcgis-rest-types": "^3.4.3",

@@ -14,9 +14,9 @@ export class GeoSearchComponent implements OnInit, OnDestroy {
 
   candidates: Candidate[] = [];
 
-  tooltipMessage = 'You can enter a Conservation District name, HUC, NRCS Field Office, township and range, address, location, or longitude/latitude coordinates and then press Enter or click a suggested result. Longitude and latitude searches must be in Decimal Degrees: e.g., -111.32, 33.48. Township and range searches must be entered in the format T25N R12W.';
+  tooltipMessage = '';
 
-  @Input() mapCenter: any = { x: -111.579, y: 34.284 }; // Rough Center of AZ
+  @Input() mapCenter: any = { x: -77.1945, y: 41.2033 }; // Rough Center of PA
 
   @Output() zoomToCandidates: EventEmitter<Candidates> = new EventEmitter();
 
