@@ -17,16 +17,50 @@ mgl-map {
     left: 0.5rem;
 }
 
+.appSearchContainer {
+    position: absolute;
+    top: 0.5rem;
+    right: 5rem;
+}
+
 .mapboxgl-user-location-dot,
 .maplibregl-user-location-dot {
     background-color: #3E0000;
 }
 
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width: $screen-width-mobile) {
+    /* Styles */
+    .appSearchContainer {
+        position: absolute;
+        top: 3rem;
+        left: 0.3rem;
+        right: auto;
+    }
+}
+  
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width: $screen-width-mobile-small-landscape) {
+    /* Styles */
+    .appSearchContainer {
+        position: absolute;
+        top: 3rem;
+        left: 0.3rem;
+        right: auto;
+    }
+}
+  
 /* Desktops and laptops ----------- */
 @media only screen and (min-width: $screen-width-desktop) {
     /* Styles */
     #appMapContainer {
         height: 50vh;
+    }
+
+    .appSearchContainer {
+        top: 0.5rem;
+        right: 5rem;
+        left: auto;
     }
 }
 
@@ -36,4 +70,11 @@ mgl-map {
     #appMapContainer {
         height: 65vh;
     }
+
+    .appSearchContainer {
+        top: 0.5rem;
+        right: 5rem;
+        left: auto;
+    }
+    
 }

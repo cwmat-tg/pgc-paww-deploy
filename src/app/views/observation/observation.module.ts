@@ -9,6 +9,7 @@ import { NgxMapLibreGLModule } from 'ngx-maplibre-gl';
 import { OutOfStateComponent } from './out-of-state/out-of-state.component';
 import { ContactComponent } from './contact/contact.component';
 import { AnimalComponent } from './animal/animal.component';
+import { GeoSearchComponent } from './location/geo-search/geo-search.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { AnimalComponent } from './animal/animal.component';
     MapComponent,
     OutOfStateComponent,
     ContactComponent,
-    AnimalComponent
+    AnimalComponent,
+    GeoSearchComponent
   ],
   imports: [
     CommonModule,

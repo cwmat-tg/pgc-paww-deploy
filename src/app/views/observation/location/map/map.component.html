@@ -8,6 +8,10 @@
         (mapLoad)="this.map = $event"
         (moveEnd)="this.mapMoved($event)"
         [cursorStyle]="this.cursorStyle"
+        [fitBounds]="this.bounds"
+        [fitBoundsOptions]="{
+            maxZoom: 12
+        }"
     >
         <!-- Map Controls -->
         <mgl-control mglNavigation position="top-right"></mgl-control>
@@ -52,9 +56,18 @@
         <button mat-flat-button color="basic"  *ngIf="this.isActive" [disabled]="!this.isActive" (click)="this.saveLocation()">Save Location</button>
     </div>
 
+    <!-- Search bar -->
+    <div class="appSearchContainer">
+        <app-geo-search 
+            (zoomToCandidates)="zoomToCandidates($event)"
+            [mapCenter]="this.center">
+        </app-geo-search>
+    </div>
+
 </div>
 
 <!-- Show Coordinates -->
 <div *ngIf="this.coordinates?.length && this.coordinates.length > 0">
     {{ this.coordinates[0] | number }}, {{ this.coordinates[1] | number }}
 </div>
+

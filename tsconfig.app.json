@@ -5,7 +5,8 @@
     "outDir": "./out-tsc/app",
     "resolveJsonModule": true,
     "types": [
-      "node"
+      "node",
+      "@esri/arcgis-rest-types"
     ]
   },
   "files": [
