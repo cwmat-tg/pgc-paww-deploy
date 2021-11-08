@@ -15,3 +15,21 @@ export interface Species {
     Name?: string;
     SortKey?: number;
 }
+
+export interface YesNo {
+    YesNoId?: number;
+    Name?: string;
+    SortKey?: number;
+}
+
+export interface Age {
+    AgeId?: number;
+    Name?: string;
+    SortKey?: number;
+}
+
+export interface Captive {
+    CaptiveId?: number;
+    Name?: string;
+    SortKey?: number;
+}

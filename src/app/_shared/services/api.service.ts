@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Affiliation, AnimalCount, Species } from '../models/config.model';
+import { Affiliation, Age, AnimalCount, Captive, Species, YesNo } from '../models/config.model';
 import { MagicStrings } from '../models/magic-strings.model';
 
 @Injectable({
@@ -19,35 +19,42 @@ export class ApiService {
 
   // Animal Count
   getAnimalCount(): Observable<AnimalCount[]> {
-    return this.http.get<AnimalCount[]>(
-      `${this.apiEndpoint}/${MagicStrings.AnimalCount}`
-    )
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
+    return this.get(MagicStrings.AnimalCount);
   }
 
   // Affiliation
   getAffiliation(): Observable<Affiliation[]> {
-    return this.http.get<Affiliation[]>(
-      `${this.apiEndpoint}/${MagicStrings.Affiliation}`
-    )
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
+    return this.get(MagicStrings.Affiliation);
   }
 
   // Species
-  getSpecies(): Observable<AnimalCount[]> {
-    return this.http.get<Species[]>(
-      `${this.apiEndpoint}/${MagicStrings.Species}`
+  getSpecies(): Observable<Species[]> {
+    return this.get(MagicStrings.Species);
+  }
+
+  // Yes/No
+  getYesNo(): Observable<YesNo[]> {
+    return this.get(MagicStrings.YesNo);
+  }
+
+  // Age
+  getAge(): Observable<Age[]> {
+    return this.get(MagicStrings.Age);
+  }
+
+  // Captive
+  getCaptive(): Observable<Captive[]> {
+    return this.get(MagicStrings.Captive);
+  }
+
+  private get<T>(endpoint: string): Observable<T[]> {
+    return this.http.get<T[]>(
+      `${this.apiEndpoint}/${endpoint}`
     )
     .pipe(
       retry(1),
       catchError(this.handleError)
-    )
+    );
   }
 
   // Error handling 

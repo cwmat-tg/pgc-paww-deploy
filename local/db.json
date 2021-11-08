@@ -23,6 +23,24 @@
     { "SpeciesId": 1, "Name": "Test 1", "SortKey": null },
     { "SpeciesId": 2, "Name": "Test 2", "SortKey": null },
     { "SpeciesId": 3, "Name": "Test 3", "SortKey": null }
+  ],
+
+  "yesno": [
+    { "YesNoId": 1, "Name": "Yes", "SortKey": null },
+    { "YesNoId": 2, "Name": "No", "SortKey": null },
+    { "YesNoId": 3, "Name": "Unknown", "SortKey": null }
+  ],
+
+  "age": [
+    { "AgeId": 1, "Name": "Juvenile", "SortKey": null },
+    { "AgeId": 2, "Name": "Adult", "SortKey": null },
+    { "AgeId": 3, "Name": "Unknown", "SortKey": null }
+  ],
+
+  "captive": [
+    { "CaptiveId": 1, "Name": "Captive", "SortKey": null },
+    { "CaptiveId": 2, "Name": "Wild", "SortKey": null },
+    { "CaptiveId": 3, "Name": "Both", "SortKey": null }
   ]
     
 }

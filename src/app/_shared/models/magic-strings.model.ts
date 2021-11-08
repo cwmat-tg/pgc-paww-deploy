@@ -21,4 +21,7 @@ export class MagicStrings {
     public static AnimalCount: string = 'animalcount';
     public static Affiliation: string = 'affiliation';
     public static Species: string = 'species';
+    public static YesNo: string = 'yesno';
+    public static Age: string = 'age';
+    public static Captive: string = 'captive';
 }
