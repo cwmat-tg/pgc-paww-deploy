@@ -3,7 +3,7 @@ import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/cor
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { debounceTime, first } from 'rxjs/operators';
-import { Age, AnimalCount, Captive, Species, YesNo } from 'src/app/_shared/models/config.model';
+import { Age, AnimalCount, Captive, Classification, Species, YesNo } from 'src/app/_shared/models/config.model';
 import { MagicStrings } from 'src/app/_shared/models/magic-strings.model';
 import { Information } from 'src/app/_shared/models/observation.model';
 import { UserMessages } from 'src/app/_shared/models/user-messages.model';
@@ -34,26 +34,37 @@ import { ObservationService } from 'src/app/_shared/services/observation.service
       })),
       transition(`* => ${MagicStrings.Visible}`, [animate('500ms ease-out')]),
       transition(`${MagicStrings.Visible} => ${MagicStrings.Hidden}`, [animate('500ms ease-out')])
-  ]),
-  trigger('animalDead', [
-    state(MagicStrings.Hidden, style({
-        opacity: '0',
-    })),
-    state(MagicStrings.Visible, style({
-      opacity: '1'
-    })),
-    transition(`* => ${MagicStrings.Visible}`, [animate('500ms ease-out')]),
-    transition(`${MagicStrings.Visible} => ${MagicStrings.Hidden}`, [animate('500ms ease-out')])
-]),
+    ]),
+    trigger('animalDead', [
+      state(MagicStrings.Hidden, style({
+          opacity: '0',
+      })),
+      state(MagicStrings.Visible, style({
+        opacity: '1'
+      })),
+      transition(`* => ${MagicStrings.Visible}`, [animate('500ms ease-out')]),
+      transition(`${MagicStrings.Visible} => ${MagicStrings.Hidden}`, [animate('500ms ease-out')])
+    ]),
+    trigger('speciesSelected', [
+      state(MagicStrings.Hidden, style({
+          opacity: '0',
+      })),
+      state(MagicStrings.Visible, style({
+        opacity: '1'
+      })),
+      transition(`* => ${MagicStrings.Visible}`, [animate('500ms ease-out')]),
+      transition(`${MagicStrings.Visible} => ${MagicStrings.Hidden}`, [animate('500ms ease-out')])
+    ]),
   ]
 })
 export class AnimalComponent implements OnInit, OnDestroy {
   // Config
   header = MagicStrings.AnimalHeader;
   content = UserMessages.AnimalHelperText;
-  state = 'hidden';
-  animalAlive = 'hidden';
-  animalDead = 'hidden';
+  state = MagicStrings.Hidden;
+  animalAlive = MagicStrings.Hidden;
+  animalDead = MagicStrings.Hidden;
+  speciesSelected = MagicStrings.Hidden;
 
 
   // Forms
@@ -98,6 +109,7 @@ export class AnimalComponent implements OnInit, OnDestroy {
   yesNoList: YesNo[] = [];
   ageList: Age[] = [];
   captiveList: Captive[] = [];
+  classificationList: Classification[] = [];
 
   // Refs
   refYes = MagicStrings.RefLookupYes;
@@ -211,6 +223,14 @@ export class AnimalComponent implements OnInit, OnDestroy {
       error => {
         console.error(error);
       });
+
+      // Classification
+      this.api.getClassification().subscribe(res => {
+        this.classificationList = res;
+      },
+      error => {
+        console.error(error);
+      });
   }
 
   checkHiddenFields() {
@@ -235,6 +255,11 @@ export class AnimalComponent implements OnInit, OnDestroy {
       this.poaching?.reset();
       this.sickOrInjured?.reset();
       this.inYourPossession?.reset();
+    }
+
+    // Species Selected
+    if (this.species?.valid) {
+      this.speciesSelected = MagicStrings.Visible;
     }
   }
 

@@ -24,12 +24,14 @@ export class MagicStrings {
     public static YesNo: string = 'GetYesNoLookUp';
     public static Age: string = 'GetWildlifeAgeLookUp';
     public static Captive: string = 'GetCaptiveLookup';
+    public static Classification: string = 'GetClassificationLookup';
 
     // UI visibility
     public static Hidden: string = 'hidden';
     public static Visible: string = 'visible';
 
     // Lookup Values
-    public static RefLookupYes: number = 1;
-    public static RefLookupNo: number = 2;
+    public static RefLookupYes: number = 1; // TODO need to cross walk actual value
+    public static RefLookupNo: number = 2; // TODO need to cross walk actual value
+    public static RefLookupMammal: number = 1; // TODO need to cross walk actual value
 }

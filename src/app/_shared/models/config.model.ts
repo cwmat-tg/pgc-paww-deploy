@@ -13,6 +13,7 @@ export interface Affiliation {
 export interface Species {
     SpeciestId?: number;
     Name?: string;
+    ClassificationId: number;
     SortKey?: number;
 }
 
@@ -30,6 +31,12 @@ export interface Age {
 
 export interface Captive {
     CaptiveId?: number;
+    Name?: string;
+    SortKey?: number;
+}
+
+export interface Classification {
+    ClassificationId?: number;
     Name?: string;
     SortKey?: number;
 }

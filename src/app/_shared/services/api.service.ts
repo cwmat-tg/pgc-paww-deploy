@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Affiliation, Age, AnimalCount, Captive, Species, YesNo } from '../models/config.model';
+import { Affiliation, Age, AnimalCount, Captive, Classification, Species, YesNo } from '../models/config.model';
 import { MagicStrings } from '../models/magic-strings.model';
 
 @Injectable({
@@ -45,6 +45,11 @@ export class ApiService {
   // Captive
   getCaptive(): Observable<Captive[]> {
     return this.get(MagicStrings.Captive);
+  }
+
+  // Classification
+  getClassification(): Observable<Classification[]> {
+    return this.get(MagicStrings.Classification);
   }
 
   private get<T>(endpoint: string): Observable<T[]> {

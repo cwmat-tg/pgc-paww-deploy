@@ -121,277 +121,297 @@
 
                 </div>
 
-                <!-- Alive -->
-                <div 
-                    class="appFieldRow"
-                    fxLayout="row" 
-                    fxLayout.xs="column" 
-                    fxLayout.sm="column" 
-                    fxLayoutAlign="start center" 
-                    fxLayoutAlign.xs="start start" 
-                    fxLayoutAlign.sm="start start"
-                    fxFlex>
+                <div *ngIf="this.species?.valid" fxLayout="column" [@speciesSelected]="speciesSelected" class="appFieldRow appHide">
 
-                    <div
-                    fxFlex="50" 
-                    fxFlex.xs="100" 
-                    fxFlex.sm="100" 
-                    class="appFormRowContainer">
-            
-                        <div class="appFormContainer">
-                            <mat-form-field>
-                                <mat-label for="observation-alive">Alive</mat-label>
-                                <mat-select id="observation-alive" formControlName="alive">
-                                    <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
-                                        {{item?.Name}}
-                                    </mat-option>
-                                </mat-select>
-                                <mat-hint>Was the animal alive at time of observation?</mat-hint>
-                                <mat-error *ngIf="this.alive?.invalid && this.alive?.errors?.required">This field is required.</mat-error>
-                            </mat-form-field>
-                        </div>
+                    <!-- Alive -->
+                    <div 
+                        class="appFieldRow"
+                        fxLayout="row" 
+                        fxLayout.xs="column" 
+                        fxLayout.sm="column" 
+                        fxLayoutAlign="start center" 
+                        fxLayoutAlign.xs="start start" 
+                        fxLayoutAlign.sm="start start"
+                        fxFlex>
 
-                    </div>
-
-                </div>
-
-                <!-- Sick or injured/Possession -->
-                <div 
-                    *ngIf="this.alive?.valid && this.alive?.value === this.refYes"
-                    [@animalAlive]="animalAlive"appHide
-                    class="appFieldRow appHide"
-                    fxLayout="row" 
-                    fxLayout.xs="column" 
-                    fxLayout.sm="column" 
-                    fxLayoutAlign="start center" 
-                    fxLayoutAlign.xs="start start" 
-                    fxLayoutAlign.sm="start start"
-                    fxFlex>
-
-                    <div
-                    fxFlex="50" 
-                    fxFlex.xs="100" 
-                    fxFlex.sm="100" 
-                    class="appFormRowContainer">
-            
-                        <div class="appFormContainer">
-                            <mat-form-field>
-                                <mat-label for="observation-sickOrInjured">Injured</mat-label>
-                                <mat-select id="observation-sickOrInjured" formControlName="sickOrInjured">
-                                    <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
-                                        {{item?.Name}}
-                                    </mat-option>
-                                </mat-select>
-                                <mat-hint>Does animal appear to be sick or injured?</mat-hint>
-                                <mat-error *ngIf="this.sickOrInjured?.invalid && this.sickOrInjured?.errors?.required">This field is required.</mat-error>
-                            </mat-form-field>
-                        </div>
-
-                    </div>
-
-                    <div
-                    fxFlex="50" 
-                    fxFlex.xs="100" 
-                    fxFlex.sm="100" 
-                    class="appFormRowContainer">
-            
-                        <div class="appFormContainer">
-                            <mat-form-field>
-                                <mat-label for="observation-inYourPossession">Possession</mat-label>
-                                <mat-select id="observation-inYourPossession" formControlName="inYourPossession">
-                                    <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
-                                        {{item?.Name}}
-                                    </mat-option>
-                                </mat-select>
-                                <mat-hint>Is the animal in your possession?</mat-hint>
-                                <mat-error *ngIf="this.inYourPossession?.invalid && this.inYourPossession?.errors?.required">This field is required.</mat-error>
-                            </mat-form-field>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <!-- Poaching -->
-                <div 
-                    *ngIf="this.alive?.valid && this.alive?.value === this.refNo"
-                    [@animalDead]="animalDead"
-                    class="appFieldRow appHide"
-                    fxLayout="row" 
-                    fxLayout.xs="column" 
-                    fxLayout.sm="column" 
-                    fxLayoutAlign="start center" 
-                    fxLayoutAlign.xs="start start" 
-                    fxLayoutAlign.sm="start start"
-                    fxFlex>
-
-                    <div
+                        <div
                         fxFlex="50" 
                         fxFlex.xs="100" 
                         fxFlex.sm="100" 
                         class="appFormRowContainer">
+                
+                            <div class="appFormContainer">
+                                <mat-form-field>
+                                    <mat-label for="observation-alive">Alive</mat-label>
+                                    <mat-select id="observation-alive" formControlName="alive">
+                                        <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
+                                            {{item?.Name}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-hint>Was the animal alive at time of observation?</mat-hint>
+                                    <mat-error *ngIf="this.alive?.invalid && this.alive?.errors?.required">This field is required.</mat-error>
+                                </mat-form-field>
+                            </div>
 
-                        <div class="appFormContainer">
-                            <mat-form-field>
-                                <mat-label for="observation-poaching">Poaching</mat-label>
-                                <mat-select id="observation-poaching" formControlName="poaching">
-                                    <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
-                                        {{item?.Name}}
-                                    </mat-option>
-                                </mat-select>
-                                <mat-hint>Is poaching suspected?</mat-hint>
-                                <mat-error *ngIf="this.poaching?.invalid && this.poaching?.errors?.required">This field is required.</mat-error>
-                            </mat-form-field>
                         </div>
 
                     </div>
 
+                    <!-- Sick or injured/Possession -->
+                    <div 
+                        *ngIf="this.alive?.valid && this.alive?.value === this.refYes"
+                        [@animalAlive]="animalAlive"appHide
+                        class="appFieldRow appHide"
+                        fxLayout="row" 
+                        fxLayout.xs="column" 
+                        fxLayout.sm="column" 
+                        fxLayoutAlign="start center" 
+                        fxLayoutAlign.xs="start start" 
+                        fxLayoutAlign.sm="start start"
+                        fxFlex>
+
+                        <div
+                        fxFlex="50" 
+                        fxFlex.xs="100" 
+                        fxFlex.sm="100" 
+                        class="appFormRowContainer">
+                
+                            <div class="appFormContainer">
+                                <mat-form-field>
+                                    <mat-label for="observation-sickOrInjured">Injured</mat-label>
+                                    <mat-select id="observation-sickOrInjured" formControlName="sickOrInjured">
+                                        <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
+                                            {{item?.Name}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-hint>Does animal appear to be sick or injured?</mat-hint>
+                                    <mat-error *ngIf="this.sickOrInjured?.invalid && this.sickOrInjured?.errors?.required">This field is required.</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+
+                        <div
+                        fxFlex="50" 
+                        fxFlex.xs="100" 
+                        fxFlex.sm="100" 
+                        class="appFormRowContainer">
+                
+                            <div class="appFormContainer">
+                                <mat-form-field>
+                                    <mat-label for="observation-inYourPossession">Possession</mat-label>
+                                    <mat-select id="observation-inYourPossession" formControlName="inYourPossession">
+                                        <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
+                                            {{item?.Name}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-hint>Is the animal in your possession?</mat-hint>
+                                    <mat-error *ngIf="this.inYourPossession?.invalid && this.inYourPossession?.errors?.required">This field is required.</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Poaching -->
+                    <div 
+                        *ngIf="this.alive?.valid && this.alive?.value === this.refNo"
+                        [@animalDead]="animalDead"
+                        class="appFieldRow appHide"
+                        fxLayout="row" 
+                        fxLayout.xs="column" 
+                        fxLayout.sm="column" 
+                        fxLayoutAlign="start center" 
+                        fxLayoutAlign.xs="start start" 
+                        fxLayoutAlign.sm="start start"
+                        fxFlex>
+
+                        <div
+                            fxFlex="50" 
+                            fxFlex.xs="100" 
+                            fxFlex.sm="100" 
+                            class="appFormRowContainer">
+
+                            <div class="appFormContainer">
+                                <mat-form-field>
+                                    <mat-label for="observation-poaching">Poaching</mat-label>
+                                    <mat-select id="observation-poaching" formControlName="poaching">
+                                        <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
+                                            {{item?.Name}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-hint>Is poaching suspected?</mat-hint>
+                                    <mat-error *ngIf="this.poaching?.invalid && this.poaching?.errors?.required">This field is required.</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Age/Captive -->
+                    <div 
+                        class="appFieldRow"
+                        fxLayout="row" 
+                        fxLayout.xs="column" 
+                        fxLayout.sm="column" 
+                        fxLayoutAlign="start center" 
+                        fxLayoutAlign.xs="start start" 
+                        fxLayoutAlign.sm="start start"
+                        fxFlex>
+
+                        <div
+                        fxFlex="50" 
+                        fxFlex.xs="100" 
+                        fxFlex.sm="100" 
+                        class="appFormRowContainer">
+                
+                            <div class="appFormContainer">
+                                <mat-form-field>
+                                    <mat-label for="observation-age">Age</mat-label>
+                                    <mat-select id="observation-age" formControlName="age">
+                                        <mat-option *ngFor="let item of this.ageList" [value]="item?.WildlifeAgeId">
+                                            {{item?.Name}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-hint>What age is the majority of the wildlife?</mat-hint>
+                                    <mat-error *ngIf="this.age?.invalid && this.age?.errors?.required">This field is required.</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+
+                        <div
+                        fxFlex="50" 
+                        fxFlex.xs="100" 
+                        fxFlex.sm="100" 
+                        class="appFormRowContainer">
+                
+                            <div class="appFormContainer">
+                                <mat-form-field>
+                                    <mat-label for="observation-captiveWild">Captive or Wild</mat-label>
+                                    <mat-select id="observation-captiveWild" formControlName="captiveWild">
+                                        <mat-option *ngFor="let item of this.captiveList" [value]="item?.CaptiveId">
+                                            {{item?.Name}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-hint>Is this a captive animal or a free-ranging wild animal?</mat-hint>
+                                    <mat-error *ngIf="this.captiveWild?.invalid && this.captiveWild?.errors?.required">This field is required.</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Zoonotic/Exposed -->
+                    <div 
+                        class="appFieldRow"
+                        fxLayout="row" 
+                        fxLayout.xs="column" 
+                        fxLayout.sm="column" 
+                        fxLayoutAlign="start center" 
+                        fxLayoutAlign.xs="start start" 
+                        fxLayoutAlign.sm="start start"
+                        fxFlex>
+
+                        <div
+                        fxFlex="50" 
+                        fxFlex.xs="100" 
+                        fxFlex.sm="100" 
+                        class="appFormRowContainer">
+                
+                            <div class="appFormContainer">
+                                <mat-form-field>
+                                    <mat-label for="observation-zoonotic">Zoonotic Exposure</mat-label>
+                                    <mat-select id="observation-zoonotic" formControlName="zoonotic">
+                                        <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
+                                            {{item?.Name}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-hint></mat-hint>
+                                    <mat-error *ngIf="this.zoonotic?.invalid && this.zoonotic?.errors?.required">This field is required.</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+
+                        <div
+                        fxFlex="50" 
+                        fxFlex.xs="100" 
+                        fxFlex.sm="100" 
+                        class="appFormRowContainer">
+                
+                            <div class="appFormContainer">
+                                <mat-form-field>
+                                    <mat-label for="observation-rabies">Rabies</mat-label>
+                                    <mat-select id="observation-rabies" formControlName="rabies">
+                                        <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
+                                            {{item?.Name}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-hint>Are rabies suspected?</mat-hint>
+                                    <mat-error *ngIf="this.rabies?.invalid && this.rabies?.errors?.required">This field is required.</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Spacer -->
+                        <div 
+                        class="appFieldRow"
+                        fxLayout="row" 
+                        fxLayout.xs="column" 
+                        fxLayout.sm="column" 
+                        fxLayoutAlign="start center" 
+                        fxLayoutAlign.xs="start start" 
+                        fxLayoutAlign.sm="start start"
+                        fxFlex>
+
+                        <mat-divider class="appFullWidth appSpacer"></mat-divider>
+
+                    </div>
+
+                    <!-- Details/Photos -->
+                    <div 
+                        class="appFieldRow"
+                        fxLayout="row" 
+                        fxLayout.xs="column" 
+                        fxLayout.sm="column" 
+                        fxLayoutAlign="center center" 
+                        fxLayoutAlign.xs="center center" 
+                        fxLayoutAlign.sm="center center"
+                        fxFlex>
+
+                        <div
+                        fxFlex="100" 
+                        fxFlex.xs="100" 
+                        fxFlex.sm="100" 
+                        class="appFormRowContainer">
+                
+                            <div class="appFormContainer appSpaceAtBottom">
+                                <mat-form-field>
+                                    <mat-label for="observation-details">Additional Details</mat-label>
+                                    <textarea 
+                                        id="observation-details"
+                                        formControlName="alive"
+                                        matInput placeholder="Additional Details"></textarea>
+                                    <mat-hint>Please describe what you observed, including details about the physical appearance and behavior of the animal(s) and the environment. What did each animal look like and what was it doing? What signs of illness or injury did you observe, if any? What time of day or night was your observation made? What was the weather like? Describe the location where the observation was made.</mat-hint>
+                                    <mat-error *ngIf="this.details?.invalid && this.details?.errors?.maxLength">This field is limited to 1,500 characters.</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                <!-- End Hidden Species -->
                 </div>
 
-                <!-- Age/Captive -->
-                <div 
-                    class="appFieldRow"
-                    fxLayout="row" 
-                    fxLayout.xs="column" 
-                    fxLayout.sm="column" 
-                    fxLayoutAlign="start center" 
-                    fxLayoutAlign.xs="start start" 
-                    fxLayoutAlign.sm="start start"
-                    fxFlex>
-
-                    <div
-                    fxFlex="50" 
-                    fxFlex.xs="100" 
-                    fxFlex.sm="100" 
-                    class="appFormRowContainer">
-            
-                        <div class="appFormContainer">
-                            <mat-form-field>
-                                <mat-label for="observation-age">Age</mat-label>
-                                <mat-select id="observation-age" formControlName="age">
-                                    <mat-option *ngFor="let item of this.ageList" [value]="item?.WildlifeAgeId">
-                                        {{item?.Name}}
-                                    </mat-option>
-                                </mat-select>
-                                <mat-hint>What age is the majority of the wildlife?</mat-hint>
-                                <mat-error *ngIf="this.age?.invalid && this.age?.errors?.required">This field is required.</mat-error>
-                            </mat-form-field>
-                        </div>
-
-                    </div>
-
-                    <div
-                    fxFlex="50" 
-                    fxFlex.xs="100" 
-                    fxFlex.sm="100" 
-                    class="appFormRowContainer">
-            
-                        <div class="appFormContainer">
-                            <mat-form-field>
-                                <mat-label for="observation-captiveWild">Captive or Wild</mat-label>
-                                <mat-select id="observation-captiveWild" formControlName="captiveWild">
-                                    <mat-option *ngFor="let item of this.captiveList" [value]="item?.CaptiveId">
-                                        {{item?.Name}}
-                                    </mat-option>
-                                </mat-select>
-                                <mat-hint>Is the wildlife captive or wild?</mat-hint>
-                                <mat-error *ngIf="this.captiveWild?.invalid && this.captiveWild?.errors?.required">This field is required.</mat-error>
-                            </mat-form-field>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <!-- Zoonotic/Rabies -->
-                <div 
-                    class="appFieldRow"
-                    fxLayout="row" 
-                    fxLayout.xs="column" 
-                    fxLayout.sm="column" 
-                    fxLayoutAlign="start center" 
-                    fxLayoutAlign.xs="start start" 
-                    fxLayoutAlign.sm="start start"
-                    fxFlex>
-
-                    <div
-                    fxFlex="50" 
-                    fxFlex.xs="100" 
-                    fxFlex.sm="100" 
-                    class="appFormRowContainer">
-            
-                        <div class="appFormContainer">
-                            <mat-form-field>
-                                <mat-label for="observation-zoonotic">Zoonotic Exposure</mat-label>
-                                <mat-select id="observation-zoonotic" formControlName="zoonotic">
-                                    <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
-                                        {{item?.Name}}
-                                    </mat-option>
-                                </mat-select>
-                                <mat-hint></mat-hint>
-                                <mat-error *ngIf="this.zoonotic?.invalid && this.zoonotic?.errors?.required">This field is required.</mat-error>
-                            </mat-form-field>
-                        </div>
-
-                    </div>
-
-                    <div
-                    fxFlex="50" 
-                    fxFlex.xs="100" 
-                    fxFlex.sm="100" 
-                    class="appFormRowContainer">
-            
-                        <div class="appFormContainer">
-                            <mat-form-field>
-                                <mat-label for="observation-rabies">Rabies</mat-label>
-                                <mat-select id="observation-rabies" formControlName="rabies">
-                                    <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
-                                        {{item?.Name}}
-                                    </mat-option>
-                                </mat-select>
-                                <mat-hint>Are rabies suspected?</mat-hint>
-                                <mat-error *ngIf="this.rabies?.invalid && this.rabies?.errors?.required">This field is required.</mat-error>
-                            </mat-form-field>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <!-- Details -->
-                <div 
-                    class="appFieldRow"
-                    fxLayout="row" 
-                    fxLayout.xs="column" 
-                    fxLayout.sm="column" 
-                    fxLayoutAlign="center center" 
-                    fxLayoutAlign.xs="center center" 
-                    fxLayoutAlign.sm="center center"
-                    fxFlex>
-
-                    <div
-                    fxFlex="100" 
-                    fxFlex.xs="100" 
-                    fxFlex.sm="100" 
-                    class="appFormRowContainer">
-            
-                        <div class="appFormContainer appSpaceAtBottom">
-                            <mat-form-field>
-                                <mat-label for="observation-details">Additional Details</mat-label>
-                                <textarea 
-                                    id="observation-details"
-                                    formControlName="alive"
-                                    matInput placeholder="Additional Details"></textarea>
-                                <mat-hint>Please describe what you observed, including details about the physical appearance and behavior of the animal(s) and the environment. What did each animal look like and what was it doing? What signs of illness or injury did you observe, if any? What time of day or night was your observation made? What was the weather like? Describe the location where the observation was made.</mat-hint>
-                                <mat-error *ngIf="this.details?.invalid && this.details?.errors?.required">This field is required.</mat-error>
-                            </mat-form-field>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            <!-- End Hidden -->
+            <!-- End Hidden Main -->
             </div>
 
         </div>
