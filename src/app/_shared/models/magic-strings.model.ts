@@ -18,10 +18,10 @@ export class MagicStrings {
     public static OutOfStateHeader: string = 'Out-of-State Confirmation';
 
     // API endpoints
-    public static AnimalCount: string = 'animalcount';
-    public static Affiliation: string = 'affiliation';
-    public static Species: string = 'species';
-    public static YesNo: string = 'yesno';
-    public static Age: string = 'age';
-    public static Captive: string = 'captive';
+    public static AnimalCount: string = 'GetAnimalCountLookUp';
+    public static Affiliation: string = 'GetWildlifeHealthAffilationLookUp';
+    public static Species: string = 'GetSpeciesLookUp';
+    public static YesNo: string = 'GetYesNoLookUp';
+    public static Age: string = 'GetWildlifeAgeLookUp';
+    public static Captive: string = 'GetCaptiveLookup';
 }

@@ -1,5 +1,5 @@
 export interface AnimalCount {
-    AminalCountId?: number;
+    AnimalCountId?: number;
     Name?: string;
     SortKey?: number;
 }
@@ -11,19 +11,19 @@ export interface Affiliation {
 }
 
 export interface Species {
-    SpeciesId?: number;
+    SpeciestId?: number;
     Name?: string;
     SortKey?: number;
 }
 
 export interface YesNo {
-    YesNoId?: number;
+    RefTableDataId?: number;
     Name?: string;
     SortKey?: number;
 }
 
 export interface Age {
-    AgeId?: number;
+    WildlifeAgeId?: number;
     Name?: string;
     SortKey?: number;
 }

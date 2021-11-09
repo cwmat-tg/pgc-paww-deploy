@@ -56,7 +56,7 @@
                         <mat-form-field>
                             <mat-label for="observation-numberOfAnimals">Number of Animals</mat-label>
                             <mat-select id="observation-numberOfAnimals" formControlName="numberOfAnimals">
-                                <mat-option *ngFor="let animalNum of this.numberOfAnimalsList" [value]="animalNum?.AminalCountId">
+                                <mat-option *ngFor="let animalNum of this.numberOfAnimalsList" [value]="animalNum?.AnimalCountId">
                                     {{animalNum?.Name}}
                                 </mat-option>
                             </mat-select>
@@ -108,7 +108,7 @@
                             <mat-form-field>
                                 <mat-label for="observation-species">Species</mat-label>
                                 <mat-select id="observation-species" formControlName="species">
-                                    <mat-option *ngFor="let spec of this.speciesList" [value]="spec?.SpeciesId">
+                                    <mat-option *ngFor="let spec of this.speciesList" [value]="spec?.SpeciestId">
                                         {{spec?.Name}}
                                     </mat-option>
                                 </mat-select>
@@ -142,7 +142,7 @@
                             <mat-form-field>
                                 <mat-label for="observation-alive">Alive</mat-label>
                                 <mat-select id="observation-alive" formControlName="alive">
-                                    <mat-option *ngFor="let item of this.yesNoList" [value]="item?.YesNoId">
+                                    <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
                                         {{item?.Name}}
                                     </mat-option>
                                 </mat-select>
@@ -163,7 +163,7 @@
                             <mat-form-field>
                                 <mat-label for="observation-sickOrInjured">Injured</mat-label>
                                 <mat-select id="observation-sickOrInjured" formControlName="sickOrInjured">
-                                    <mat-option *ngFor="let item of this.yesNoList" [value]="item?.YesNoId">
+                                    <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
                                         {{item?.Name}}
                                     </mat-option>
                                 </mat-select>
@@ -197,7 +197,7 @@
                             <mat-form-field>
                                 <mat-label for="observation-inYourPossession">Possession</mat-label>
                                 <mat-select id="observation-inYourPossession" formControlName="inYourPossession">
-                                    <mat-option *ngFor="let item of this.yesNoList" [value]="item?.YesNoId">
+                                    <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
                                         {{item?.Name}}
                                     </mat-option>
                                 </mat-select>
@@ -218,7 +218,7 @@
                             <mat-form-field>
                                 <mat-label for="observation-poaching">Poaching</mat-label>
                                 <mat-select id="observation-poaching" formControlName="poaching">
-                                    <mat-option *ngFor="let item of this.yesNoList" [value]="item?.YesNoId">
+                                    <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
                                         {{item?.Name}}
                                     </mat-option>
                                 </mat-select>
@@ -252,7 +252,7 @@
                             <mat-form-field>
                                 <mat-label for="observation-age">Age</mat-label>
                                 <mat-select id="observation-age" formControlName="age">
-                                    <mat-option *ngFor="let item of this.ageList" [value]="item?.AgeId">
+                                    <mat-option *ngFor="let item of this.ageList" [value]="item?.WildlifeAgeId">
                                         {{item?.Name}}
                                     </mat-option>
                                 </mat-select>
@@ -307,7 +307,7 @@
                             <mat-form-field>
                                 <mat-label for="observation-zoonotic">Zoonotic Exposure</mat-label>
                                 <mat-select id="observation-zoonotic" formControlName="zoonotic">
-                                    <mat-option *ngFor="let item of this.yesNoList" [value]="item?.YesNoId">
+                                    <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
                                         {{item?.Name}}
                                     </mat-option>
                                 </mat-select>
@@ -328,7 +328,7 @@
                             <mat-form-field>
                                 <mat-label for="observation-rabies">Rabies</mat-label>
                                 <mat-select id="observation-rabies" formControlName="rabies">
-                                    <mat-option *ngFor="let item of this.yesNoList" [value]="item?.YesNoId">
+                                    <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
                                         {{item?.Name}}
                                     </mat-option>
                                 </mat-select>
@@ -362,7 +362,7 @@
                             <mat-form-field>
                                 <mat-label for="observation-details">Additional Details</mat-label>
                                 <mat-select id="observation-details" formControlName="alive">
-                                    <mat-option *ngFor="let item of this.yesNoList" [value]="item?.YesNoId">
+                                    <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
                                         {{item?.Name}}
                                     </mat-option>
                                 </mat-select>
