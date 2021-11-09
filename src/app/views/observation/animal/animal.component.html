@@ -305,7 +305,7 @@
 
                     </div>
 
-                    <!-- Zoonotic/Exposed -->
+                    <!-- Zoonotic/Rabies -->
                     <div 
                         class="appFieldRow"
                         fxLayout="row" 
@@ -338,10 +338,12 @@
                         </div>
 
                         <div
+                        *ngIf="this.species?.valid && this.speciesCodeIsMammal(this.species?.value)"
+                        [@mammalSelected]="mammalSelected"
                         fxFlex="50" 
                         fxFlex.xs="100" 
                         fxFlex.sm="100" 
-                        class="appFormRowContainer">
+                        class="appFormRowContainer appHide">
                 
                             <div class="appFormContainer">
                                 <mat-form-field>

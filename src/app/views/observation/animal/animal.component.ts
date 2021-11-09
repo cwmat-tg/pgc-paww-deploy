@@ -55,6 +55,16 @@ import { ObservationService } from 'src/app/_shared/services/observation.service
       transition(`* => ${MagicStrings.Visible}`, [animate('500ms ease-out')]),
       transition(`${MagicStrings.Visible} => ${MagicStrings.Hidden}`, [animate('500ms ease-out')])
     ]),
+    trigger('mammalSelected', [
+      state(MagicStrings.Hidden, style({
+          opacity: '0',
+      })),
+      state(MagicStrings.Visible, style({
+        opacity: '1'
+      })),
+      transition(`* => ${MagicStrings.Visible}`, [animate('500ms ease-out')]),
+      transition(`${MagicStrings.Visible} => ${MagicStrings.Hidden}`, [animate('500ms ease-out')])
+    ]),
   ]
 })
 export class AnimalComponent implements OnInit, OnDestroy {
@@ -65,6 +75,7 @@ export class AnimalComponent implements OnInit, OnDestroy {
   animalAlive = MagicStrings.Hidden;
   animalDead = MagicStrings.Hidden;
   speciesSelected = MagicStrings.Hidden;
+  mammalSelected = MagicStrings.Hidden;
 
 
   // Forms
@@ -114,6 +125,7 @@ export class AnimalComponent implements OnInit, OnDestroy {
   // Refs
   refYes = MagicStrings.RefLookupYes;
   refNo = MagicStrings.RefLookupNo;
+  refMammal = MagicStrings.RefLookupMammal;
 
   // Date Validation
   maxDate = new Date();
@@ -260,7 +272,24 @@ export class AnimalComponent implements OnInit, OnDestroy {
     // Species Selected
     if (this.species?.valid) {
       this.speciesSelected = MagicStrings.Visible;
+
+      if (this.speciesCodeIsMammal(this.species?.value)) {
+        this.mammalSelected = MagicStrings.Visible;
+      } else {
+        this.mammalSelected = MagicStrings.Hidden;
+        this.rabies?.reset();
+      }
     }
+  }
+
+  public speciesCodeIsMammal(speciesCode: number): boolean {
+    debugger;
+    const found = this.speciesList.find(e => e.SpeciestId === speciesCode);
+
+    if (found && found.ClassificationId === this.refMammal)
+      return true;
+    else
+      return false;
   }
 
 }

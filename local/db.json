@@ -20,9 +20,9 @@
   ],
 
   "GetSpeciesLookUp": [
-    { "SpeciestId": 1, "Name": "Test 1", "SortKey": null },
-    { "SpeciestId": 2, "Name": "Test 2", "SortKey": null },
-    { "SpeciestId": 3, "Name": "Test 3", "SortKey": null }
+    { "SpeciestId": 1, "Name": "Test Mammal", "SortKey": null, "ClassificationId": 1 },
+    { "SpeciestId": 2, "Name": "Test Reptile", "SortKey": null, "ClassificationId": 2 },
+    { "SpeciestId": 3, "Name": "Test Bird", "SortKey": null, "ClassificationId": 3 }
   ],
 
   "GetYesNoLookUp": [
@@ -41,6 +41,12 @@
     { "CaptiveId": 1, "Name": "Captive", "SortKey": null },
     { "CaptiveId": 2, "Name": "Wild", "SortKey": null },
     { "CaptiveId": 3, "Name": "Both", "SortKey": null }
+  ],
+
+  "GetClassificationLookup": [
+    { "ClassificationId": 1, "Name": "Mammal", "SortKey": null },
+    { "ClassificationId": 2, "Name": "Reptile", "SortKey": null },
+    { "ClassificationId": 3, "Name": "Bird", "SortKey": null }
   ]
     
 }
