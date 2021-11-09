@@ -127,6 +127,11 @@ export class AnimalComponent implements OnInit, OnDestroy {
   refNo = MagicStrings.RefLookupNo;
   refMammal = MagicStrings.RefLookupMammal;
 
+  // Popup messages
+  messageRabies = UserMessages.RabiesPopup;
+  messageCaptive = UserMessages.CaptivePopup;
+  messagePoaching = UserMessages.PoachingPopup;
+
   // Date Validation
   maxDate = new Date();
 

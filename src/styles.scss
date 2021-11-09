@@ -36,6 +36,12 @@ body {
   z-index: 500;
 }
 
+// Icons
+.appInfoIcon {
+  color: $color-primary;
+  cursor: pointer;
+}
+
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width: $screen-width-mobile) {
   /* Styles */

@@ -6,6 +6,8 @@ import { MaterialModule } from './material.module';
 import { VersionComponent } from '../components/version/version.component';
 import { IntroHelperTextComponent } from '../components/intro-helper-text/intro-helper-text.component';
 import { HttpClientModule } from '@angular/common/http';
+import { InfoPopupComponent } from '../components/info-popup/info-popup.component';
+import { InfoDialogComponent } from '../components/info-dialog/info-dialog.component';
 
 
 @NgModule({
@@ -22,11 +24,15 @@ import { HttpClientModule } from '@angular/common/http';
     FlexLayoutModule,
     MaterialModule,
     VersionComponent,
-    IntroHelperTextComponent
+    IntroHelperTextComponent,
+    InfoPopupComponent,
+    InfoDialogComponent
   ],
   declarations: [
     VersionComponent,
-    IntroHelperTextComponent
+    IntroHelperTextComponent,
+    InfoPopupComponent,
+    InfoDialogComponent
   ]
 })
 export class SharedModule {}
