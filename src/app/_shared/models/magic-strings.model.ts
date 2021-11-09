@@ -24,4 +24,12 @@ export class MagicStrings {
     public static YesNo: string = 'GetYesNoLookUp';
     public static Age: string = 'GetWildlifeAgeLookUp';
     public static Captive: string = 'GetCaptiveLookup';
+
+    // UI visibility
+    public static Hidden: string = 'hidden';
+    public static Visible: string = 'visible';
+
+    // Lookup Values
+    public static RefLookupYes: number = 1;
+    public static RefLookupNo: number = 2;
 }

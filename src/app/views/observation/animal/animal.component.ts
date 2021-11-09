@@ -16,15 +16,35 @@ import { ObservationService } from 'src/app/_shared/services/observation.service
   styleUrls: ['./animal.component.scss'],
   animations: [
     trigger('state', [
-        state('hidden', style({
+        state(MagicStrings.Hidden, style({
             opacity: '0',
         })),
-        state('visible', style({
+        state(MagicStrings.Visible, style({
           opacity: '1'
         })),
-        transition('* => visible', [animate('500ms ease-out')]),
-        transition('visible => hidden', [animate('500ms ease-out')])
+        transition(`* => ${MagicStrings.Visible}`, [animate('500ms ease-out')]),
+        transition(`${MagicStrings.Visible} => ${MagicStrings.Hidden}`, [animate('500ms ease-out')])
     ]),
+    trigger('animalAlive', [
+      state(MagicStrings.Hidden, style({
+          opacity: '0',
+      })),
+      state(MagicStrings.Visible, style({
+        opacity: '1'
+      })),
+      transition(`* => ${MagicStrings.Visible}`, [animate('500ms ease-out')]),
+      transition(`${MagicStrings.Visible} => ${MagicStrings.Hidden}`, [animate('500ms ease-out')])
+  ]),
+  trigger('animalDead', [
+    state(MagicStrings.Hidden, style({
+        opacity: '0',
+    })),
+    state(MagicStrings.Visible, style({
+      opacity: '1'
+    })),
+    transition(`* => ${MagicStrings.Visible}`, [animate('500ms ease-out')]),
+    transition(`${MagicStrings.Visible} => ${MagicStrings.Hidden}`, [animate('500ms ease-out')])
+]),
   ]
 })
 export class AnimalComponent implements OnInit, OnDestroy {
@@ -32,6 +52,9 @@ export class AnimalComponent implements OnInit, OnDestroy {
   header = MagicStrings.AnimalHeader;
   content = UserMessages.AnimalHelperText;
   state = 'hidden';
+  animalAlive = 'hidden';
+  animalDead = 'hidden';
+
 
   // Forms
   animalForm = new FormGroup({
@@ -75,6 +98,10 @@ export class AnimalComponent implements OnInit, OnDestroy {
   yesNoList: YesNo[] = [];
   ageList: Age[] = [];
   captiveList: Captive[] = [];
+
+  // Refs
+  refYes = MagicStrings.RefLookupYes;
+  refNo = MagicStrings.RefLookupNo;
 
   // Date Validation
   maxDate = new Date();
@@ -187,8 +214,27 @@ export class AnimalComponent implements OnInit, OnDestroy {
   }
 
   checkHiddenFields() {
-    if (this.state === 'hidden' && this.date?.valid && this.numberOfAnimals?.valid) {
-      this.state = 'visible';
+    // Show main form
+    if (this.state === MagicStrings.Hidden && this.date?.valid && this.numberOfAnimals?.valid) {
+      this.state = MagicStrings.Visible;
+    }
+
+    // Animal Alive
+    if (this.alive?.valid && this.alive?.value === this.refYes) {
+      this.animalAlive = MagicStrings.Visible;
+      this.animalDead = MagicStrings.Hidden;
+      this.poaching?.reset();
+    } else if (this.alive?.valid && this.alive?.value === this.refNo) {
+      this.animalAlive = MagicStrings.Hidden;
+      this.animalDead = MagicStrings.Visible;
+      this.sickOrInjured?.reset();
+      this.inYourPossession?.reset();
+    } else {
+      this.animalAlive = MagicStrings.Hidden;
+      this.animalDead = MagicStrings.Hidden;
+      this.poaching?.reset();
+      this.sickOrInjured?.reset();
+      this.inYourPossession?.reset();
     }
   }
 

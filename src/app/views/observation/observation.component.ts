@@ -58,7 +58,6 @@ export class ObservationComponent implements AfterViewInit {
   }
 
   checkValid(newStepperIndex?: number) {
-    debugger;
     let currentIdx: number;
     if (newStepperIndex === undefined) {
       currentIdx = this.stepper.selectedIndex;

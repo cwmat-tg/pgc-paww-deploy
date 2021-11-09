@@ -85,7 +85,7 @@
             </div>
 
             <!-- Hidden -->
-            <ng-container [@state]="state" class="appFieldRow appHide">
+            <div *ngIf="this.date?.valid && this.numberOfAnimals?.valid" fxLayout="column" [@state]="state" class="appFieldRow appHide">
 
                 <!-- Species -->
                 <div 
@@ -121,7 +121,7 @@
 
                 </div>
 
-                <!-- Alive/Sick or injured -->
+                <!-- Alive -->
                 <div 
                     class="appFieldRow"
                     fxLayout="row" 
@@ -153,6 +153,21 @@
 
                     </div>
 
+                </div>
+
+                <!-- Sick or injured/Possession -->
+                <div 
+                    *ngIf="this.alive?.valid && this.alive?.value === this.refYes"
+                    [@animalAlive]="animalAlive"appHide
+                    class="appFieldRow appHide"
+                    fxLayout="row" 
+                    fxLayout.xs="column" 
+                    fxLayout.sm="column" 
+                    fxLayoutAlign="start center" 
+                    fxLayoutAlign.xs="start start" 
+                    fxLayoutAlign.sm="start start"
+                    fxFlex>
+
                     <div
                     fxFlex="50" 
                     fxFlex.xs="100" 
@@ -173,19 +188,6 @@
                         </div>
 
                     </div>
-
-                </div>
-
-                <!-- Possession/Poaching -->
-                <div 
-                    class="appFieldRow"
-                    fxLayout="row" 
-                    fxLayout.xs="column" 
-                    fxLayout.sm="column" 
-                    fxLayoutAlign="start center" 
-                    fxLayoutAlign.xs="start start" 
-                    fxLayoutAlign.sm="start start"
-                    fxFlex>
 
                     <div
                     fxFlex="50" 
@@ -208,12 +210,27 @@
 
                     </div>
 
+                </div>
+
+                <!-- Poaching -->
+                <div 
+                    *ngIf="this.alive?.valid && this.alive?.value === this.refNo"
+                    [@animalDead]="animalDead"
+                    class="appFieldRow appHide"
+                    fxLayout="row" 
+                    fxLayout.xs="column" 
+                    fxLayout.sm="column" 
+                    fxLayoutAlign="start center" 
+                    fxLayoutAlign.xs="start start" 
+                    fxLayoutAlign.sm="start start"
+                    fxFlex>
+
                     <div
-                    fxFlex="50" 
-                    fxFlex.xs="100" 
-                    fxFlex.sm="100" 
-                    class="appFormRowContainer">
-            
+                        fxFlex="50" 
+                        fxFlex.xs="100" 
+                        fxFlex.sm="100" 
+                        class="appFormRowContainer">
+
                         <div class="appFormContainer">
                             <mat-form-field>
                                 <mat-label for="observation-poaching">Poaching</mat-label>
@@ -347,9 +364,9 @@
                     fxLayout="row" 
                     fxLayout.xs="column" 
                     fxLayout.sm="column" 
-                    fxLayoutAlign="start center" 
-                    fxLayoutAlign.xs="start start" 
-                    fxLayoutAlign.sm="start start"
+                    fxLayoutAlign="center center" 
+                    fxLayoutAlign.xs="center center" 
+                    fxLayoutAlign.sm="center center"
                     fxFlex>
 
                     <div
@@ -358,14 +375,13 @@
                     fxFlex.sm="100" 
                     class="appFormRowContainer">
             
-                        <div class="appFormContainer">
+                        <div class="appFormContainer appSpaceAtBottom">
                             <mat-form-field>
                                 <mat-label for="observation-details">Additional Details</mat-label>
-                                <mat-select id="observation-details" formControlName="alive">
-                                    <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
-                                        {{item?.Name}}
-                                    </mat-option>
-                                </mat-select>
+                                <textarea 
+                                    id="observation-details"
+                                    formControlName="alive"
+                                    matInput placeholder="Additional Details"></textarea>
                                 <mat-hint>Please describe what you observed, including details about the physical appearance and behavior of the animal(s) and the environment. What did each animal look like and what was it doing? What signs of illness or injury did you observe, if any? What time of day or night was your observation made? What was the weather like? Describe the location where the observation was made.</mat-hint>
                                 <mat-error *ngIf="this.details?.invalid && this.details?.errors?.required">This field is required.</mat-error>
                             </mat-form-field>
@@ -376,7 +392,7 @@
                 </div>
 
             <!-- End Hidden -->
-            </ng-container>
+            </div>
 
         </div>
 
