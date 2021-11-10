@@ -241,10 +241,9 @@
                                             {{item?.Name}}
                                         </mat-option>
                                     </mat-select>
-                                    <mat-hint>Is poaching suspected?</mat-hint>
+                                    <mat-hint>Is poaching suspected? <app-info-popup [title]="'Poaching'" [text]="this.messagePoaching"></app-info-popup></mat-hint>
                                     <mat-error *ngIf="this.poaching?.invalid && this.poaching?.errors?.required">This field is required.</mat-error>
                                 </mat-form-field>
-                                <app-info-popup [title]="'Poaching'" [text]="this.messagePoaching"></app-info-popup>
                             </div>
 
                         </div>
@@ -297,10 +296,9 @@
                                             {{item?.Name}}
                                         </mat-option>
                                     </mat-select>
-                                    <mat-hint>Is this a captive animal or a free-ranging wild animal?</mat-hint>
+                                    <mat-hint>Is this a captive animal or a free-ranging wild animal? <app-info-popup [title]="'Captive or Wild'" [text]="this.messageCaptive"></app-info-popup></mat-hint>
                                     <mat-error *ngIf="this.captiveWild?.invalid && this.captiveWild?.errors?.required">This field is required.</mat-error>
                                 </mat-form-field>
-                                <app-info-popup [title]="'Captive or Wild'" [text]="this.messageCaptive"></app-info-popup>
                             </div>
 
                         </div>
@@ -355,10 +353,9 @@
                                             {{item?.Name}}
                                         </mat-option>
                                     </mat-select>
-                                    <mat-hint>Are rabies suspected?</mat-hint>
+                                    <mat-hint>Are rabies suspected? <app-info-popup [title]="'Rabies'" [text]="this.messageRabies"></app-info-popup></mat-hint>
                                     <mat-error *ngIf="this.rabies?.invalid && this.rabies?.errors?.required">This field is required.</mat-error>
                                 </mat-form-field>
-                                <app-info-popup [title]="'Rabies'" [text]="this.messageRabies"></app-info-popup>
                             </div>
 
                         </div>

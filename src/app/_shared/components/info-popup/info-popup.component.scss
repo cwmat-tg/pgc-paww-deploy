@@ -1,15 +1,8 @@
 @import "../../../app.global.scss";
 
-/* Desktops and laptops ----------- */
-@media only screen and (min-width: $screen-width-desktop) {
-    .appInfoIcon {
-        margin-left: 1.5rem;
-    }
-}
-
-/* Large screens ----------- */
-@media only screen and (min-width: $screen-width-monitor) {
-    .appInfoIcon {
-        margin-left: 1.5rem;
-    }
+::ng-deep .mat-icon.appInfoIcon {
+    font-size: 1.25rem;
+    position: relative;
+    top: 0.25rem;
+    margin-left: 0.5rem;
 }
