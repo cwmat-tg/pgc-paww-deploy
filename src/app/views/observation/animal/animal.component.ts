@@ -288,7 +288,6 @@ export class AnimalComponent implements OnInit, OnDestroy {
   }
 
   public speciesCodeIsMammal(speciesCode: number): boolean {
-    debugger;
     const found = this.speciesList.find(e => e.SpeciestId === speciesCode);
 
     if (found && found.ClassificationId === this.refMammal)
