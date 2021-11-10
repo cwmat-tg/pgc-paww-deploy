@@ -42,6 +42,11 @@ body {
   cursor: pointer;
 }
 
+// Snackbar
+.mat-simple-snackbar-action {
+  color: #cde12a;
+}
+
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width: $screen-width-mobile) {
   /* Styles */

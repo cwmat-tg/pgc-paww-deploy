@@ -1,6 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { debounceTime, first } from 'rxjs/operators';
 import { Age, AnimalCount, Captive, Classification, Species, YesNo } from 'src/app/_shared/models/config.model';
@@ -71,6 +72,8 @@ export class AnimalComponent implements OnInit, OnDestroy {
   // Config
   header = MagicStrings.AnimalHeader;
   content = UserMessages.AnimalHelperText;
+  photosHeader = MagicStrings.PhotosHeader;
+  photosContent = UserMessages.PhotosHelperText;
   state = MagicStrings.Hidden;
   animalAlive = MagicStrings.Hidden;
   animalDead = MagicStrings.Hidden;
@@ -144,6 +147,7 @@ export class AnimalComponent implements OnInit, OnDestroy {
   constructor(
     public obsStore: ObservationService,
     public api: ApiService,
+    private _snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
@@ -294,6 +298,10 @@ export class AnimalComponent implements OnInit, OnDestroy {
       return true;
     else
       return false;
+  }
+
+  openSnackBar(message: string, action: string = 'Close') {
+    this._snackBar.open(message, action);
   }
 
 }

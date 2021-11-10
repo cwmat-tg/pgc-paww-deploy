@@ -37,6 +37,10 @@
     max-height: 8rem;
 }
 
+.appPhotoContainer {
+    margin-top: 1.5rem;
+}
+
 
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width: $screen-width-mobile) {
@@ -52,6 +56,10 @@
 
     .mat-form-field {
         min-width: 100%;
+    }
+
+    .appPhotoContainer {
+        margin-top: 5rem;
     }
 }
 
@@ -70,6 +78,10 @@
     .mat-form-field {
         min-width: 100%;
     }
+
+    .appPhotoContainer {
+        margin-top: 5rem;
+    }
 }
 
 /* Desktops and laptops ----------- */
@@ -87,6 +99,10 @@
     .appInfoIcon {
         margin-left: 1.5rem;
     }
+
+    .appPhotoContainer {
+        margin-top: 1.5rem;
+    }
 }
 
 /* Large screens ----------- */
@@ -103,5 +119,9 @@
 
     .appInfoIcon {
         margin-left: 1.5rem;
+    }
+
+    .appPhotoContainer {
+        margin-top: 1.5rem;
     }
 }
