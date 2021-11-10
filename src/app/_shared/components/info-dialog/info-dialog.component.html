@@ -1,0 +1,21 @@
+<p style="text-align: center; font-size: 1.5rem;" mat-dialog-title color=" primary" class="themePrimaryTextInverse appDialogTitle">
+    {{ data.title || 'Confirm Action' }}</p>
+  <p style="text-align: center; border-bottom: 1px solid rgba(118,118,118,1); font-size: 1.5rem;"></p>
+  
+  <div mat-dialog-content style="align-items: center; text-align: center; width: 100%; margin:auto;">
+    <div fxFlex fxLayout="column" fxLayoutGap="0.5rem" fxLayoutAlign="center center"
+      style="margin:1.5rem 0; width: 100%;">
+      <div style="width: 100%;">
+        <h3 class="appMainText" style="text-overflow: ellipsis; overflow:hidden;" [innerHtml]="data.text">
+        </h3>
+      </div>
+  
+    </div>
+  </div>
+  <div mat-dialog-actions style="width: 100%; margin-bottom: 0.5rem;">
+    <div fxFlex fxLayout="column" fxLayoutAlign="center center">
+      <button [mat-dialog-close]="true" mat-flat-button color="accent"
+        class="appConfirmButton appSquareButton appSkinnyFontButton" style="margin-right: 1rem;">{{data.confirm}}</button>
+    </div>
+  </div>
+  
