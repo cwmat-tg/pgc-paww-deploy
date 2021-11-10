@@ -10,6 +10,9 @@ import { OutOfStateComponent } from './out-of-state/out-of-state.component';
 import { ContactComponent } from './contact/contact.component';
 import { AnimalComponent } from './animal/animal.component';
 import { GeoSearchComponent } from './location/geo-search/geo-search.component';
+import { NgxUploaderModule } from 'ngx-uploader';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 
 @NgModule({
@@ -20,13 +23,16 @@ import { GeoSearchComponent } from './location/geo-search/geo-search.component';
     OutOfStateComponent,
     ContactComponent,
     AnimalComponent,
-    GeoSearchComponent
+    GeoSearchComponent,
+    FileUploadComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
     ObservationRoutingModule,
-    NgxMapLibreGLModule
+    NgxMapLibreGLModule,
+    NgxUploaderModule,
+    NgxDropzoneModule
   ]
 })
 export class ObservationModule { }
