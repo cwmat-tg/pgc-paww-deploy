@@ -1,6 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { NgxDropzoneChangeEvent } from 'ngx-dropzone';
-import { humanizeBytes, UploaderOptions, UploadFile, UploadInput, UploadOutput } from 'ngx-uploader';
 import { UserMessages } from 'src/app/_shared/models/user-messages.model';
 
 @Component({
