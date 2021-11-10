@@ -6,8 +6,7 @@
     <div fxFlex fxLayout="column" fxLayoutGap="0.5rem" fxLayoutAlign="center center"
       style="margin:1.5rem 0; width: 100%;">
       <div style="width: 100%;">
-        <h3 class="appMainText" style="text-overflow: ellipsis; overflow:hidden;">
-          {{data.text}}
+        <h3 class="appMainText" style="text-overflow: ellipsis; overflow:hidden;" [innerHtml]="data.text">
         </h3>
       </div>
   

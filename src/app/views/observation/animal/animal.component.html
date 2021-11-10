@@ -85,7 +85,7 @@
             </div>
 
             <!-- Hidden -->
-            <div *ngIf="this.date?.valid && this.numberOfAnimals?.valid" fxLayout="column" [@state]="state" class="appFieldRow appHide">
+            <div *ngIf="this.date?.valid && this.numberOfAnimals?.valid" fxLayout="column" [@state]="state" class="appFieldRow appHide appSpaceAtBottom">
 
                 <!-- Species -->
                 <div 
@@ -394,7 +394,7 @@
                         fxFlex.sm="100" 
                         class="appFormRowContainer">
                 
-                            <div class="appFormContainer appSpaceAtBottom">
+                            <div class="appFormContainer">
                                 <mat-form-field>
                                     <mat-label for="observation-details">Additional Details</mat-label>
                                     <textarea 
