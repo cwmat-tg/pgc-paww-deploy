@@ -71,6 +71,12 @@ $disclaimerSpacing: 2rem;
     color: #fff;
     margin-right: $disclaimerSpacing;
 }
+
+:host ::ng-deep app-header {
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+}
   
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width: $screen-width-mobile) {
@@ -89,4 +95,29 @@ $disclaimerSpacing: 2rem;
         margin: 2rem auto auto auto;
         display: block;
     }
+
+    #appHomepageContent {
+        padding-top: $header-bar-height;
+    }
 }
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width: $screen-width-mobile-small-landscape) {
+    #appHomepageContent {
+        padding-top: $header-bar-height;
+    }
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width: $screen-width-desktop) {
+    #appHomepageContent {
+        padding-top: 0;
+    }
+  }
+  
+  /* Large screens ----------- */
+  @media only screen and (min-width: $screen-width-monitor) {
+    #appHomepageContent {
+        padding-top: 0;
+    }
+  }
