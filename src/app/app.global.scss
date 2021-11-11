@@ -4,6 +4,7 @@ $color-primary-heavy: #192412;
 $color-primary-light: #bfc3bc;
 $color-subtitle-light: #f2f2f2;
 $color-helper-text: #434343;
+$color-header-subtitle: #dadada;
 
 $color-accent: #000000;
 $color-accent-heavy: #000000;
@@ -25,3 +26,10 @@ $screen-width-tablet: 768px;
 $screen-width-laptop: 1024px;
 $screen-width-desktop: 1224px;
 $screen-width-monitor: 1824px;
+
+
+// Sizes
+$header-bar-height: 4.5rem;
+$header-bar-image-max-height: calc($header-bar-height - 0.3rem);
+$footer-height: 2.7rem;
+$footer-height-offet: 3.5rem;

@@ -8,6 +8,8 @@ import { IntroHelperTextComponent } from '../components/intro-helper-text/intro-
 import { HttpClientModule } from '@angular/common/http';
 import { InfoPopupComponent } from '../components/info-popup/info-popup.component';
 import { InfoDialogComponent } from '../components/info-dialog/info-dialog.component';
+import { HeaderComponent } from '../components/header/header.component';
+import { FooterComponent } from '../components/footer/footer.component';
 
 
 @NgModule({
@@ -26,13 +28,17 @@ import { InfoDialogComponent } from '../components/info-dialog/info-dialog.compo
     VersionComponent,
     IntroHelperTextComponent,
     InfoPopupComponent,
-    InfoDialogComponent
+    InfoDialogComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   declarations: [
     VersionComponent,
     IntroHelperTextComponent,
     InfoPopupComponent,
-    InfoDialogComponent
+    InfoDialogComponent,
+    HeaderComponent,
+    FooterComponent
   ]
 })
 export class SharedModule {}

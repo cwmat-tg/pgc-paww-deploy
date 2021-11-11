@@ -7,6 +7,11 @@ $stepper-padding: 5rem;
     padding-right: $stepper-padding;
 }
 
+.appStepperContainer {
+    min-height: 100vh;
+    overflow-y: hidden;
+}
+
 .appStepperButton {
     min-width: 9rem;
 }
