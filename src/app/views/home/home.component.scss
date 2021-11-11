@@ -77,6 +77,13 @@ $disclaimerSpacing: 2rem;
     width: 100%;
     z-index: 99;
 }
+
+:host ::ng-deep app-footer.appOnHomepage {
+    position: absolute;
+    width: 100%;
+    z-index: 99;
+    bottom: 0;
+}
   
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width: $screen-width-mobile) {
@@ -99,12 +106,20 @@ $disclaimerSpacing: 2rem;
     #appHomepageContent {
         padding-top: $header-bar-height;
     }
+
+    :host ::ng-deep app-footer.appOnHomepage {
+        bottom: auto;
+    }
 }
 
 /* Smartphones (landscape) ----------- */
 @media only screen and (min-width: $screen-width-mobile-small-landscape) {
     #appHomepageContent {
         padding-top: $header-bar-height;
+    }
+
+    :host ::ng-deep app-footer.appOnHomepage {
+        bottom: auto;
     }
 }
 
@@ -113,11 +128,19 @@ $disclaimerSpacing: 2rem;
     #appHomepageContent {
         padding-top: 0;
     }
+
+    :host ::ng-deep app-footer.appOnHomepage {
+        bottom: 0;
+    }
   }
   
   /* Large screens ----------- */
   @media only screen and (min-width: $screen-width-monitor) {
     #appHomepageContent {
         padding-top: 0;
+    }
+
+    :host ::ng-deep app-footer.appOnHomepage {
+        bottom: 0;
     }
   }
