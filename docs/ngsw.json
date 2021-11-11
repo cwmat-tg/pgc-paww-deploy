@@ -1,0 +1,95 @@
+{
+  "configVersion": 1,
+  "timestamp": 1636669447189,
+  "index": "/pgc-paww-deploy/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/pgc-paww-deploy/210.a2962a198adf50fa7aa0.js",
+        "/pgc-paww-deploy/562.d27b88d6c84c6c42a755.js",
+        "/pgc-paww-deploy/683.ac1de834131bae189319.js",
+        "/pgc-paww-deploy/favicon.ico",
+        "/pgc-paww-deploy/index.html",
+        "/pgc-paww-deploy/main.a71907bf366124e62afd.js",
+        "/pgc-paww-deploy/manifest.webmanifest",
+        "/pgc-paww-deploy/polyfills.95435e4fdf0e9219940f.js",
+        "/pgc-paww-deploy/runtime.d70fb622ec3172dbab46.js",
+        "/pgc-paww-deploy/styles.fc0421f4e3fb47700280.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/pgc-paww-deploy/assets/gis/pa.json",
+        "/pgc-paww-deploy/assets/icons/icon-128x128.png",
+        "/pgc-paww-deploy/assets/icons/icon-144x144.png",
+        "/pgc-paww-deploy/assets/icons/icon-152x152.png",
+        "/pgc-paww-deploy/assets/icons/icon-192x192.png",
+        "/pgc-paww-deploy/assets/icons/icon-384x384.png",
+        "/pgc-paww-deploy/assets/icons/icon-512x512.png",
+        "/pgc-paww-deploy/assets/icons/icon-72x72.png",
+        "/pgc-paww-deploy/assets/icons/icon-96x96.png",
+        "/pgc-paww-deploy/assets/images/homepage.jpg",
+        "/pgc-paww-deploy/assets/images/pgc_logo.svg",
+        "/pgc-paww-deploy/homepage.854289dfb81ca194e267.jpg"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/pgc-paww-deploy/210.a2962a198adf50fa7aa0.js": "0c2ef927c051ee7fd7cb3d98c6987b122bb50507",
+    "/pgc-paww-deploy/562.d27b88d6c84c6c42a755.js": "a004971833ad96db4e4e697eb52d702933119b05",
+    "/pgc-paww-deploy/683.ac1de834131bae189319.js": "c154494f0976ff1e1610c5d572aa13498a780436",
+    "/pgc-paww-deploy/assets/gis/pa.json": "3d3855fbb4fbbb34ded5b8d10ac245ef042c098c",
+    "/pgc-paww-deploy/assets/icons/icon-128x128.png": "edf33490a5af377025993569cc66aba94b3fd056",
+    "/pgc-paww-deploy/assets/icons/icon-144x144.png": "ac14e1055108c67a12c1e0fdd4d518a79dfd0cba",
+    "/pgc-paww-deploy/assets/icons/icon-152x152.png": "b2507ab901d713746eec644fe880cef29192788f",
+    "/pgc-paww-deploy/assets/icons/icon-192x192.png": "8181ea877e305ee6cee2979dc87b574dd05ee02d",
+    "/pgc-paww-deploy/assets/icons/icon-384x384.png": "23efddbb85f550f39d4cca5007878998636c6109",
+    "/pgc-paww-deploy/assets/icons/icon-512x512.png": "ba2d805aec29a6a40ffcfae75f815b895794e8b7",
+    "/pgc-paww-deploy/assets/icons/icon-72x72.png": "ad71ef03d14d85516c9528adab68f89a6ec4366d",
+    "/pgc-paww-deploy/assets/icons/icon-96x96.png": "e4213cdea54305a6f48a639e90ce45659093c1c3",
+    "/pgc-paww-deploy/assets/images/homepage.jpg": "037441a2a05d7e85de3c753a2867b0326fde60ad",
+    "/pgc-paww-deploy/assets/images/pgc_logo.svg": "e4b4838d2a044dc4c9b5dd3454969b9685c89918",
+    "/pgc-paww-deploy/favicon.ico": "25a8faa0e002344f277c8f7d04c77b560af2b37d",
+    "/pgc-paww-deploy/homepage.854289dfb81ca194e267.jpg": "037441a2a05d7e85de3c753a2867b0326fde60ad",
+    "/pgc-paww-deploy/index.html": "f6f0b93fd5aa6c9d34778799f39c14796d36da5e",
+    "/pgc-paww-deploy/main.a71907bf366124e62afd.js": "4d72ff1ab983de6cc4a5e773fca45db0711a1cfa",
+    "/pgc-paww-deploy/manifest.webmanifest": "60252891790a6a4964ed34d18c853af4f7f257a4",
+    "/pgc-paww-deploy/polyfills.95435e4fdf0e9219940f.js": "36c2d3b2a206d7d09548ea685cb442687a52ff9e",
+    "/pgc-paww-deploy/runtime.d70fb622ec3172dbab46.js": "8a1dda8d565c1beff6cfbec44fc704c30a8e2917",
+    "/pgc-paww-deploy/styles.fc0421f4e3fb47700280.css": "9eeb5ecc6f6a343d6e8266111a27cd0493160c83"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
