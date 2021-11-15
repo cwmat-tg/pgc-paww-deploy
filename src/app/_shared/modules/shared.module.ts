@@ -10,6 +10,7 @@ import { InfoPopupComponent } from '../components/info-popup/info-popup.componen
 import { InfoDialogComponent } from '../components/info-dialog/info-dialog.component';
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
+import { LoadingDialogComponent } from '../components/loading-dialog/loading-dialog.component';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { FooterComponent } from '../components/footer/footer.component';
     ReactiveFormsModule,
     FlexLayoutModule,
     MaterialModule,
-    HttpClientModule 
+    HttpClientModule
   ],
   exports: [
     CommonModule,
@@ -30,7 +31,8 @@ import { FooterComponent } from '../components/footer/footer.component';
     InfoPopupComponent,
     InfoDialogComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LoadingDialogComponent
   ],
   declarations: [
     VersionComponent,
@@ -38,7 +40,8 @@ import { FooterComponent } from '../components/footer/footer.component';
     InfoPopupComponent,
     InfoDialogComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LoadingDialogComponent
   ]
 })
 export class SharedModule {}
