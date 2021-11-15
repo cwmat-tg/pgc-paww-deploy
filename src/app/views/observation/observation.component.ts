@@ -1,9 +1,11 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatStepper, StepperOrientation } from '@angular/material/stepper';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import {map} from 'rxjs/operators';
+import {first, map} from 'rxjs/operators';
+import { LoadingDialogComponent } from 'src/app/_shared/components/loading-dialog/loading-dialog.component';
 import { ObservationService } from 'src/app/_shared/services/observation.service';
 import { ContactComponent } from './contact/contact.component';
 import { LocationComponent } from './location/location.component';
@@ -34,6 +36,7 @@ export class ObservationComponent implements AfterViewInit {
     breakpointObserver: BreakpointObserver,
     private router: Router,
     public obsStore: ObservationService,
+    private dialog: MatDialog,
   ) {
     this.stepperOrientation = breakpointObserver.observe('(min-width: 800px)')
       .pipe(map(({matches}) => matches ? 'horizontal' : 'vertical'));
@@ -81,12 +84,27 @@ export class ObservationComponent implements AfterViewInit {
         }
         break;
       case 2:
-      
+
         break;
-    
+
       default:
         break;
     }
+  }
+
+  submit() {
+    const saveRef = this.dialog.open(LoadingDialogComponent, {
+      width: '25rem',
+      data: "Saving Observation.",
+      disableClose: true
+    });
+
+    const obsContainer = this.obsStore.getObservationDto();
+    const paylod = obsContainer.data;
+    const mediaPaylod = obsContainer.media;
+    debugger;
+    saveRef.close();
+
   }
 
 }
