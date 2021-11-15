@@ -6,6 +6,7 @@
     "start": "ng serve --hmr",
     "prebuild": "npm --no-git-tag-version version patch",
     "build": "ng build",
+    "build-qa": "ng build --configuration=qa --base-href=/PAWW/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "api": "json-server --watch ./local/db.json --routes ./local/routes.json",
