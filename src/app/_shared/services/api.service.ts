@@ -54,12 +54,12 @@ export class ApiService {
   }
 
   // Create Observation
-  createObservation(data: ObservationDto) {
+  createObservation(data: ObservationDto): Observable<any> {
     return this.post(MagicStrings.PostObs, data);
   }
 
   // Create Observation Media
-  createObservationMedia(data: ObservationMediaDto[]) {
+  createObservationMedia(data: ObservationMediaDto): Observable<any> {
     return this.post(MagicStrings.PostObsMedia, data);
   }
 

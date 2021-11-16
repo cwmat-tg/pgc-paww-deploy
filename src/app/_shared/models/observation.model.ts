@@ -57,9 +57,10 @@ export interface ObservationMediaDto {
   name?: string;
   type?: string;
   data?: string;
+  confirmation?: string;
 }
 
 export interface ObservationDtoContainer {
-  data?: ObservationDto;
-  media?: ObservationMediaDto;
+  data: ObservationDto;
+  media: ObservationMediaDto[];
 }

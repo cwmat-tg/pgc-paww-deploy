@@ -3,7 +3,7 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatStepper, StepperOrientation } from '@angular/material/stepper';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import {first, map} from 'rxjs/operators';
 import { LoadingDialogComponent } from 'src/app/_shared/components/loading-dialog/loading-dialog.component';
 import { ApiService } from 'src/app/_shared/services/api.service';
@@ -105,10 +105,28 @@ export class ObservationComponent implements AfterViewInit {
     const payload = obsContainer.data;
     const mediaPaylod = obsContainer.media;
     this.api.createObservation(payload).subscribe(res => {
-      const mediaRequests = [];
+      debugger;
+      const mediaRequests = [] as Observable<any>[];
+      if (mediaPaylod.length > 0) {
+        mediaPaylod.forEach(e => {
+          mediaRequests.push(this.api.createObservationMedia({...e, confirmation: ''}));
+        });
+        forkJoin(mediaRequests).subscribe(results => {
+          debugger;
+          saveRef.close();
+        }, error => {
+          console.error(error);
+          debugger;
+          saveRef.close();
+        });
+      } else {
+        saveRef.close();
+      }
+    }, err => {
+      console.error(err);
+      debugger;
+      saveRef.close();
     });
-    debugger;
-    saveRef.close();
 
   }
 
