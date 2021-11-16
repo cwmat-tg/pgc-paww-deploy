@@ -25,6 +25,11 @@ $stepper-padding: 5rem;
     margin-right: $stepper-padding;
 }
 
+::ng-deep .appStepperContainer .mat-stepper-vertical .mat-step .mat-step-header {
+    outline: #000000 solid 1px;
+    outline-offset: -4px;
+}
+
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width: $screen-width-mobile) {
     /* Styles */

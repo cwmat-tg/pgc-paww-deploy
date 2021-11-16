@@ -89,7 +89,7 @@ export class ContactComponent implements OnInit, OnDestroy {
   get phone() { return this.contactForm.get('phone'); }
 
   initializeDropdowns() {
-      this.api.getAnimalCount().subscribe(res => {
+      this.api.getAffiliation().subscribe(res => {
         this.affiliations = res;
       },
       error => {
