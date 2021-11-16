@@ -102,9 +102,9 @@ export class ObservationComponent implements AfterViewInit {
     });
 
     const obsContainer = this.obsStore.getObservationDto();
-    const paylod = obsContainer.data;
+    const payload = obsContainer.data;
     const mediaPaylod = obsContainer.media;
-    this.api.createObservation(paylod).subscribe(res => {
+    this.api.createObservation(payload).subscribe(res => {
       const mediaRequests = [];
     });
     debugger;
