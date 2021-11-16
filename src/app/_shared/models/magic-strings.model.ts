@@ -26,6 +26,8 @@ export class MagicStrings {
     public static Age: string = 'GetWildlifeAgeLookUp';
     public static Captive: string = 'GetCaptiveLookup';
     public static Classification: string = 'GetClassificationLookup';
+    public static PostObs: string = 'PostObs';
+    public static PostObsMedia: string = 'PostObsMedia';
 
     // UI visibility
     public static Hidden: string = 'hidden';

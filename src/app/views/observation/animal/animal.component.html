@@ -434,7 +434,7 @@
                                     [content]="this.photosContent"
                                 ></app-intro-helper-text>
                                 
-                                <app-file-upload (error)="this.openSnackBar($event)"></app-file-upload>
+                                <app-file-upload (error)="this.openSnackBar($event)" (newData)="this.mediaDataChanged($event)"></app-file-upload>
 
                             </div>
 
@@ -452,4 +452,9 @@
 
     </form>
 
+</div>
+
+<div>
+    {{ this.obsStore.getObservation() | async | json }}
+    <!-- {{ this.obsStore.getObservationMedia() | async | json }} -->
 </div>

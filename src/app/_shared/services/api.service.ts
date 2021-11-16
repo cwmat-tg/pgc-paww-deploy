@@ -5,6 +5,7 @@ import { catchError, retry } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Affiliation, Age, AnimalCount, Captive, Classification, Species, YesNo } from '../models/config.model';
 import { MagicStrings } from '../models/magic-strings.model';
+import { ObservationDto, ObservationMediaDto } from '../models/observation.model';
 
 @Injectable({
   providedIn: 'root'
@@ -52,9 +53,30 @@ export class ApiService {
     return this.get(MagicStrings.Classification);
   }
 
+  // Create Observation
+  createObservation(data: ObservationDto) {
+    return this.post(MagicStrings.PostObs, data);
+  }
+
+  // Create Observation Media
+  createObservationMedia(data: ObservationMediaDto[]) {
+    return this.post(MagicStrings.PostObsMedia, data);
+  }
+
   private get<T>(endpoint: string): Observable<T[]> {
     return this.http.get<T[]>(
       `${this.apiEndpoint}/${endpoint}`
+    )
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  private post<T>(endpoint: string, data: any): Observable<T[]> {
+    return this.http.post<T[]>(
+      `${this.apiEndpoint}/${endpoint}`,
+      data
     )
     .pipe(
       retry(1),

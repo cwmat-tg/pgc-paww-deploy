@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Observation, ObservationDto, ObservationDtoContainer } from '../models/observation.model';
+import { Observation, ObservationDto, ObservationDtoContainer, ObservationMediaDto } from '../models/observation.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,7 @@ export class ObservationService {
     inState: true
   };
   private _observation: BehaviorSubject<Observation> = new BehaviorSubject(this._initialState);
+  private _observationMedia: BehaviorSubject<ObservationMediaDto[]> = new BehaviorSubject([] as ObservationMediaDto[]);
 
   constructor() { }
 
@@ -19,20 +20,30 @@ export class ObservationService {
     return this._observation.asObservable();
   }
 
+  getObservationMedia(): Observable<ObservationMediaDto[]> {
+    return this._observationMedia.asObservable();
+  }
+
   updateObservation(newObs: Observation) {
     this._observation.next({ ...newObs });
     return this.getObservation();
   }
 
+  updateObservationMedia(newMedia: ObservationMediaDto[]) {
+    this._observationMedia.next({ ...newMedia });
+    return this.getObservationMedia();
+  }
+
   resetObservation() {
     this._observation.next({ ...this._initialState });
+    this._observationMedia.next([]);
     return this.getObservation();
   }
 
   getObservationDto(): ObservationDtoContainer {
     return {
       data: this.convertObsVmToDto(this._observation.value),
-      media: this.convertMediaVmToDto();
+      media: this._observationMedia.value
     } as ObservationDtoContainer;
   }
 
@@ -59,7 +70,4 @@ export class ObservationService {
     } as ObservationDto;
   }
 
-  convertMediaVmToDto() {
-
-  }
 }

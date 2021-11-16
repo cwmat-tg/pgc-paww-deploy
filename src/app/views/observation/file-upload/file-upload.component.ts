@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { NgxDropzoneChangeEvent } from 'ngx-dropzone';
+import { ObservationMediaDto } from 'src/app/_shared/models/observation.model';
 import { UserMessages } from 'src/app/_shared/models/user-messages.model';
 
 @Component({
@@ -15,6 +16,7 @@ export class FileUploadComponent {
 
   // Outputs
   @Output() error: EventEmitter<string> = new EventEmitter();
+  @Output() newData: EventEmitter<ObservationMediaDto[]> = new EventEmitter();
 
 	onSelect(event: NgxDropzoneChangeEvent) {
     debugger;
@@ -37,21 +39,30 @@ export class FileUploadComponent {
       console.log(UserMessages.UploadWrongType);
       this.errorOccured(UserMessages.UploadWrongType);
     }
+
+    this.onFilesChanged();
 	}
 
 	onRemove(event: any) {
-    debugger;
 		console.log(event);
 		this.files.splice(this.files.indexOf(event), 1);
     this.currentSize -= event?.size;
+
+    this.onFilesChanged();
 	}
 
-  onFilesAdded() {
-    this.readFile(this.files[0]).then(fileContents => {
-      // Put this string in a request body to upload it to an API.
-      debugger;
-      console.log(fileContents);
-    });
+  async onFilesChanged() {
+    const tempData: ObservationMediaDto[] = [];
+    for (const fileData of this.files) {
+      const fileContents = await this.readFile(fileData);
+      tempData.push({
+        name: fileData.name,
+        type: fileData.type,
+        data: fileContents
+      } as ObservationMediaDto);
+    }
+
+    this.newData.emit(tempData);
   }
 
   private async readFile(file: File): Promise<string | ArrayBuffer> {

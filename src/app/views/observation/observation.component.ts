@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import {first, map} from 'rxjs/operators';
 import { LoadingDialogComponent } from 'src/app/_shared/components/loading-dialog/loading-dialog.component';
+import { ApiService } from 'src/app/_shared/services/api.service';
 import { ObservationService } from 'src/app/_shared/services/observation.service';
 import { ContactComponent } from './contact/contact.component';
 import { LocationComponent } from './location/location.component';
@@ -37,6 +38,7 @@ export class ObservationComponent implements AfterViewInit {
     private router: Router,
     public obsStore: ObservationService,
     private dialog: MatDialog,
+    private api: ApiService,
   ) {
     this.stepperOrientation = breakpointObserver.observe('(min-width: 800px)')
       .pipe(map(({matches}) => matches ? 'horizontal' : 'vertical'));
@@ -102,6 +104,9 @@ export class ObservationComponent implements AfterViewInit {
     const obsContainer = this.obsStore.getObservationDto();
     const paylod = obsContainer.data;
     const mediaPaylod = obsContainer.media;
+    this.api.createObservation(paylod).subscribe(res => {
+      const mediaRequests = [];
+    });
     debugger;
     saveRef.close();
 
