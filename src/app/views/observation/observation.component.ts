@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { forkJoin, Observable } from 'rxjs';
 import {first, map} from 'rxjs/operators';
 import { LoadingDialogComponent } from 'src/app/_shared/components/loading-dialog/loading-dialog.component';
+import { ConfirmationState } from 'src/app/_shared/models/config.model';
 import { ApiService } from 'src/app/_shared/services/api.service';
 import { ObservationService } from 'src/app/_shared/services/observation.service';
 import { ContactComponent } from './contact/contact.component';
@@ -95,39 +96,52 @@ export class ObservationComponent implements AfterViewInit {
   }
 
   submit() {
+    // Open loading spinner
     const saveRef = this.dialog.open(LoadingDialogComponent, {
       width: '25rem',
       data: "Saving Observation.",
       disableClose: true
     });
 
+    // Get latest observation and media from store
     const obsContainer = this.obsStore.getObservationDto();
     const payload = obsContainer.data;
     const mediaPaylod = obsContainer.media;
     this.api.createObservation(payload).subscribe(res => {
-      debugger;
+      const confirmationObj = { confirmation: res.confirmation, dateOfObs: payload.date, success: true };
+
+      // Will hold any media POST observables for the forkjoin below
       const mediaRequests = [] as Observable<any>[];
       if (mediaPaylod.length > 0) {
         mediaPaylod.forEach(e => {
-          mediaRequests.push(this.api.createObservationMedia({...e, confirmation: ''}));
+          mediaRequests.push(this.api.createObservationMedia({...e, confirmation: res?.confirmation}));
         });
         forkJoin(mediaRequests).subscribe(results => {
-          debugger;
+          // All uploads succeeded
+          console.log(results);
           saveRef.close();
+          this.routeToConfirmation(confirmationObj);
         }, error => {
+          // One or all of the media items failed to upload
           console.error(error);
-          debugger;
           saveRef.close();
         });
       } else {
+        // There was no media uploads but the initial obs post worked
         saveRef.close();
+        this.routeToConfirmation(confirmationObj);
       }
     }, err => {
+      // The initial request failed or there was no confirmation number
       console.error(err);
-      debugger;
       saveRef.close();
     });
 
+  }
+
+  private routeToConfirmation(data: ConfirmationState) {
+    this.obsStore.setObservationSubmitState({ ...data});
+    this.router.navigate(['/app/observation/confirmation']);
   }
 
 }

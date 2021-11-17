@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Affiliation, Age, AnimalCount, Captive, Classification, Species, YesNo } from '../models/config.model';
+import { Affiliation, Age, AnimalCount, Captive, Classification, ObsMediaResponse, ObsResponse, Species, YesNo } from '../models/config.model';
 import { MagicStrings } from '../models/magic-strings.model';
 import { ObservationDto, ObservationMediaDto } from '../models/observation.model';
 
@@ -54,13 +54,13 @@ export class ApiService {
   }
 
   // Create Observation
-  createObservation(data: ObservationDto): Observable<any> {
-    return this.post(MagicStrings.PostObs, data);
+  createObservation(data: ObservationDto): Observable<ObsResponse> {
+    return this.post(MagicStrings.PostObs, data) as Observable<ObsResponse>;
   }
 
   // Create Observation Media
-  createObservationMedia(data: ObservationMediaDto): Observable<any> {
-    return this.post(MagicStrings.PostObsMedia, data);
+  createObservationMedia(data: ObservationMediaDto): Observable<ObsMediaResponse> {
+    return this.post(MagicStrings.PostObsMedia, data) as Observable<ObsMediaResponse>;
   }
 
   private get<T>(endpoint: string): Observable<T[]> {

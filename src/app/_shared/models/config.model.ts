@@ -40,3 +40,17 @@ export interface Classification {
     Name?: string;
     SortKey?: number;
 }
+
+export interface ObsResponse {
+    confirmation?: string;
+}
+
+export interface ObsMediaResponse {
+    confirmation?: string;
+}
+
+export interface ConfirmationState {
+    confirmation?: string;
+    dateOfObs?: Date;
+    success?: boolean;
+}

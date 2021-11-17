@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { ConfirmationState } from '../models/config.model';
 import { Observation, ObservationDto, ObservationDtoContainer, ObservationMediaDto } from '../models/observation.model';
 
 @Injectable({
@@ -13,6 +14,7 @@ export class ObservationService {
   };
   private _observation: BehaviorSubject<Observation> = new BehaviorSubject(this._initialState);
   private _observationMedia: BehaviorSubject<ObservationMediaDto[]> = new BehaviorSubject([] as ObservationMediaDto[]);
+  private _observationSubmitState: BehaviorSubject<ConfirmationState> = new BehaviorSubject({} as ConfirmationState);
 
   constructor() { }
 
@@ -30,13 +32,14 @@ export class ObservationService {
   }
 
   updateObservationMedia(newMedia: ObservationMediaDto[]) {
-    this._observationMedia.next({ ...newMedia });
+    this._observationMedia.next([ ...newMedia ]);
     return this.getObservationMedia();
   }
 
   resetObservation() {
     this._observation.next({ ...this._initialState });
     this._observationMedia.next([]);
+    this._observationSubmitState.next({} as ConfirmationState);
     return this.getObservation();
   }
 
@@ -45,6 +48,14 @@ export class ObservationService {
       data: this.convertObsVmToDto(this._observation.value),
       media: this._observationMedia.value
     } as ObservationDtoContainer;
+  }
+
+  getObservationSubmitState() {
+    return this._observationSubmitState.value;
+  }
+
+  setObservationSubmitState(data: ConfirmationState) {
+    this._observationSubmitState.next({ ...data});
   }
 
   convertObsVmToDto(data: Observation): ObservationDto {
