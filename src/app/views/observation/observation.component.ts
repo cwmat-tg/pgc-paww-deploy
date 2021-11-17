@@ -5,10 +5,13 @@ import { MatStepper, StepperOrientation } from '@angular/material/stepper';
 import { Router } from '@angular/router';
 import { forkJoin, Observable, Subscription } from 'rxjs';
 import { map} from 'rxjs/operators';
+import { InfoDialogComponent } from 'src/app/_shared/components/info-dialog/info-dialog.component';
 import { LoadingDialogComponent } from 'src/app/_shared/components/loading-dialog/loading-dialog.component';
 import { ConfirmationState } from 'src/app/_shared/models/config.model';
+import { UserMessages } from 'src/app/_shared/models/user-messages.model';
 import { ApiService } from 'src/app/_shared/services/api.service';
 import { ConnectionService } from 'src/app/_shared/services/connection.service';
+import { LocalStorageService } from 'src/app/_shared/services/local-storage.service';
 import { ObservationService } from 'src/app/_shared/services/observation.service';
 import { ContactComponent } from './contact/contact.component';
 import { LocationComponent } from './location/location.component';
@@ -48,12 +51,13 @@ export class ObservationComponent implements AfterViewInit, OnDestroy {
     private dialog: MatDialog,
     private api: ApiService,
     private connectionService: ConnectionService,
+    private localStorageService: LocalStorageService,
   ) {
     this.stepperOrientation = breakpointObserver.observe('(min-width: 800px)')
       .pipe(map(({matches}) => matches ? 'horizontal' : 'vertical'));
 
     this.isOffline = this.connectionService.isOffline;
-    this.connectionService.isOffline$().subscribe(res => {
+    this.isOffline$ = this.connectionService.isOffline$().subscribe(res => {
       this.isOffline = res;
     });
   }
@@ -124,6 +128,36 @@ export class ObservationComponent implements AfterViewInit, OnDestroy {
     const obsContainer = this.obsStore.getObservationDto();
     const payload = obsContainer.data;
     const mediaPaylod = obsContainer.media;
+
+    // Check if offline
+    if (this.isOffline) {
+      debugger;
+      saveRef.close();
+
+      const confirmDialogRef = this.dialog.open(InfoDialogComponent, {
+        width: '35rem',
+        data: { title: 'Currently Offline', text: UserMessages.CurrentlyOffline, confirm: 'Save and Return Home', cancel: 'Close' },
+        disableClose: true
+      });
+
+      confirmDialogRef.afterClosed().subscribe(data => {
+        if (data) {
+          debugger;
+          // Save offline
+          this.localStorageService.setObservation(obsContainer);
+
+          // Then reset and reroute home and reset
+          this.obsStore.resetObservation();
+          this.router.navigate(['/']);
+        } else {
+          // Stay on the page
+        }
+      });
+
+      return;
+    }
+
+    // POST to API
     this.api.createObservation(payload).subscribe(res => {
       const confirmationObj = { confirmation: res.confirmation, dateOfObs: payload.date, success: true };
 

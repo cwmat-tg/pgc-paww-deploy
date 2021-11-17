@@ -63,4 +63,5 @@ export interface ObservationMediaDto {
 export interface ObservationDtoContainer {
   data: ObservationDto;
   media: ObservationMediaDto[];
+  uid?: string;
 }

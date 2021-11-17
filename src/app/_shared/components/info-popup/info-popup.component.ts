@@ -24,7 +24,7 @@ export class InfoPopupComponent implements OnInit {
   onClick() {
     this.dialog.open(InfoDialogComponent, {
       width: '35rem',
-      data: { title: this.title, text: this.text, confirm: this.confirm, cancel: this.cancel },
+      data: { title: this.title, text: this.text, confirm: this.confirm },
       disableClose: false
     });
   }

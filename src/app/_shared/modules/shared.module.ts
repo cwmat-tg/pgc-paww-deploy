@@ -11,7 +11,20 @@ import { InfoDialogComponent } from '../components/info-dialog/info-dialog.compo
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { LoadingDialogComponent } from '../components/loading-dialog/loading-dialog.component';
+import { DBConfig, NgxIndexedDBModule } from 'ngx-indexed-db';
 
+const dbConfig: DBConfig  = {
+  name: 'MyDb',
+  version: 1,
+  objectStoresMeta: [{
+    store: 'people',
+    storeConfig: { keyPath: 'id', autoIncrement: true },
+    storeSchema: [
+      { name: 'name', keypath: 'name', options: { unique: false } },
+      { name: 'email', keypath: 'email', options: { unique: false } }
+    ]
+  }]
+};
 
 @NgModule({
   imports: [
@@ -19,7 +32,8 @@ import { LoadingDialogComponent } from '../components/loading-dialog/loading-dia
     ReactiveFormsModule,
     FlexLayoutModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxIndexedDBModule
   ],
   exports: [
     CommonModule,
@@ -32,7 +46,8 @@ import { LoadingDialogComponent } from '../components/loading-dialog/loading-dia
     InfoDialogComponent,
     HeaderComponent,
     FooterComponent,
-    LoadingDialogComponent
+    LoadingDialogComponent,
+    NgxIndexedDBModule 
   ],
   declarations: [
     VersionComponent,

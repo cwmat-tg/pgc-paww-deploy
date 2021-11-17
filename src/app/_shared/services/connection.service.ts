@@ -11,7 +11,7 @@ export class ConnectionService {
   subscriptions: Subscription[] = [];
 
   // Core value
-  private _isOffline:BehaviorSubject<boolean> = new BehaviorSubject(navigator.onLine);
+  private _isOffline:BehaviorSubject<boolean> = new BehaviorSubject(!navigator.onLine);
 
   constructor() {
     this.handleAppConnectivityChanges();
@@ -25,16 +25,6 @@ export class ConnectionService {
     return this._isOffline.asObservable();
   }
 
-  @HostListener('window:offline')
-  setNetworkOffline(): void {
-    this._isOffline.next(true);
-  }
-
-  @HostListener('window:online')
-  setNetworkOnline(): void {
-    this._isOffline.next(false);
-  }
-
   private handleAppConnectivityChanges(): void {
     this.onlineEvent = fromEvent(window, 'online');
     this.offlineEvent = fromEvent(window, 'offline');
@@ -42,11 +32,13 @@ export class ConnectionService {
     this.subscriptions.push(this.onlineEvent.subscribe(e => {
       // handle online mode
       console.log('Online...');
+      this._isOffline.next(false);
     }));
 
     this.subscriptions.push(this.offlineEvent.subscribe(e => {
       // handle offline mode
       console.log('Offline...');
+      this._isOffline.next(true);
     }));
   }
 }

@@ -40,4 +40,7 @@ export class MagicStrings {
     public static RefLookupYes: number = 1; // TODO need to cross walk actual value
     public static RefLookupNo: number = 2; // TODO need to cross walk actual value
     public static RefLookupMammal: number = 1; // TODO need to cross walk actual value
+
+    // Local Storage Keys
+    public static LocalStorageObsKey: string = 'paww:storedObservations';
 }
