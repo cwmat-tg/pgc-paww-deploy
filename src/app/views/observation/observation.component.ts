@@ -8,6 +8,7 @@ import { map} from 'rxjs/operators';
 import { InfoDialogComponent } from 'src/app/_shared/components/info-dialog/info-dialog.component';
 import { LoadingDialogComponent } from 'src/app/_shared/components/loading-dialog/loading-dialog.component';
 import { ConfirmationState } from 'src/app/_shared/models/config.model';
+import { ObservationDtoContainer } from 'src/app/_shared/models/observation.model';
 import { UserMessages } from 'src/app/_shared/models/user-messages.model';
 import { ApiService } from 'src/app/_shared/services/api.service';
 import { ConnectionService } from 'src/app/_shared/services/connection.service';
@@ -147,8 +148,8 @@ export class ObservationComponent implements AfterViewInit, OnDestroy {
           this.localStorageService.setObservation(obsContainer);
 
           // Then reset and reroute home and reset
-          this.obsStore.resetObservation();
-          this.router.navigate(['/']);
+          // this.obsStore.resetObservation();
+          // this.router.navigate(['/']); // TODO
         } else {
           // Stay on the page
         }
@@ -193,6 +194,10 @@ export class ObservationComponent implements AfterViewInit, OnDestroy {
   private routeToConfirmation(data: ConfirmationState) {
     this.obsStore.setObservationSubmitState({ ...data});
     this.router.navigate(['/app/observation/confirmation']);
+  }
+
+  test() {
+    this.localStorageService.setObservation({data: {name: 'test'}, media: []} as ObservationDtoContainer);
   }
 
 }
