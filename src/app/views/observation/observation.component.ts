@@ -1,13 +1,14 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatStepper, StepperOrientation } from '@angular/material/stepper';
 import { Router } from '@angular/router';
-import { forkJoin, Observable } from 'rxjs';
-import {first, map} from 'rxjs/operators';
+import { forkJoin, Observable, Subscription } from 'rxjs';
+import { map} from 'rxjs/operators';
 import { LoadingDialogComponent } from 'src/app/_shared/components/loading-dialog/loading-dialog.component';
 import { ConfirmationState } from 'src/app/_shared/models/config.model';
 import { ApiService } from 'src/app/_shared/services/api.service';
+import { ConnectionService } from 'src/app/_shared/services/connection.service';
 import { ObservationService } from 'src/app/_shared/services/observation.service';
 import { ContactComponent } from './contact/contact.component';
 import { LocationComponent } from './location/location.component';
@@ -17,7 +18,7 @@ import { LocationComponent } from './location/location.component';
   templateUrl: './observation.component.html',
   styleUrls: ['./observation.component.scss']
 })
-export class ObservationComponent implements AfterViewInit {
+export class ObservationComponent implements AfterViewInit, OnDestroy {
   // Stepper config
   isLinear = true;
   stepperOrientation: Observable<StepperOrientation>;
@@ -34,21 +35,37 @@ export class ObservationComponent implements AfterViewInit {
   observationIsValid = false;
   isValid = false;
 
+  // Connection check
+  isOffline!: boolean;
+
+  // Subs
+  isOffline$!: Subscription;
+
   constructor(
     breakpointObserver: BreakpointObserver,
     private router: Router,
     public obsStore: ObservationService,
     private dialog: MatDialog,
     private api: ApiService,
+    private connectionService: ConnectionService,
   ) {
     this.stepperOrientation = breakpointObserver.observe('(min-width: 800px)')
       .pipe(map(({matches}) => matches ? 'horizontal' : 'vertical'));
+
+    this.isOffline = this.connectionService.isOffline;
+    this.connectionService.isOffline$().subscribe(res => {
+      this.isOffline = res;
+    });
   }
 
   ngAfterViewInit() {
     this.stepper.selectionChange.subscribe(res => {
       this.checkValid(res.selectedIndex);
     });
+  }
+
+  ngOnDestroy() {
+    this.isOffline$.unsubscribe();
   }
 
   goBack(stepper: MatStepper) {
