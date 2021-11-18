@@ -196,8 +196,10 @@ export class ObservationComponent implements AfterViewInit, OnDestroy {
     this.router.navigate(['/app/observation/confirmation']);
   }
 
-  test() {
-    this.localStorageService.setObservation({data: {name: 'test'}, media: []} as ObservationDtoContainer);
+  async test() {
+    // this.localStorageService.setObservation({data: {name: 'test'}, media: []} as ObservationDtoContainer);
+    const data = await this.localStorageService.getObservations();
+    debugger;
   }
 
 }

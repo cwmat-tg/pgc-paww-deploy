@@ -4,90 +4,58 @@ import { ObservationDtoContainer } from '../models/observation.model';
 import * as uuid from 'uuid';
 import Dexie from '@dpogue/dexie';
 
+interface IData {
+  uid?: string,
+  data: string
+}
+
+class PawwDB extends Dexie {
+  // Declare implicit table properties
+  paww: Dexie.Table<IData, number>; // number = type of the primkey
+  // ...other tables goes here...
+
+  constructor () {
+    super(MagicStrings.LocalStorageObsKey);
+    this.version(1).stores({
+        paww: 'uid, data',
+    });
+    // The following line is needed if your typescript
+    // is compiled using babel instead of tsc:
+    this.paww = this.table('paww');
+  }
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageService {
-  db!: Dexie;
-  rows: ObservationDtoContainer[] = [];
-  
+  db!: PawwDB;
 
   constructor() {
-    this.db = new Dexie(MagicStrings.LocalStorageObsKey);
-    this.db.version(1).stores({
-      paww: 'uid, data'
-    });
-    this.loadRows();
+    this.db = new PawwDB();
     this.db.open();
   }
 
-  // getObservation(): ObservationDtoContainer[] {
-  //   const foundData = localStorage.getItem(MagicStrings.LocalStorageObsKey);
-  //   if (!foundData) return [];
-  //   const parsedData = JSON.parse(foundData) as ObservationDtoContainer[] || [];
-  //   return [ ...parsedData ];
-  // }
-
-  // setObservation(data: ObservationDtoContainer) {
-  //   const uid = uuid.v4();
-  //   const foundData = this.getObservation();
-  //   foundData.push({ ...data, uid });
-  //   localStorage.setItem(MagicStrings.LocalStorageObsKey, JSON.stringify([ ...foundData ]));
-  // }
-
-  // removeObservation(uid: string) {
-  //   const foundData = this.getObservation();
-  //   const filteredData = foundData.filter(e => e.uid !== uid);
-  //   localStorage.setItem(MagicStrings.LocalStorageObsKey, JSON.stringify([ ...filteredData ]));
-  // }
-
-  // async getObservation(): Promise<ObservationDtoContainer[]> {
-  //   const found = await this.dbService.getAll(MagicStrings.LocalStorageObsKey).toPromise();
-  //   debugger;
-  //   return [];
-  // }
-
-  // setObservation(data: ObservationDtoContainer) {
-  //   const uid = uuid.v4();
-  //   this.dbService
-  //     .add(MagicStrings.LocalStorageObsKey, JSON.stringify({
-  //       ... data,
-  //       uid
-  //     })
-  //   );
-  // }
-
-  // removeObservation(uid: string) {
-  //   // const foundData = this.getObservation();
-  //   // const filteredData = foundData.filter(e => e.uid !== uid);
-  //   // localStorage.setItem(MagicStrings.LocalStorageObsKey, JSON.stringify([ ...filteredData ]));
-  // }
-
-  async getObservation(): Promise<ObservationDtoContainer[]> {
-    return [];
+  async getObservations(): Promise<ObservationDtoContainer[]> {
+    const data = await this.db.paww.toArray() || [];
+    return data.map((e, idx) => {
+      const parsedData = JSON.parse(e.data)
+      return { ...parsedData , dbId: idx };
+    });
   }
 
   async setObservation(data: ObservationDtoContainer) {
     const uid = uuid.v4();
     const stringifiedData = JSON.stringify({ uid, ...data });
-    // @ts-ignore
-    const added = await this.db.paww.add({uid: uid, data: stringifiedData });
-    debugger;
+    await this.db.paww.add({uid: uid, data: stringifiedData });
   }
 
-  removeObservation(uid: string) {
-    // const foundData = this.getObservation();
-    // const filteredData = foundData.filter(e => e.uid !== uid);
-    // localStorage.setItem(MagicStrings.LocalStorageObsKey, JSON.stringify([ ...filteredData ]));
-  }
-
-  loadRows(): void {
-    // @ts-ignore
-    this.db.paww.toArray().then(p => this.rows = p);
+  async removeObservation(id: number) {
+    await this.db.paww.delete(id);
   }
 
   async hasObservations(): Promise<boolean> {
-    const foundData = await this.getObservation();
+    const foundData = await this.getObservations();
     if (foundData?.length > 0)
       return true;
     else

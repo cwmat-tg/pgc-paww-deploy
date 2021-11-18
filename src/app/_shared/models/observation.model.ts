@@ -64,4 +64,5 @@ export interface ObservationDtoContainer {
   data: ObservationDto;
   media: ObservationMediaDto[];
   uid?: string;
+  dbId?: number;
 }
