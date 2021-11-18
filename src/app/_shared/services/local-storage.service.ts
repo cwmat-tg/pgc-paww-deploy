@@ -50,8 +50,10 @@ export class LocalStorageService {
     await this.db.paww.add({uid: uid, data: stringifiedData });
   }
 
-  async removeObservation(id: number) {
-    await this.db.paww.delete(id);
+  async removeObservation(id: number | undefined) {
+    if (id) {
+      const delResp = await this.db.paww.delete(id);
+    }
   }
 
   async hasObservations(): Promise<boolean> {

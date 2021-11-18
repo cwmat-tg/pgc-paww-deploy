@@ -11,20 +11,7 @@ import { InfoDialogComponent } from '../components/info-dialog/info-dialog.compo
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { LoadingDialogComponent } from '../components/loading-dialog/loading-dialog.component';
-// import { DBConfig, NgxIndexedDBModule } from 'ngx-indexed-db';
-import { MagicStrings } from '../models/magic-strings.model';
 
-// const dbConfig: DBConfig  = {
-//   name: 'pawwDb',
-//   version: 1,
-//   objectStoresMeta: [{
-//     store: MagicStrings.LocalStorageObsKey,
-//     storeConfig: { keyPath: 'id', autoIncrement: true },
-//     storeSchema: [
-//       { name: 'data', keypath: 'data', options: { unique: false } }
-//     ]
-//   }]
-// };
 
 @NgModule({
   imports: [

@@ -19,7 +19,6 @@ export class FileUploadComponent {
   @Output() newData: EventEmitter<ObservationMediaDto[]> = new EventEmitter();
 
 	onSelect(event: NgxDropzoneChangeEvent) {
-    debugger;
 		console.log(event);
     let loadSize = event.addedFiles.reduce((a: any, b: any) => {
       return a + b['size'];

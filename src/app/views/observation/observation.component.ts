@@ -132,7 +132,6 @@ export class ObservationComponent implements AfterViewInit, OnDestroy {
 
     // Check if offline
     if (this.isOffline) {
-      debugger;
       saveRef.close();
 
       const confirmDialogRef = this.dialog.open(InfoDialogComponent, {
@@ -143,13 +142,12 @@ export class ObservationComponent implements AfterViewInit, OnDestroy {
 
       confirmDialogRef.afterClosed().subscribe(data => {
         if (data) {
-          debugger;
           // Save offline
           this.localStorageService.setObservation(obsContainer);
 
           // Then reset and reroute home and reset
-          // this.obsStore.resetObservation();
-          // this.router.navigate(['/']); // TODO
+          this.obsStore.resetObservation();
+          this.router.navigate(['/']);
         } else {
           // Stay on the page
         }
@@ -194,12 +192,6 @@ export class ObservationComponent implements AfterViewInit, OnDestroy {
   private routeToConfirmation(data: ConfirmationState) {
     this.obsStore.setObservationSubmitState({ ...data});
     this.router.navigate(['/app/observation/confirmation']);
-  }
-
-  async test() {
-    // this.localStorageService.setObservation({data: {name: 'test'}, media: []} as ObservationDtoContainer);
-    const data = await this.localStorageService.getObservations();
-    debugger;
   }
 
 }

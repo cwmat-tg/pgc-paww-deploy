@@ -84,6 +84,12 @@ $disclaimerSpacing: 2rem;
     z-index: 99;
     bottom: 0;
 }
+
+#appUploadButtonContainer {
+    position: absolute;
+    left: 2rem;
+    bottom: 5rem;
+}
   
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width: $screen-width-mobile) {

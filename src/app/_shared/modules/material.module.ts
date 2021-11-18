@@ -23,8 +23,9 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDividerModule} from '@angular/material/divider';
-import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import {MatMomentDateModule} from '@angular/material-moment-adapter';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   imports: [
@@ -53,7 +54,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatTooltipModule,
     MatDividerModule,
     MatMomentDateModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatBadgeModule
   ],
   exports: [
     MatDatepickerModule,
@@ -81,7 +83,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatTooltipModule,
     MatDividerModule,
     MatMomentDateModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatBadgeModule
   ]
 })
 export class MaterialModule {}

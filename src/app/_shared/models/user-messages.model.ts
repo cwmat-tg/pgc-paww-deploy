@@ -16,6 +16,9 @@ export class UserMessages {
     // File Upload
     public static UploadTooLarge: string = 'Your files are too large.  Please make sure they do not exceed 25MB.';
     public static UploadWrongType: string = 'Some or all of your files did not upload due to an incorrect file type.';
+
+    // Home
+    public static UploadTooltip: string = 'Looks like you have some Observations that were saved on your device while you were offline.  Now that you are online again, click to upload them.';
 }
 
 export interface ConfirmationSettings {

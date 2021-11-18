@@ -47,6 +47,38 @@
     { "ClassificationId": 1, "Name": "Mammal", "SortKey": null },
     { "ClassificationId": 2, "Name": "Reptile", "SortKey": null },
     { "ClassificationId": 3, "Name": "Bird", "SortKey": null }
+  ],
+
+  "PostObs": [
+    {
+      "geometry": {"x": 1, "y": 1},
+      "inState": true,
+      "name": "test",
+      "affiliation": "test",
+      "email": "test",
+      "phone": 1234567897,
+      "date": "11-18-2021",
+      "numberOfAnimals": 2,
+      "species": 4,
+      "alive": 2,
+      "sickOrInjured": 1,
+      "inYourPossession": 1,
+      "poaching": 1,
+      "age": 1,
+      "captiveWild": 1,
+      "rabies": 1,
+      "zoonotic": 1,
+      "details": "test"
+    }
+  ],
+
+  "PostObsMedia": [
+    {
+      "name": "test",
+      "type": "test",
+      "data": "test",
+      "confirmation": "test"
+    }
   ]
     
 }
