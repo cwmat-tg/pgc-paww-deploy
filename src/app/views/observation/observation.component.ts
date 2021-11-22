@@ -160,13 +160,13 @@ export class ObservationComponent implements AfterViewInit, OnDestroy {
     // POST to API
     this.api.createObservation(payload).subscribe(res => {
       const confNum = environment.useTestApi ? res.name : res.confirmationnumber;
-      const confirmationObj = { confirmation: confNum, dateOfObs: payload.date, success: true };
+      const confirmationObj = { confirmation: confNum, dateOfObs: payload.ObserverDate, success: true };
 
       // Will hold any media POST observables for the forkjoin below
       const mediaRequests = [] as Observable<any>[];
       if (mediaPaylod.length > 0) {
         mediaPaylod.forEach(e => {
-          mediaRequests.push(this.api.createObservationMedia({...e, confirmation: res?.confirmation}));
+          mediaRequests.push(this.api.createObservationMedia({...e, ConfirmationNumber: confNum}));
         });
         forkJoin(mediaRequests).subscribe(results => {
           // All uploads succeeded

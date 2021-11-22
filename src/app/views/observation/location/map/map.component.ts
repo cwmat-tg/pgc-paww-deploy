@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { GeolocateControl, LngLatBounds, LngLatLike, Map } from 'maplibre-gl';
 import { PointGeom } from 'src/app/_shared/models/observation.model';
 import { environment } from 'src/environments/environment';
@@ -6,20 +6,27 @@ import { MapModel } from './map.model';
 import booleanIntersects from '@turf/boolean-intersects';
 import * as turf from '@turf/turf';
 import * as paBoundary from 'src/assets/gis/pa.json';
+import * as paCounties from 'src/assets/gis/pa_county.json';
 import { ControlComponent, Position } from 'ngx-maplibre-gl';
+import { Subscription } from 'rxjs';
+import { ConnectionService } from 'src/app/_shared/services/connection.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserMessages } from 'src/app/_shared/models/user-messages.model';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnDestroy {
   // Map config
   @Input() zoom: number = 6;
   @Input() center: LngLatLike = [-77.1945, 41.2033];
   @Input() styleEnum: string = 'ArcGIS:Streets';
   apiKey = environment.esriApiKey;
-  basemapStyle = `https://basemaps-api.arcgis.com/arcgis/rest/services/styles/${this.styleEnum}?type=style&token=${this.apiKey}`;
+  streetsStyle = `https://basemaps-api.arcgis.com/arcgis/rest/services/styles/${this.styleEnum}?type=style&token=${this.apiKey}`;
+  offlineStyle = {version: 8, sources: {}, layers: []};
+  basemapStyle: any = this.streetsStyle;
   map!: Map;
   cursorStyle!: string;
   bounds!: LngLatBounds;
@@ -37,12 +44,36 @@ export class MapComponent implements OnInit {
 
   // View Children
   @ViewChild('geolocater') geolocater!: ControlComponent<GeolocateControl>;
+  @ViewChild('mainMap') mainMap!: Map;
+
+  // Offline Layers
+  offlineLayersOn = false;
+  paCounty: any = paCounties;
+  paCountyPaint: any = MapModel.FillCountyPaintStyle;
+
+  // Connection check
+  isOffline!: boolean;
+
+  // Subs
+  isOffline$!: Subscription;
 
   constructor(
     private cd: ChangeDetectorRef,
-  ) { }
+    private connectionService: ConnectionService,
+    private _snackBar: MatSnackBar,
+  ) {
+    this.isOffline = this.connectionService.isOffline;
+    this.isOffline$ = this.connectionService.isOffline$().subscribe(res => {
+      this.isOffline = res;
+      this.checkOfflineFunctionality();
+    });
+  }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy() {
+    this.isOffline$.unsubscribe();
   }
 
   activate() {
@@ -137,6 +168,31 @@ export class MapComponent implements OnInit {
       this.activate();
     }
 
+  }
+
+  openSnackBar(message: string, action: string = 'Close') {
+    this._snackBar.open(message, action);
+  }
+
+  private enableOfflineMapping() {
+    this.basemapStyle = this.offlineStyle;
+    this.offlineLayersOn = true;
+  }
+
+  private disableOfflineMapping() {
+    this.basemapStyle = this.streetsStyle;
+    this.offlineLayersOn = false;
+  }
+
+  private checkOfflineFunctionality() {
+    if (this.isOffline) {
+      console.log('Enabling offline mapping...');
+      this.openSnackBar(UserMessages.OfflineMap);
+      this.enableOfflineMapping();
+    } else {
+      console.log('Disabling offline mapping...');
+      this.disableOfflineMapping();
+    }
   }
 
 }

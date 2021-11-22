@@ -8,6 +8,7 @@ import { UserMessages } from 'src/app/_shared/models/user-messages.model';
 import { ApiService } from 'src/app/_shared/services/api.service';
 import { ConnectionService } from 'src/app/_shared/services/connection.service';
 import { LocalStorageService } from 'src/app/_shared/services/local-storage.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-upload-offline',
@@ -79,9 +80,10 @@ export class UploadOfflineComponent implements OnDestroy {
     this.api.createObservation(payload).subscribe(res => {
       // Will hold any media POST observables for the forkjoin below
       const mediaRequests = [] as Observable<any>[];
+      const confNum = environment.useTestApi ? res.name : res.confirmationnumber;
       if (mediaPaylod.length > 0) {
         mediaPaylod.forEach(e => {
-          mediaRequests.push(this.api.createObservationMedia({...e, confirmation: res?.confirmation}));
+          mediaRequests.push(this.api.createObservationMedia({...e, ConfirmationNumber: confNum}));
         });
         forkJoin(mediaRequests).subscribe(results => {
           // All uploads succeeded

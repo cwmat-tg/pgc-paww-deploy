@@ -2,6 +2,7 @@
 
     <!-- Main Map -->
     <mgl-map
+        #mainMap
         [style]="this.basemapStyle"
         [zoom]="[this.zoom]"
         [center]="this.center"
@@ -39,14 +40,42 @@
             ></mgl-feature>
         </mgl-geojson-source>
 
-        <!-- Map Layers -->
-        <mgl-layer
-            #targetLayer
-            id="point"
-            type="circle"
-            source="point"
-            [paint]="layerPaint"
-        ></mgl-layer>
+        <mgl-geojson-source 
+            id="paCounty"
+            [data]="this.paCounty"
+        >
+        </mgl-geojson-source>
+
+        <!-- Offline Map Layers -->
+        <ng-container *ngIf="this.offlineLayersOn">
+            <mgl-layer
+                #targetLayerPaCounty
+                id="paCounty"
+                type="fill"
+                source="paCounty"
+                [paint]="paCountyPaint"
+            ></mgl-layer>
+
+            <mgl-layer
+                #targetLayer
+                id="point"
+                type="circle"
+                source="point"
+                [paint]="layerPaint"
+            ></mgl-layer>
+        </ng-container>
+
+        <!-- Online Map Layers -->
+        <ng-container *ngIf="!this.offlineLayersOn">
+
+            <mgl-layer
+                #targetLayer
+                id="point"
+                type="circle"
+                source="point"
+                [paint]="layerPaint"
+            ></mgl-layer>
+        </ng-container>
     
     <!-- End Main Map -->
     </mgl-map>
@@ -57,7 +86,7 @@
     </div>
 
     <!-- Search bar -->
-    <div class="appSearchContainer">
+    <div class="appSearchContainer" *ngIf="!this.isOffline">
         <app-geo-search 
             (zoomToCandidates)="zoomToCandidates($event)"
             [mapCenter]="this.center">
@@ -70,4 +99,3 @@
 <div *ngIf="this.coordinates?.length && this.coordinates.length > 0">
     {{ this.coordinates[0] | number }}, {{ this.coordinates[1] | number }}
 </div>
-
