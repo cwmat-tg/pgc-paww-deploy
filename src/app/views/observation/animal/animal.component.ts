@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { debounceTime, first } from 'rxjs/operators';
 import { Age, AnimalCount, Captive, Classification, Species, YesNo } from 'src/app/_shared/models/config.model';
 import { MagicStrings } from 'src/app/_shared/models/magic-strings.model';
-import { Information } from 'src/app/_shared/models/observation.model';
+import { Information, ObservationMediaDto } from 'src/app/_shared/models/observation.model';
 import { UserMessages } from 'src/app/_shared/models/user-messages.model';
 import { ApiService } from 'src/app/_shared/services/api.service';
 import { ObservationService } from 'src/app/_shared/services/observation.service';
@@ -292,7 +292,7 @@ export class AnimalComponent implements OnInit, OnDestroy {
   }
 
   public speciesCodeIsMammal(speciesCode: number): boolean {
-    const found = this.speciesList.find(e => e.SpeciestId === speciesCode);
+    const found = this.speciesList.find(e => e.SpeciesId === speciesCode);
 
     if (found && found.ClassificationId === this.refMammal)
       return true;
@@ -302,6 +302,10 @@ export class AnimalComponent implements OnInit, OnDestroy {
 
   openSnackBar(message: string, action: string = 'Close') {
     this._snackBar.open(message, action);
+  }
+
+  mediaDataChanged(data: ObservationMediaDto[]) {
+    this.obsStore.updateObservationMedia(data)
   }
 
 }

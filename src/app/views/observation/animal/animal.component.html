@@ -108,7 +108,7 @@
                             <mat-form-field>
                                 <mat-label for="observation-species">Species</mat-label>
                                 <mat-select id="observation-species" formControlName="species">
-                                    <mat-option *ngFor="let spec of this.speciesList" [value]="spec?.SpeciestId">
+                                    <mat-option *ngFor="let spec of this.speciesList" [value]="spec?.SpeciesId">
                                         {{spec?.Name}}
                                     </mat-option>
                                 </mat-select>
@@ -292,7 +292,7 @@
                                 <mat-form-field>
                                     <mat-label for="observation-captiveWild">Captive or Wild</mat-label>
                                     <mat-select id="observation-captiveWild" formControlName="captiveWild">
-                                        <mat-option *ngFor="let item of this.captiveList" [value]="item?.CaptiveId">
+                                        <mat-option *ngFor="let item of this.captiveList" [value]="item?.OrigintId">
                                             {{item?.Name}}
                                         </mat-option>
                                     </mat-select>
@@ -330,7 +330,7 @@
                                             {{item?.Name}}
                                         </mat-option>
                                     </mat-select>
-                                    <mat-hint></mat-hint>
+                                    <mat-hint>Were any people or domestic animals potentially exposed to any of the animals included in this report?</mat-hint>
                                     <mat-error *ngIf="this.zoonotic?.invalid && this.zoonotic?.errors?.required">This field is required.</mat-error>
                                 </mat-form-field>
                             </div>
@@ -353,7 +353,7 @@
                                             {{item?.Name}}
                                         </mat-option>
                                     </mat-select>
-                                    <mat-hint>Are rabies suspected? <app-info-popup [title]="'Rabies'" [text]="this.messageRabies"></app-info-popup></mat-hint>
+                                    <mat-hint>Is rabies suspected? <app-info-popup [title]="'Rabies'" [text]="this.messageRabies"></app-info-popup></mat-hint>
                                     <mat-error *ngIf="this.rabies?.invalid && this.rabies?.errors?.required">This field is required.</mat-error>
                                 </mat-form-field>
                             </div>
@@ -434,7 +434,7 @@
                                     [content]="this.photosContent"
                                 ></app-intro-helper-text>
                                 
-                                <app-file-upload (error)="this.openSnackBar($event)"></app-file-upload>
+                                <app-file-upload (error)="this.openSnackBar($event)" (newData)="this.mediaDataChanged($event)"></app-file-upload>
 
                             </div>
 

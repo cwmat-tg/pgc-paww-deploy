@@ -18,21 +18,29 @@ export class MagicStrings {
     // Out of state page
     public static OutOfStateHeader: string = 'Out-of-State Confirmation';
 
+    // Confirmation page
+    public static ConfirmationHeader: string = 'Confirmation';
+
     // API endpoints
     public static AnimalCount: string = 'GetAnimalCountLookUp';
     public static Affiliation: string = 'GetWildlifeHealthAffilationLookUp';
     public static Species: string = 'GetSpeciesLookUp';
     public static YesNo: string = 'GetYesNoLookUp';
     public static Age: string = 'GetWildlifeAgeLookUp';
-    public static Captive: string = 'GetCaptiveLookup';
+    public static Captive: string = 'GetOriginLookUp';
     public static Classification: string = 'GetClassificationLookup';
+    public static PostObs: string = 'SubmitPublicObservation';
+    public static PostObsMedia: string = 'SubmitPublicObservationImage';
 
     // UI visibility
     public static Hidden: string = 'hidden';
     public static Visible: string = 'visible';
 
     // Lookup Values
-    public static RefLookupYes: number = 1; // TODO need to cross walk actual value
-    public static RefLookupNo: number = 2; // TODO need to cross walk actual value
-    public static RefLookupMammal: number = 1; // TODO need to cross walk actual value
+    public static RefLookupYes: number = 33535;
+    public static RefLookupNo: number = 33536;
+    public static RefLookupMammal: number = 2;
+
+    // Local Storage Keys
+    public static LocalStorageObsKey: string = 'paww:storedObservations';
 }

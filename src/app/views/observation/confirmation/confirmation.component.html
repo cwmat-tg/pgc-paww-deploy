@@ -1,0 +1,54 @@
+<div class="appConfirmationContainer">
+
+    <app-intro-helper-text
+        [header]="this.header"
+    ></app-intro-helper-text>
+
+    <!-- If the user gets here and the obs is fresh -->
+    <div *ngIf="this.confirmationState?.success && this.isWithinDateRange()" class="appConfirmationContent">
+            <div>
+            <p>Thank you for submitting an observation to Pennsylvania Wildlife Watch.</p>
+            <p>Based on your observation details, you may be contacted by the Pennsylvania Game Commission if you provided your contact information.</p>
+            <p>Follow-up contact is not guaranteed, but recent observations are prioritized.</p>
+            <p>Your confirmation number is: <span class="appConfirmationNumber">{{ this.confirmationState?.confirmation || '' }}</span></p>
+            <button 
+                mat-flat-button color="accent" 
+                class="appBackToHomeButton" 
+                type="button" 
+                (click)="this.home()">
+                    Return Home
+            </button>
+        </div>
+    </div>
+
+    <!-- If the user gets here and the obs is too old -->
+    <div *ngIf="this.confirmationState?.success && !this.isWithinDateRange()" class="appConfirmationContent">
+        <div>
+            <p>Thank you for submitting an observation to Pennsylvania Wildlife Watch.</p>
+            <p>Based on the date of your observation, Pennsylvania Game Commission may not contact you.</p>
+            <p>Your confirmation number is: <span class="appConfirmationNumber">{{ this.confirmationState?.confirmation || '' }}</span></p>
+            <button 
+                mat-flat-button color="accent" 
+                class="appBackToHomeButton" 
+                type="button" 
+                (click)="this.home()">
+                    Return Home
+            </button>
+        </div>
+    </div>
+
+    <!-- Got here in error -->
+    <div *ngIf="!this.confirmationState?.success" class="appConfirmationContent">
+        <div>
+            <p>You may have arrived on this page in error.  Please return home and start over.</p>
+            <button 
+                mat-flat-button color="accent" 
+                class="appBackToHomeButton" 
+                type="button" 
+                (click)="this.homeNoReset()">
+                    Return Home
+            </button>
+        </div>
+    </div>
+
+</div>

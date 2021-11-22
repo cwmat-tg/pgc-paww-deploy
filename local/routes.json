@@ -4,5 +4,7 @@
     "/PAWWPublicFacing.svc/GetSpeciesLookUp": "/GetSpeciesLookUp",
     "/PAWWPublicFacing.svc/GetYesNoLookUp": "/GetYesNoLookUp",
     "/PAWWPublicFacing.svc/GetWildlifeAgeLookUp": "/GetWildlifeAgeLookUp",
-    "/PAWWPublicFacing.svc/GetCaptiveLookup": "/GetCaptiveLookup"
+    "/PAWWPublicFacing.svc/GetCaptiveLookup": "/GetCaptiveLookup",
+    "/PAWWPublicFacing.svc/PostObs": "/PostObs",
+    "/PAWWPublicFacing.svc/PostObsMedia": "/PostObsMedia"
 }

@@ -6,7 +6,7 @@
         <mat-step [completed]="this.locationIsValid">
 
             <ng-template matStepLabel>Location</ng-template>
-            
+
             <app-location (isValid)="this.locationIsValid = $event; this.checkValid()" #location></app-location>
 
         </mat-step>
@@ -15,7 +15,7 @@
         <mat-step [completed]="this.contactIsValid">
 
             <ng-template matStepLabel>Contact</ng-template>
-            
+
             <app-contact (isValid)="this.contactIsValid = $event; this.checkValid()" #contact></app-contact>
 
         </mat-step>
@@ -41,33 +41,43 @@
 
       <ng-container *ngIf="obsData.inState">
 
-        <button 
-          *ngIf="stepper.selectedIndex > 0" 
-          mat-flat-button color="primary" 
-          class="appStepperButton" 
-          type="button" 
+        <button
+          *ngIf="stepper.selectedIndex > 0"
+          mat-flat-button color="primary"
+          class="appStepperButton"
+          type="button"
           (click)="stepper.previous()">
             Back
         </button>
 
-        <button 
-          *ngIf="stepper.selectedIndex < this.totalSteps - 1" 
-          mat-flat-button color="primary" 
-          class="appStepperButton" 
-          type="button" 
+        <button
+          *ngIf="stepper.selectedIndex < this.totalSteps - 1"
+          mat-flat-button color="primary"
+          class="appStepperButton"
+          type="button"
           [disabled]="!this.isValid"
           (click)="stepper.next()">
             Next
+        </button>
+
+        <button
+          *ngIf="stepper.selectedIndex === this.totalSteps - 1"
+          mat-flat-button color="primary"
+          class="appStepperButton"
+          type="button"
+          [disabled]="!this.locationIsValid || !this.contactIsValid || !this.observationIsValid"
+          (click)="this.submit()">
+            Submit
         </button>
 
       </ng-container>
 
       <ng-container *ngIf="!obsData.inState">
 
-        <button 
-          mat-flat-button color="primary" 
-          class="appStepperButton" 
-          type="button" 
+        <button
+          mat-flat-button color="primary"
+          class="appStepperButton"
+          type="button"
           (click)="this.routeOutOfState()">
             Next
         </button>

@@ -12,6 +12,7 @@ import { AnimalComponent } from './animal/animal.component';
 import { GeoSearchComponent } from './location/geo-search/geo-search.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     ContactComponent,
     AnimalComponent,
     GeoSearchComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    ConfirmationComponent
   ],
   imports: [
     CommonModule,

@@ -36,7 +36,7 @@
                     <mat-form-field>
                         <mat-label for="contact-affiliation">Affiliation</mat-label>
                         <mat-select id="contact-affiliation" formControlName="affiliation">
-                            <mat-option *ngFor="let aff of this.affiliations" [value]="aff?.AffiliationId">
+                            <mat-option *ngFor="let aff of this.affiliations" [value]="aff?.RefTableDataId">
                                 {{aff?.Name}}
                             </mat-option>
                         </mat-select>
