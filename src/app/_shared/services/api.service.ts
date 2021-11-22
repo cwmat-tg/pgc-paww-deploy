@@ -65,7 +65,7 @@ export class ApiService {
 
   private get<T>(endpoint: string): Observable<T[]> {
     return this.http.get<T[]>(
-      `${this.apiEndpoint}/${endpoint}`
+      environment.useTestApi ? `${this.apiEndpoint}/${endpoint}.json` : `${this.apiEndpoint}/${endpoint}`
     )
     .pipe(
       retry(1),
@@ -75,7 +75,7 @@ export class ApiService {
 
   private post<T>(endpoint: string, data: any): Observable<T[]> {
     return this.http.post<T[]>(
-      `${this.apiEndpoint}/${endpoint}`,
+      environment.useTestApi ? `${this.apiEndpoint}/${endpoint}.json` : `${this.apiEndpoint}/${endpoint}`,
       data
     )
     .pipe(

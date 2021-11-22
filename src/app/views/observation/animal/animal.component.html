@@ -108,7 +108,7 @@
                             <mat-form-field>
                                 <mat-label for="observation-species">Species</mat-label>
                                 <mat-select id="observation-species" formControlName="species">
-                                    <mat-option *ngFor="let spec of this.speciesList" [value]="spec?.SpeciestId">
+                                    <mat-option *ngFor="let spec of this.speciesList" [value]="spec?.SpeciesId">
                                         {{spec?.Name}}
                                     </mat-option>
                                 </mat-select>
@@ -292,7 +292,7 @@
                                 <mat-form-field>
                                     <mat-label for="observation-captiveWild">Captive or Wild</mat-label>
                                     <mat-select id="observation-captiveWild" formControlName="captiveWild">
-                                        <mat-option *ngFor="let item of this.captiveList" [value]="item?.CaptiveId">
+                                        <mat-option *ngFor="let item of this.captiveList" [value]="item?.OrigintId">
                                             {{item?.Name}}
                                         </mat-option>
                                     </mat-select>

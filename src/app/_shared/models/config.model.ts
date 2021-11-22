@@ -5,13 +5,13 @@ export interface AnimalCount {
 }
 
 export interface Affiliation {
-    AffiliationId?: number;
+    RefTableDataId?: number;
     Name?: string;
     SortKey?: number;
 }
 
 export interface Species {
-    SpeciestId?: number;
+    SpeciesId?: number;
     Name?: string;
     ClassificationId: number;
     SortKey?: number;
@@ -30,7 +30,7 @@ export interface Age {
 }
 
 export interface Captive {
-    CaptiveId?: number;
+    OrigintId?: number;
     Name?: string;
     SortKey?: number;
 }
