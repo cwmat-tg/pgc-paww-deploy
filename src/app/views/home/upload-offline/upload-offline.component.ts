@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { forkJoin, Observable, Subscription } from 'rxjs';
 import { InfoDialogComponent } from 'src/app/_shared/components/info-dialog/info-dialog.component';
@@ -22,6 +22,9 @@ export class UploadOfflineComponent implements OnDestroy {
   // Inputs
   @Input() offlineObs: ObservationDtoContainer[] = [];
   @Input() offlineObsCount: number = 0;
+
+  // Outputs
+  @Output() uploadProcessed: EventEmitter<void> = new EventEmitter();
 
   // Connection check
   isOffline!: boolean;
@@ -55,7 +58,7 @@ export class UploadOfflineComponent implements OnDestroy {
     confirmDialogRef.afterClosed().subscribe(data => {
       if (data) {
         this.offlineObs.forEach(e => {
-          this.processUpload(e);
+          this.processUpload({ ...e });
         });
       }
     });
@@ -85,7 +88,7 @@ export class UploadOfflineComponent implements OnDestroy {
           console.log(results);
           saveRef.close();
           this.localStorageService.removeObservation(obsContainer.dbId);
-          // this.routeToConfirmation(confirmationObj);
+          this.uploadProcessed.emit();
         }, error => {
           // One or all of the media items failed to upload
           console.error(error);
@@ -95,7 +98,7 @@ export class UploadOfflineComponent implements OnDestroy {
         // There was no media uploads but the initial obs post worked
         saveRef.close();
         this.localStorageService.removeObservation(obsContainer.dbId);
-        // this.routeToConfirmation(confirmationObj);
+        this.uploadProcessed.emit();
       }
     }, err => {
       // The initial request failed or there was no confirmation number

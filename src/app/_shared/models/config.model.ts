@@ -43,6 +43,8 @@ export interface Classification {
 
 export interface ObsResponse {
     confirmation?: string;
+    name?: string;
+    confirmationnumber?: string;
 }
 
 export interface ObsMediaResponse {

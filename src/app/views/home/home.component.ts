@@ -36,4 +36,8 @@ export class HomeComponent implements OnInit  {
     this.offlineObsCount = this.offlineObs.length;
   }
 
+  uploadProcessed() {
+    this.loadOfflineObservations();
+  }
+
 }

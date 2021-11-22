@@ -14,6 +14,7 @@ import { ApiService } from 'src/app/_shared/services/api.service';
 import { ConnectionService } from 'src/app/_shared/services/connection.service';
 import { LocalStorageService } from 'src/app/_shared/services/local-storage.service';
 import { ObservationService } from 'src/app/_shared/services/observation.service';
+import { environment } from 'src/environments/environment';
 import { ContactComponent } from './contact/contact.component';
 import { LocationComponent } from './location/location.component';
 
@@ -158,7 +159,8 @@ export class ObservationComponent implements AfterViewInit, OnDestroy {
 
     // POST to API
     this.api.createObservation(payload).subscribe(res => {
-      const confirmationObj = { confirmation: res.confirmation, dateOfObs: payload.date, success: true };
+      const confNum = environment.useTestApi ? res.name : res.confirmationnumber;
+      const confirmationObj = { confirmation: confNum, dateOfObs: payload.date, success: true };
 
       // Will hold any media POST observables for the forkjoin below
       const mediaRequests = [] as Observable<any>[];

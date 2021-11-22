@@ -6,7 +6,8 @@ import Dexie from '@dpogue/dexie';
 
 interface IData {
   uid?: string,
-  data: string
+  data: string,
+  dbId?: number
 }
 
 class PawwDB extends Dexie {
@@ -17,7 +18,7 @@ class PawwDB extends Dexie {
   constructor () {
     super(MagicStrings.LocalStorageObsKey);
     this.version(1).stores({
-        paww: 'uid, data',
+        paww: '++dbId, uid, data',
     });
     // The following line is needed if your typescript
     // is compiled using babel instead of tsc:
@@ -40,7 +41,7 @@ export class LocalStorageService {
     const data = await this.db.paww.toArray() || [];
     return data.map((e, idx) => {
       const parsedData = JSON.parse(e.data)
-      return { ...parsedData , dbId: idx };
+      return { ...parsedData, dbId: e.dbId };
     });
   }
 
