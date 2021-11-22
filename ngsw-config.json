@@ -26,5 +26,17 @@
         ]
       }
     }
+  ],
+  "dataGroups": [
+    {
+      "name": "paww-test-api",
+      "urls": ["https://paww-49735-default-rtdb.firebaseio.com"],
+      "cacheConfig": {
+        "strategy": "performance",
+        "maxSize": 1000,
+        "maxAge": "3d",
+        "timeout": "5s"
+        }
+      }
   ]
 }
