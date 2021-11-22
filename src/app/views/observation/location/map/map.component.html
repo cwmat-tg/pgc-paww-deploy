@@ -86,7 +86,7 @@
     </div>
 
     <!-- Search bar -->
-    <div class="appSearchContainer">
+    <div class="appSearchContainer" *ngIf="!this.isOffline">
         <app-geo-search 
             (zoomToCandidates)="zoomToCandidates($event)"
             [mapCenter]="this.center">
