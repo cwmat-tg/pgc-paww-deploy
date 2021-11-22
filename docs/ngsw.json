@@ -1,0 +1,114 @@
+{
+  "configVersion": 1,
+  "timestamp": 1637622613387,
+  "index": "/pgc-paww-deploy/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/pgc-paww-deploy/326.246c625e784a7300e94a.js",
+        "/pgc-paww-deploy/680.5ddfe4c1a2d946d81d97.js",
+        "/pgc-paww-deploy/683.71b60c54dbcbebbe3335.js",
+        "/pgc-paww-deploy/907.4dad87d42213b25f0927.js",
+        "/pgc-paww-deploy/favicon.ico",
+        "/pgc-paww-deploy/index.html",
+        "/pgc-paww-deploy/main.078065a411d1ad54650b.js",
+        "/pgc-paww-deploy/manifest.webmanifest",
+        "/pgc-paww-deploy/polyfills.95435e4fdf0e9219940f.js",
+        "/pgc-paww-deploy/runtime.fd6ad715dd909cc62de6.js",
+        "/pgc-paww-deploy/styles.b94232a4773bc6bde3b6.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/pgc-paww-deploy/assets/gis/pa.json",
+        "/pgc-paww-deploy/assets/gis/pa_county.json",
+        "/pgc-paww-deploy/assets/icons/icon-128x128.png",
+        "/pgc-paww-deploy/assets/icons/icon-144x144.png",
+        "/pgc-paww-deploy/assets/icons/icon-152x152.png",
+        "/pgc-paww-deploy/assets/icons/icon-192x192.png",
+        "/pgc-paww-deploy/assets/icons/icon-384x384.png",
+        "/pgc-paww-deploy/assets/icons/icon-512x512.png",
+        "/pgc-paww-deploy/assets/icons/icon-72x72.png",
+        "/pgc-paww-deploy/assets/icons/icon-96x96.png",
+        "/pgc-paww-deploy/assets/images/homepage.jpg",
+        "/pgc-paww-deploy/assets/images/pgc_logo.svg",
+        "/pgc-paww-deploy/homepage.854289dfb81ca194e267.jpg"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "paww-test-api",
+      "patterns": [
+        "https:\\/\\/paww-49735-default-rtdb\\.firebaseio\\.com"
+      ],
+      "strategy": "performance",
+      "maxSize": 1000,
+      "maxAge": 259200000,
+      "timeoutMs": 5000,
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "version": 1
+    }
+  ],
+  "hashTable": {
+    "/pgc-paww-deploy/326.246c625e784a7300e94a.js": "8dd7dff70c3242937c055ddc003f4553f44f1db6",
+    "/pgc-paww-deploy/680.5ddfe4c1a2d946d81d97.js": "10087e59702f6e9998d047436ec5a9e4704c2c44",
+    "/pgc-paww-deploy/683.71b60c54dbcbebbe3335.js": "0f0d6d0e7ef5e6aa477a0391f5e7a08de903396c",
+    "/pgc-paww-deploy/907.4dad87d42213b25f0927.js": "698ed3ed6d1b240751c25c68408814bb9b9e899c",
+    "/pgc-paww-deploy/assets/gis/pa.json": "3d3855fbb4fbbb34ded5b8d10ac245ef042c098c",
+    "/pgc-paww-deploy/assets/gis/pa_county.json": "7279281a1f5daff9da790046c0c9c87b3a1516dd",
+    "/pgc-paww-deploy/assets/icons/icon-128x128.png": "edf33490a5af377025993569cc66aba94b3fd056",
+    "/pgc-paww-deploy/assets/icons/icon-144x144.png": "ac14e1055108c67a12c1e0fdd4d518a79dfd0cba",
+    "/pgc-paww-deploy/assets/icons/icon-152x152.png": "b2507ab901d713746eec644fe880cef29192788f",
+    "/pgc-paww-deploy/assets/icons/icon-192x192.png": "8181ea877e305ee6cee2979dc87b574dd05ee02d",
+    "/pgc-paww-deploy/assets/icons/icon-384x384.png": "23efddbb85f550f39d4cca5007878998636c6109",
+    "/pgc-paww-deploy/assets/icons/icon-512x512.png": "ba2d805aec29a6a40ffcfae75f815b895794e8b7",
+    "/pgc-paww-deploy/assets/icons/icon-72x72.png": "ad71ef03d14d85516c9528adab68f89a6ec4366d",
+    "/pgc-paww-deploy/assets/icons/icon-96x96.png": "e4213cdea54305a6f48a639e90ce45659093c1c3",
+    "/pgc-paww-deploy/assets/images/homepage.jpg": "037441a2a05d7e85de3c753a2867b0326fde60ad",
+    "/pgc-paww-deploy/assets/images/pgc_logo.svg": "e4b4838d2a044dc4c9b5dd3454969b9685c89918",
+    "/pgc-paww-deploy/favicon.ico": "25a8faa0e002344f277c8f7d04c77b560af2b37d",
+    "/pgc-paww-deploy/homepage.854289dfb81ca194e267.jpg": "037441a2a05d7e85de3c753a2867b0326fde60ad",
+    "/pgc-paww-deploy/index.html": "997206bf5535789c10cc391948f27bf67c7dd6f9",
+    "/pgc-paww-deploy/main.078065a411d1ad54650b.js": "c4758047a68f7764feacf50d61e74f469bd877b8",
+    "/pgc-paww-deploy/manifest.webmanifest": "60252891790a6a4964ed34d18c853af4f7f257a4",
+    "/pgc-paww-deploy/polyfills.95435e4fdf0e9219940f.js": "36c2d3b2a206d7d09548ea685cb442687a52ff9e",
+    "/pgc-paww-deploy/runtime.fd6ad715dd909cc62de6.js": "9950181c1c934906ca7f97472bf185f6ae298f3d",
+    "/pgc-paww-deploy/styles.b94232a4773bc6bde3b6.css": "ed243e1db504a874ca0d143d5e787a338f4b164c"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
