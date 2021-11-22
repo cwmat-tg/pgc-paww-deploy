@@ -55,9 +55,8 @@ export class FileUploadComponent {
     for (const fileData of this.files) {
       const fileContents = await this.readFile(fileData);
       tempData.push({
-        name: fileData.name,
-        type: fileData.type,
-        data: fileContents
+        FileName: fileData.name,
+        File: fileContents
       } as ObservationMediaDto);
     }
 

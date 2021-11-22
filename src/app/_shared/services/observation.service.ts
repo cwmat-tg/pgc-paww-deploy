@@ -60,24 +60,25 @@ export class ObservationService {
 
   convertObsVmToDto(data: Observation): ObservationDto {
     return {
-      geometry: { ...data.geometry },
-      inState: data.inState,
-      name: data.contact?.name,
-      affiliation: data.contact?.affiliation,
-      email: data.contact?.email,
-      phone: data.contact?.phone,
-      date: data.information?.date,
-      numberOfAnimals: data.information?.numberOfAnimals,
-      species: data.information?.species,
-      alive: data.information?.alive,
-      sickOrInjured: data.information?.sickOrInjured,
-      inYourPossession: data.information?.inYourPossession,
-      poaching: data.information?.poaching,
-      age: data.information?.age,
-      captiveWild: data.information?.captiveWild,
-      rabies: data.information?.rabies,
-      zoonotic: data.information?.zoonotic,
-      details: data.information?.details
+      LocationX: data.geometry?.long,
+      LocationY: data.geometry?.lat,
+      ObserverName: data.contact?.name,
+      ObserverAffiliation: data.contact?.affiliation,
+      ObserverEmail: data.contact?.email,
+      ObserverPhone: data.contact?.phone,
+      ObserverDate: data.information?.date,
+      ObservationDate: data.information?.date,
+      AnimalCountId: data.information?.numberOfAnimals,
+      SpeciesId: data.information?.species,
+      WildlifeStatusId: data.information?.alive,
+      SickInjured: data.information?.sickOrInjured,
+      Possession: data.information?.inYourPossession,
+      Poachingsuspect: data.information?.poaching,
+      WildlifeAgeId: data.information?.age,
+      OriginId: data.information?.captiveWild,
+      Rabies: data.information?.rabies,
+      ZoonoticExposure: data.information?.zoonotic,
+      ObservationDescrition: data.information?.details
     } as ObservationDto;
   }
 

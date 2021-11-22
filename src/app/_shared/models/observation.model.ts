@@ -33,31 +33,31 @@ export interface Observation {
 }
 
 export interface ObservationDto {
-  geometry?: PointGeom;
-  inState?: boolean;
-  name?: string;
-  affiliation?: string;
-  email?: string;
-  phone?: number;
-  date?: Date;
-  numberOfAnimals?: string;
-  species?: string;
-  alive?: number;
-  sickOrInjured?: number;
-  inYourPossession?: number;
-  poaching?: number;
-  age?: number;
-  captiveWild?: number;
-  rabies?: number;
-  zoonotic?: number;
-  details?: string;
+  LocationX?: number
+  LocationY?: number
+  ObserverName?: string;
+  ObserverAffiliation?: number;
+  ObserverEmail?: string;
+  ObserverPhone?: string;
+  ObserverDate?: Date;
+  ObservationDate?: Date;
+  AnimalCountId?: number;
+  SpeciesId?: number;
+  WildlifeStatusId?: number;
+  SickInjured?: number;
+  Possession?: number;
+  Poachingsuspect?: number;
+  WildlifeAgeId?: number;
+  OriginId?: number;
+  Rabies?: number;
+  ZoonoticExposure?: number;
+  ObservationDescrition?: string;
 }
 
 export interface ObservationMediaDto {
-  name?: string;
-  type?: string;
-  data?: string;
-  confirmation?: string;
+  FileName?: string;
+  File?: string;
+  ConfirmationNumber?: string;
 }
 
 export interface ObservationDtoContainer {
