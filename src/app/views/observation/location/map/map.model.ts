@@ -7,4 +7,10 @@ export class MapModel {
         'circle-stroke-width': 2,
         'circle-stroke-color': '#3E0000',
     };
+
+    // PA Counties
+    public static FillCountyPaintStyle: any = {
+        'fill-color': '#000',
+        'fill-opacity': 0.5
+    }
 }
