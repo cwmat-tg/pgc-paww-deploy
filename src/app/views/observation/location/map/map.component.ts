@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 import { ConnectionService } from 'src/app/_shared/services/connection.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserMessages } from 'src/app/_shared/models/user-messages.model';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-map',
@@ -23,8 +24,10 @@ export class MapComponent implements OnInit, OnDestroy {
   @Input() zoom: number = 6;
   @Input() center: LngLatLike = [-77.1945, 41.2033];
   @Input() styleEnum: string = 'ArcGIS:Streets';
+  @Input() styleEnumImg: string = 'ArcGIS:Imagery';
   apiKey = environment.esriApiKey;
   streetsStyle = `https://basemaps-api.arcgis.com/arcgis/rest/services/styles/${this.styleEnum}?type=style&token=${this.apiKey}`;
+  imageryStyle = `https://basemaps-api.arcgis.com/arcgis/rest/services/styles/${this.styleEnumImg}?type=style&token=${this.apiKey}`;
   offlineStyle = {version: 8, sources: {}, layers: []};
   basemapStyle: any = this.streetsStyle;
   map!: Map;
@@ -78,18 +81,18 @@ export class MapComponent implements OnInit, OnDestroy {
 
   activate() {
     this.isActive = true;
+    this.cursorStyle = 'pointer';
   }
 
   startSelect() {
     // Start active session
-    const mapCenter = this.map.getCenter();
-    this.setCoordinates([mapCenter.lng, mapCenter.lat]);
     this.activate();
   }
 
   endSelect() {
     // End active session
     this.isActive = false;
+    this.cursorStyle = '';
   }
 
   setCoordinates(newCoords: number[]) {
@@ -109,8 +112,6 @@ export class MapComponent implements OnInit, OnDestroy {
     // Set coords and end active session
     console.log('Map Clicked', event);
     this.setCoordinates([event.lngLat.lng, event.lngLat.lat]);
-    
-    this.endSelect();
   }
 
   saveLocation() {
@@ -158,7 +159,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
   zoomToCandidates(event: any ) {
     console.log('New Search Location', event);
-    
+
     if (event?.candidates?.length > 0) {
       this.setCoordinates([event.candidates[0]?.location?.x || 0.0, event.candidates[0]?.location?.y || 0.0]);
       this.bounds = this.coordinates.reduce((bounds, coord) => {
@@ -168,6 +169,14 @@ export class MapComponent implements OnInit, OnDestroy {
       this.activate();
     }
 
+  }
+
+  basemapToggle(event: MatSlideToggleChange) {
+    if (event.checked) {
+      this.basemapStyle = this.imageryStyle;
+    } else {
+      this.basemapStyle = this.streetsStyle;
+    }
   }
 
   openSnackBar(message: string, action: string = 'Close') {
