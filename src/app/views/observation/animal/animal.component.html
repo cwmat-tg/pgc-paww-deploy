@@ -7,35 +7,35 @@
 
     <form [formGroup]="this.animalForm">
 
-        <div 
-            fxLayout="column" 
-            fxLayout.xs="column" 
-            fxLayout.sm="column" 
-            fxLayoutAlign="start center" 
-            fxLayoutAlign.xs="start start" 
+        <div
+            fxLayout="column"
+            fxLayout.xs="column"
+            fxLayout.sm="column"
+            fxLayoutAlign="start center"
+            fxLayoutAlign.xs="start start"
             fxLayoutAlign.sm="start start"
             fxFlex>
 
             <!-- Date and number of animals -->
-            <div 
+            <div
                 class="appFieldRow"
-                fxLayout="row" 
-                fxLayout.xs="column" 
-                fxLayout.sm="column" 
-                fxLayoutAlign="start center" 
-                fxLayoutAlign.xs="start start" 
+                fxLayout="row"
+                fxLayout.xs="column"
+                fxLayout.sm="column"
+                fxLayoutAlign="start center"
+                fxLayoutAlign.xs="start start"
                 fxLayoutAlign.sm="start start"
                 fxFlex>
 
-                <div 
-                    fxFlex="50" 
-                    fxFlex.xs="100" 
-                    fxFlex.sm="100" 
+                <div
+                    fxFlex="50"
+                    fxFlex.xs="100"
+                    fxFlex.sm="100"
                     class="appFormRowContainer">
-                    
+
                     <div class="appFormContainer">
                         <mat-form-field>
-                            <mat-label for="observation-date">Date</mat-label>
+                            <mat-label for="observation-date">Date<span class="appRequiredAsterisk">*</span></mat-label>
                             <input matInput id="observation-date" formControlName="date" [max]="this.maxDate" [matDatepicker]="picker">
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
@@ -46,15 +46,15 @@
 
                 </div>
 
-                <div 
-                    fxFlex="50" 
-                    fxFlex.xs="100" 
-                    fxFlex.sm="100" 
+                <div
+                    fxFlex="50"
+                    fxFlex.xs="100"
+                    fxFlex.sm="100"
                     class="appFormRowContainer">
 
                     <div class="appFormContainer">
                         <mat-form-field>
-                            <mat-label for="observation-numberOfAnimals">Number of Animals</mat-label>
+                            <mat-label for="observation-numberOfAnimals">Number of Animals<span class="appRequiredAsterisk">*</span></mat-label>
                             <mat-select id="observation-numberOfAnimals" formControlName="numberOfAnimals">
                                 <mat-option *ngFor="let animalNum of this.numberOfAnimalsList" [value]="animalNum?.AnimalCountId">
                                     {{animalNum?.Name}}
@@ -70,13 +70,13 @@
             </div>
 
             <!-- Spacer -->
-            <div 
+            <div
                 class="appFieldRow"
-                fxLayout="row" 
-                fxLayout.xs="column" 
-                fxLayout.sm="column" 
-                fxLayoutAlign="start center" 
-                fxLayoutAlign.xs="start start" 
+                fxLayout="row"
+                fxLayout.xs="column"
+                fxLayout.sm="column"
+                fxLayoutAlign="start center"
+                fxLayoutAlign.xs="start start"
                 fxLayoutAlign.sm="start start"
                 fxFlex>
 
@@ -88,25 +88,25 @@
             <div *ngIf="this.date?.valid && this.numberOfAnimals?.valid" fxLayout="column" [@state]="state" class="appFieldRow appHide appSpaceAtBottom">
 
                 <!-- Species -->
-                <div 
+                <div
                     class="appFieldRow"
-                    fxLayout="row" 
-                    fxLayout.xs="column" 
-                    fxLayout.sm="column" 
-                    fxLayoutAlign="start center" 
-                    fxLayoutAlign.xs="start start" 
+                    fxLayout="row"
+                    fxLayout.xs="column"
+                    fxLayout.sm="column"
+                    fxLayoutAlign="start center"
+                    fxLayoutAlign.xs="start start"
                     fxLayoutAlign.sm="start start"
                     fxFlex>
 
                     <div
-                    fxFlex="50" 
-                    fxFlex.xs="100" 
-                    fxFlex.sm="100" 
+                    fxFlex="50"
+                    fxFlex.xs="100"
+                    fxFlex.sm="100"
                     class="appFormRowContainer">
-            
+
                         <div class="appFormContainer">
                             <mat-form-field>
-                                <mat-label for="observation-species">Species</mat-label>
+                                <mat-label for="observation-species">Species<span class="appRequiredAsterisk">*</span></mat-label>
                                 <mat-select id="observation-species" formControlName="species">
                                     <mat-option *ngFor="let spec of this.speciesList" [value]="spec?.SpeciesId">
                                         {{spec?.Name}}
@@ -124,25 +124,25 @@
                 <div *ngIf="this.species?.valid" fxLayout="column" [@speciesSelected]="speciesSelected" class="appFieldRow appHide">
 
                     <!-- Alive -->
-                    <div 
+                    <div
                         class="appFieldRow"
-                        fxLayout="row" 
-                        fxLayout.xs="column" 
-                        fxLayout.sm="column" 
-                        fxLayoutAlign="start center" 
-                        fxLayoutAlign.xs="start start" 
+                        fxLayout="row"
+                        fxLayout.xs="column"
+                        fxLayout.sm="column"
+                        fxLayoutAlign="start center"
+                        fxLayoutAlign.xs="start start"
                         fxLayoutAlign.sm="start start"
                         fxFlex>
 
                         <div
-                        fxFlex="50" 
-                        fxFlex.xs="100" 
-                        fxFlex.sm="100" 
+                        fxFlex="50"
+                        fxFlex.xs="100"
+                        fxFlex.sm="100"
                         class="appFormRowContainer">
-                
+
                             <div class="appFormContainer">
                                 <mat-form-field>
-                                    <mat-label for="observation-alive">Alive</mat-label>
+                                    <mat-label for="observation-alive">Alive<span class="appRequiredAsterisk">*</span></mat-label>
                                     <mat-select id="observation-alive" formControlName="alive">
                                         <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
                                             {{item?.Name}}
@@ -158,27 +158,27 @@
                     </div>
 
                     <!-- Sick or injured/Possession -->
-                    <div 
+                    <div
                         *ngIf="this.alive?.valid && this.alive?.value === this.refYes"
                         [@animalAlive]="animalAlive"appHide
                         class="appFieldRow appHide"
-                        fxLayout="row" 
-                        fxLayout.xs="column" 
-                        fxLayout.sm="column" 
-                        fxLayoutAlign="start center" 
-                        fxLayoutAlign.xs="start start" 
+                        fxLayout="row"
+                        fxLayout.xs="column"
+                        fxLayout.sm="column"
+                        fxLayoutAlign="start center"
+                        fxLayoutAlign.xs="start start"
                         fxLayoutAlign.sm="start start"
                         fxFlex>
 
                         <div
-                        fxFlex="50" 
-                        fxFlex.xs="100" 
-                        fxFlex.sm="100" 
+                        fxFlex="50"
+                        fxFlex.xs="100"
+                        fxFlex.sm="100"
                         class="appFormRowContainer">
-                
+
                             <div class="appFormContainer">
                                 <mat-form-field>
-                                    <mat-label for="observation-sickOrInjured">Injured</mat-label>
+                                    <mat-label for="observation-sickOrInjured">Injured<span class="appRequiredAsterisk">*</span></mat-label>
                                     <mat-select id="observation-sickOrInjured" formControlName="sickOrInjured">
                                         <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
                                             {{item?.Name}}
@@ -192,14 +192,14 @@
                         </div>
 
                         <div
-                        fxFlex="50" 
-                        fxFlex.xs="100" 
-                        fxFlex.sm="100" 
+                        fxFlex="50"
+                        fxFlex.xs="100"
+                        fxFlex.sm="100"
                         class="appFormRowContainer">
-                
+
                             <div class="appFormContainer">
                                 <mat-form-field>
-                                    <mat-label for="observation-inYourPossession">Possession</mat-label>
+                                    <mat-label for="observation-inYourPossession">Possession<span class="appRequiredAsterisk">*</span></mat-label>
                                     <mat-select id="observation-inYourPossession" formControlName="inYourPossession">
                                         <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
                                             {{item?.Name}}
@@ -215,27 +215,27 @@
                     </div>
 
                     <!-- Poaching -->
-                    <div 
+                    <div
                         *ngIf="this.alive?.valid && this.alive?.value === this.refNo"
                         [@animalDead]="animalDead"
                         class="appFieldRow appHide"
-                        fxLayout="row" 
-                        fxLayout.xs="column" 
-                        fxLayout.sm="column" 
-                        fxLayoutAlign="start center" 
-                        fxLayoutAlign.xs="start start" 
+                        fxLayout="row"
+                        fxLayout.xs="column"
+                        fxLayout.sm="column"
+                        fxLayoutAlign="start center"
+                        fxLayoutAlign.xs="start start"
                         fxLayoutAlign.sm="start start"
                         fxFlex>
 
                         <div
-                            fxFlex="50" 
-                            fxFlex.xs="100" 
-                            fxFlex.sm="100" 
+                            fxFlex="50"
+                            fxFlex.xs="100"
+                            fxFlex.sm="100"
                             class="appFormRowContainer">
 
                             <div class="appFormContainer">
                                 <mat-form-field>
-                                    <mat-label for="observation-poaching">Poaching</mat-label>
+                                    <mat-label for="observation-poaching">Poaching<span class="appRequiredAsterisk">*</span></mat-label>
                                     <mat-select id="observation-poaching" formControlName="poaching">
                                         <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
                                             {{item?.Name}}
@@ -251,25 +251,25 @@
                     </div>
 
                     <!-- Age/Captive -->
-                    <div 
+                    <div
                         class="appFieldRow"
-                        fxLayout="row" 
-                        fxLayout.xs="column" 
-                        fxLayout.sm="column" 
-                        fxLayoutAlign="start center" 
-                        fxLayoutAlign.xs="start start" 
+                        fxLayout="row"
+                        fxLayout.xs="column"
+                        fxLayout.sm="column"
+                        fxLayoutAlign="start center"
+                        fxLayoutAlign.xs="start start"
                         fxLayoutAlign.sm="start start"
                         fxFlex>
 
                         <div
-                        fxFlex="50" 
-                        fxFlex.xs="100" 
-                        fxFlex.sm="100" 
+                        fxFlex="50"
+                        fxFlex.xs="100"
+                        fxFlex.sm="100"
                         class="appFormRowContainer">
-                
+
                             <div class="appFormContainer">
                                 <mat-form-field>
-                                    <mat-label for="observation-age">Age</mat-label>
+                                    <mat-label for="observation-age">Age<span class="appRequiredAsterisk">*</span></mat-label>
                                     <mat-select id="observation-age" formControlName="age">
                                         <mat-option *ngFor="let item of this.ageList" [value]="item?.WildlifeAgeId">
                                             {{item?.Name}}
@@ -283,14 +283,14 @@
                         </div>
 
                         <div
-                        fxFlex="50" 
-                        fxFlex.xs="100" 
-                        fxFlex.sm="100" 
+                        fxFlex="50"
+                        fxFlex.xs="100"
+                        fxFlex.sm="100"
                         class="appFormRowContainer">
-                
+
                             <div class="appFormContainer">
                                 <mat-form-field>
-                                    <mat-label for="observation-captiveWild">Captive or Wild</mat-label>
+                                    <mat-label for="observation-captiveWild">Captive or Wild<span class="appRequiredAsterisk">*</span></mat-label>
                                     <mat-select id="observation-captiveWild" formControlName="captiveWild">
                                         <mat-option *ngFor="let item of this.captiveList" [value]="item?.OrigintId">
                                             {{item?.Name}}
@@ -306,25 +306,25 @@
                     </div>
 
                     <!-- Zoonotic/Rabies -->
-                    <div 
+                    <div
                         class="appFieldRow"
-                        fxLayout="row" 
-                        fxLayout.xs="column" 
-                        fxLayout.sm="column" 
-                        fxLayoutAlign="start center" 
-                        fxLayoutAlign.xs="start start" 
+                        fxLayout="row"
+                        fxLayout.xs="column"
+                        fxLayout.sm="column"
+                        fxLayoutAlign="start center"
+                        fxLayoutAlign.xs="start start"
                         fxLayoutAlign.sm="start start"
                         fxFlex>
 
                         <div
-                        fxFlex="50" 
-                        fxFlex.xs="100" 
-                        fxFlex.sm="100" 
+                        fxFlex="50"
+                        fxFlex.xs="100"
+                        fxFlex.sm="100"
                         class="appFormRowContainer">
-                
+
                             <div class="appFormContainer">
                                 <mat-form-field>
-                                    <mat-label for="observation-zoonotic">Zoonotic Exposure</mat-label>
+                                    <mat-label for="observation-zoonotic">Zoonotic Exposure<span class="appRequiredAsterisk">*</span></mat-label>
                                     <mat-select id="observation-zoonotic" formControlName="zoonotic">
                                         <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
                                             {{item?.Name}}
@@ -340,14 +340,14 @@
                         <div
                         *ngIf="this.species?.valid && this.speciesCodeIsMammal(this.species?.value)"
                         [@mammalSelected]="mammalSelected"
-                        fxFlex="50" 
-                        fxFlex.xs="100" 
-                        fxFlex.sm="100" 
+                        fxFlex="50"
+                        fxFlex.xs="100"
+                        fxFlex.sm="100"
                         class="appFormRowContainer appHide">
-                
+
                             <div class="appFormContainer">
                                 <mat-form-field>
-                                    <mat-label for="observation-rabies">Rabies</mat-label>
+                                    <mat-label for="observation-rabies">Rabies<span class="appRequiredAsterisk">*</span></mat-label>
                                     <mat-select id="observation-rabies" formControlName="rabies">
                                         <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
                                             {{item?.Name}}
@@ -363,13 +363,13 @@
                     </div>
 
                     <!-- Spacer -->
-                        <div 
+                        <div
                         class="appFieldRow"
-                        fxLayout="row" 
-                        fxLayout.xs="column" 
-                        fxLayout.sm="column" 
-                        fxLayoutAlign="start center" 
-                        fxLayoutAlign.xs="start start" 
+                        fxLayout="row"
+                        fxLayout.xs="column"
+                        fxLayout.sm="column"
+                        fxLayoutAlign="start center"
+                        fxLayoutAlign.xs="start start"
                         fxLayoutAlign.sm="start start"
                         fxFlex>
 
@@ -378,26 +378,26 @@
                     </div>
 
                     <!-- Details/Photos -->
-                    <div 
+                    <div
                         class="appFieldRow"
-                        fxLayout="row" 
-                        fxLayout.xs="column" 
-                        fxLayout.sm="column" 
-                        fxLayoutAlign="center center" 
-                        fxLayoutAlign.xs="center center" 
+                        fxLayout="row"
+                        fxLayout.xs="column"
+                        fxLayout.sm="column"
+                        fxLayoutAlign="center center"
+                        fxLayoutAlign.xs="center center"
                         fxLayoutAlign.sm="center center"
                         fxFlex>
 
                         <div
-                        fxFlex="100" 
-                        fxFlex.xs="100" 
-                        fxFlex.sm="100" 
+                        fxFlex="100"
+                        fxFlex.xs="100"
+                        fxFlex.sm="100"
                         class="appFormRowContainer">
-                
+
                             <div class="appFormContainer">
                                 <mat-form-field id="appDetailsField">
                                     <mat-label for="observation-details">Additional Details</mat-label>
-                                    <textarea 
+                                    <textarea
                                         id="observation-details"
                                         formControlName="alive"
                                         matInput placeholder="Additional Details"></textarea>
@@ -411,29 +411,29 @@
                     </div>
 
                     <!-- Photos -->
-                    <div 
+                    <div
                         class="appFieldRow"
-                        fxLayout="row" 
-                        fxLayout.xs="column" 
-                        fxLayout.sm="column" 
-                        fxLayoutAlign="center center" 
-                        fxLayoutAlign.xs="center center" 
+                        fxLayout="row"
+                        fxLayout.xs="column"
+                        fxLayout.sm="column"
+                        fxLayoutAlign="center center"
+                        fxLayoutAlign.xs="center center"
                         fxLayoutAlign.sm="center center"
                         fxFlex>
 
                         <div
-                        fxFlex="100" 
-                        fxFlex.xs="100" 
-                        fxFlex.sm="100" 
+                        fxFlex="100"
+                        fxFlex.xs="100"
+                        fxFlex.sm="100"
                         class="appFormRowContainer">
-                
+
                             <div class="appFormContainer appPhotoContainer">
 
                                 <app-intro-helper-text
                                     [header]="this.photosHeader"
                                     [content]="this.photosContent"
                                 ></app-intro-helper-text>
-                                
+
                                 <app-file-upload (error)="this.openSnackBar($event)" (newData)="this.mediaDataChanged($event)"></app-file-upload>
 
                             </div>
