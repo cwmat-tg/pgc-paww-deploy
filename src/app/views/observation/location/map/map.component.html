@@ -7,7 +7,7 @@
         [zoom]="[this.zoom]"
         [center]="this.center"
         (mapLoad)="this.map = $event"
-        (moveEnd)="this.mapMoved($event)"
+        (mapClick)="this.mapClicked($event)"
         [cursorStyle]="this.cursorStyle"
         [fitBounds]="this.bounds"
         [fitBoundsOptions]="{
@@ -40,7 +40,7 @@
             ></mgl-feature>
         </mgl-geojson-source>
 
-        <mgl-geojson-source 
+        <mgl-geojson-source
             id="paCounty"
             [data]="this.paCounty"
         >
@@ -76,7 +76,7 @@
                 [paint]="layerPaint"
             ></mgl-layer>
         </ng-container>
-    
+
     <!-- End Main Map -->
     </mgl-map>
 
@@ -87,10 +87,15 @@
 
     <!-- Search bar -->
     <div class="appSearchContainer" *ngIf="!this.isOffline">
-        <app-geo-search 
+        <app-geo-search
             (zoomToCandidates)="zoomToCandidates($event)"
             [mapCenter]="this.center">
         </app-geo-search>
+    </div>
+
+    <!-- Basemap Toggle -->
+    <div id="appBasemapToggle" *ngIf="!this.isOffline">
+      <mat-slide-toggle (change)="this.basemapToggle($event)">Aerial Imagery</mat-slide-toggle>
     </div>
 
 </div>
