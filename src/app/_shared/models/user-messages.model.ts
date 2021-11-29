@@ -22,6 +22,9 @@ export class UserMessages {
 
     // Home
     public static UploadTooltip: string = 'Looks like you have some Observations that were saved on your device while you were offline.  Now that you are online again, click to upload them.';
+
+    // Confirmation
+    public static BulkUploadConfirmation = 'Your observations have been uploaded.  Here are your confirmation numbers.';
 }
 
 export interface ConfirmationSettings {

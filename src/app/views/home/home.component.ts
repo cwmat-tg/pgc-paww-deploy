@@ -1,5 +1,8 @@
+import { UserMessages } from 'src/app/_shared/models/user-messages.model';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { InfoDialogComponent } from 'src/app/_shared/components/info-dialog/info-dialog.component';
 import { MagicStrings } from 'src/app/_shared/models/magic-strings.model';
 import { ObservationDtoContainer } from 'src/app/_shared/models/observation.model';
 import { LocalStorageService } from 'src/app/_shared/services/local-storage.service';
@@ -13,7 +16,6 @@ export class HomeComponent implements OnInit  {
   // Config
   appName = MagicStrings.AppName;
   appAbbrev = MagicStrings.AppAbbrev;
-  uploadedConfNums: string[] = [];
 
   // Offline observations
   offlineObs: ObservationDtoContainer[]  = [];
@@ -22,6 +24,7 @@ export class HomeComponent implements OnInit  {
   constructor(
     private router: Router,
     private localStorageService: LocalStorageService,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit() {
@@ -38,8 +41,21 @@ export class HomeComponent implements OnInit  {
   }
 
   uploadProcessed(confNum: string) {
-    this.uploadedConfNums.push(confNum);
     this.loadOfflineObservations();
+  }
+
+  alluploadsProcessed(confNums: string[]) {
+    let bullets = '';
+    confNums.forEach(e => {
+      bullets = bullets + `<p><strong>${e}</strong></p>`;
+    });
+
+    const message = `<p>${UserMessages.BulkUploadConfirmation}<p><div>${bullets}</div>`
+    this.dialog.open(InfoDialogComponent, {
+      width: '35rem',
+      data: { title: MagicStrings.ConfirmationHeader, text: message, confirm: 'Close' },
+      disableClose: false
+    });
   }
 
 }
