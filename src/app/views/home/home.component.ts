@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit  {
   // Config
   appName = MagicStrings.AppName;
   appAbbrev = MagicStrings.AppAbbrev;
+  uploadedConfNums: string[] = [];
 
   // Offline observations
   offlineObs: ObservationDtoContainer[]  = [];
@@ -36,7 +37,8 @@ export class HomeComponent implements OnInit  {
     this.offlineObsCount = this.offlineObs.length;
   }
 
-  uploadProcessed() {
+  uploadProcessed(confNum: string) {
+    this.uploadedConfNums.push(confNum);
     this.loadOfflineObservations();
   }
 

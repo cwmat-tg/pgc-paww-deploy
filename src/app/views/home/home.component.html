@@ -51,5 +51,5 @@
 </div>
 
 <div id="appUploadButtonContainer">
-    <app-upload-offline (uploadProcessed)="this.uploadProcessed()" [offlineObs]="this.offlineObs" [offlineObsCount]="this.offlineObsCount"></app-upload-offline>
+    <app-upload-offline (uploadProcessed)="this.uploadProcessed($event)" [offlineObs]="this.offlineObs" [offlineObsCount]="this.offlineObsCount"></app-upload-offline>
 </div>
