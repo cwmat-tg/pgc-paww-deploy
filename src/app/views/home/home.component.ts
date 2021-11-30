@@ -1,5 +1,5 @@
 import { UserMessages } from 'src/app/_shared/models/user-messages.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { InfoDialogComponent } from 'src/app/_shared/components/info-dialog/info-dialog.component';
@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit  {
   // Config
   appName = MagicStrings.AppName;
   appAbbrev = MagicStrings.AppAbbrev;
+  isSuperZoom = false;
 
   // Offline observations
   offlineObs: ObservationDtoContainer[]  = [];
@@ -29,6 +30,17 @@ export class HomeComponent implements OnInit  {
 
   ngOnInit() {
     this.loadOfflineObservations();
+    this.onResize(null);
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    console.log('Resize', event);
+    const estimateZoom = (( window.outerWidth - 10 ) / window.innerWidth) * 100;
+      if (estimateZoom >= 300)
+        this.isSuperZoom = true;
+      else
+        this.isSuperZoom = false;
   }
 
   createObservation() {

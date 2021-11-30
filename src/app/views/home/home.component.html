@@ -1,4 +1,4 @@
-<div id="appHomeContainer">
+<div id="appHomeContainer" [ngClass]="{appSuperZoom: this.isSuperZoom}">
     <!-- Header bar -->
     <app-header></app-header>
 
@@ -46,7 +46,7 @@
 
     </div>
 
-    <app-footer class="appOnHomepage"></app-footer>
+    <app-footer class="appOnHomepage" [ngClass]="{appSuperZoom: this.isSuperZoom}"></app-footer>
 
 </div>
 

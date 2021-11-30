@@ -116,6 +116,10 @@ $disclaimerSpacing: 2rem;
     :host ::ng-deep app-footer.appOnHomepage {
         bottom: auto;
     }
+
+    #appHomeContainer.appSuperZoom {
+        height: 300vh;
+    }
 }
 
 /* Smartphones (landscape) ----------- */
@@ -126,6 +130,10 @@ $disclaimerSpacing: 2rem;
 
     :host ::ng-deep app-footer.appOnHomepage {
         bottom: auto;
+    }
+
+    :host ::ng-deep app-footer.appOnHomepage.appSuperZoom {
+        bottom: 0;
     }
 }
 
