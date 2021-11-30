@@ -144,8 +144,9 @@ export class MapComponent implements OnInit, OnDestroy {
 
   refreshPoint() {
     this.showPoint = false;
-    this.cd.detectChanges()
+    this.cd.detectChanges();
     this.showPoint = true;
+    this.cd.detectChanges();
   }
 
   checkIntersection(coords: number[]) {
@@ -156,17 +157,13 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   newGPSLocation(event: Position) {
-    debugger;
     console.log('New Location', event);
     this.setCoordinates([event.coords?.longitude || 0.0, event.coords?.latitude || 0.0]);
-    // this.saveLocation();
+    this.saveLocation();
 
     // Turn off the geolocate
     const geoControl = this.geolocater.control as GeolocateControl;
     geoControl.trigger()
-
-    this.startSelect();
-    this.saveLocation();
   }
 
   noGPSLocation(event: ErrorEvent) {
