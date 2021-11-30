@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { GeolocateControl, LngLatBounds, LngLatLike, Map } from 'maplibre-gl';
 import { PointGeom } from 'src/app/_shared/models/observation.model';
 import { environment } from 'src/environments/environment';
@@ -33,6 +33,7 @@ export class MapComponent implements OnInit, OnDestroy {
   map!: Map;
   cursorStyle!: string;
   bounds!: LngLatBounds;
+  isSuperZoom = false;
 
   // Location Select State
   isActive = false;
@@ -73,10 +74,21 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.onResize(null);
   }
 
   ngOnDestroy() {
     this.isOffline$.unsubscribe();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    console.log('Resize', event);
+    const estimateZoom = (( window.outerWidth - 10 ) / window.innerWidth) * 100;
+      if (estimateZoom >= 300)
+        this.isSuperZoom = true;
+      else
+        this.isSuperZoom = false;
   }
 
   activate() {
