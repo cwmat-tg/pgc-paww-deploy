@@ -144,8 +144,9 @@ export class MapComponent implements OnInit, OnDestroy {
 
   refreshPoint() {
     this.showPoint = false;
-    this.cd.detectChanges()
+    this.cd.detectChanges();
     this.showPoint = true;
+    this.cd.detectChanges();
   }
 
   checkIntersection(coords: number[]) {

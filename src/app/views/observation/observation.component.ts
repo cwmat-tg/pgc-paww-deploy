@@ -1,5 +1,5 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatStepper, StepperOrientation } from '@angular/material/stepper';
 import { Router } from '@angular/router';
@@ -54,6 +54,7 @@ export class ObservationComponent implements AfterViewInit, OnDestroy {
     private api: ApiService,
     private connectionService: ConnectionService,
     private localStorageService: LocalStorageService,
+    private cd: ChangeDetectorRef,
   ) {
     this.stepperOrientation = breakpointObserver.observe('(min-width: 800px)')
       .pipe(map(({matches}) => matches ? 'horizontal' : 'vertical'));
@@ -116,6 +117,8 @@ export class ObservationComponent implements AfterViewInit, OnDestroy {
       default:
         break;
     }
+
+    this.cd.detectChanges();
   }
 
   submit() {

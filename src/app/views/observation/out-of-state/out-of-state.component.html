@@ -8,7 +8,7 @@
     <div *ngIf="this.obsStore.getObservation() | async as obsData;" class="appOutOfStateContent">
         <div *ngIf="!obsData.inState">
             <p>Observations occurring outside of Pennsylvania should be directed to the appropriate state agency.</p>
-            <p>A list of agencies can be found on the Association of Fish & Wildlife Agencies website <a target="_blank" href="https://www.fishwildlife.org/landing/membership/member-list">here</a>.</p>
+            <p>A list of agencies can be found on the <a target="_blank" href="https://www.fishwildlife.org/landing/membership/member-list">Association of Fish & Wildlife Agencies website</a>.</p>
             <button 
                 mat-flat-button color="accent" 
                 class="appBackToHomeButton" 
