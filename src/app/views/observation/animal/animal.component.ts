@@ -262,17 +262,56 @@ export class AnimalComponent implements OnInit, OnDestroy {
 
     // Animal Alive
     if (this.alive?.valid && this.alive?.value === this.refYes) {
+      // Animations
       this.animalAlive = MagicStrings.Visible;
       this.animalDead = MagicStrings.Hidden;
+
+      // Change validation
+      this.sickOrInjured?.setValidators([Validators.required]);
+      this.inYourPossession?.setValidators([Validators.required]);
+      this.poaching?.setValidators([]);
+
+      // Update validation
+      this.sickOrInjured?.updateValueAndValidity();
+      this.inYourPossession?.updateValueAndValidity();
+      this.poaching?.updateValueAndValidity();
+
+      // Clear data
       this.poaching?.reset();
     } else if (this.alive?.valid && this.alive?.value === this.refNo) {
+      // Animations
       this.animalAlive = MagicStrings.Hidden;
       this.animalDead = MagicStrings.Visible;
+
+      // Change validation
+      this.sickOrInjured?.setValidators([]);
+      this.inYourPossession?.setValidators([]);
+      this.poaching?.setValidators([Validators.required]);
+
+      // Update validation
+      this.sickOrInjured?.updateValueAndValidity();
+      this.inYourPossession?.updateValueAndValidity();
+      this.poaching?.updateValueAndValidity();
+
+      // Clear data
       this.sickOrInjured?.reset();
       this.inYourPossession?.reset();
     } else {
+      // Animations
       this.animalAlive = MagicStrings.Hidden;
       this.animalDead = MagicStrings.Hidden;
+
+      // Change validation
+      this.sickOrInjured?.setValidators([]);
+      this.inYourPossession?.setValidators([]);
+      this.poaching?.setValidators([]);
+
+      // Update validation
+      this.sickOrInjured?.updateValueAndValidity();
+      this.inYourPossession?.updateValueAndValidity();
+      this.poaching?.updateValueAndValidity();
+
+      // Clear data
       this.poaching?.reset();
       this.sickOrInjured?.reset();
       this.inYourPossession?.reset();
@@ -280,12 +319,17 @@ export class AnimalComponent implements OnInit, OnDestroy {
 
     // Species Selected
     if (this.species?.valid) {
+      // Animations
       this.speciesSelected = MagicStrings.Visible;
 
       if (this.speciesCodeIsMammal(this.species?.value)) {
         this.mammalSelected = MagicStrings.Visible;
+        this.rabies?.setValidators([Validators.required]);
+        this.rabies?.updateValueAndValidity();
       } else {
         this.mammalSelected = MagicStrings.Hidden;
+        this.rabies?.setValidators([]);
+        this.rabies?.updateValueAndValidity();
         this.rabies?.reset();
       }
     }

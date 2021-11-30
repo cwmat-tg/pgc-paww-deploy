@@ -47,6 +47,12 @@ mgl-map {
     left: 0.3rem;
     right: auto;
   }
+
+  #appBasemapToggle.appSuperZoom,
+  .appSearchContainer.appSuperZoom {
+    outline: 1px solid #000;
+    border-radius: 1rem;
+  }
 }
 
 /* Smartphones (landscape) ----------- */

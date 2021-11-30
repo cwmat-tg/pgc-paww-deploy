@@ -19,13 +19,16 @@ export class UploadOfflineComponent implements OnDestroy {
   // Config
   tooltipText = UserMessages.UploadTooltip;
   count = 0;
+  confNums: string[] = [];
+  initialCount = 0;
 
   // Inputs
   @Input() offlineObs: ObservationDtoContainer[] = [];
   @Input() offlineObsCount: number = 0;
 
   // Outputs
-  @Output() uploadProcessed: EventEmitter<void> = new EventEmitter();
+  @Output() uploadProcessed: EventEmitter<string> = new EventEmitter();
+  @Output() alluploadsProcessed: EventEmitter<string[]> = new EventEmitter();
 
   // Connection check
   isOffline!: boolean;
@@ -75,7 +78,9 @@ export class UploadOfflineComponent implements OnDestroy {
 
     const payload = obsContainer.data;
     const mediaPaylod = obsContainer.media;
-    
+
+    this.initialCount = this.offlineObsCount;
+
     // POST to API
     this.api.createObservation(payload).subscribe(res => {
       // Will hold any media POST observables for the forkjoin below
@@ -90,7 +95,7 @@ export class UploadOfflineComponent implements OnDestroy {
           console.log(results);
           saveRef.close();
           this.localStorageService.removeObservation(obsContainer.dbId);
-          this.uploadProcessed.emit();
+          this.checkConfNums(confNum);
         }, error => {
           // One or all of the media items failed to upload
           console.error(error);
@@ -100,13 +105,24 @@ export class UploadOfflineComponent implements OnDestroy {
         // There was no media uploads but the initial obs post worked
         saveRef.close();
         this.localStorageService.removeObservation(obsContainer.dbId);
-        this.uploadProcessed.emit();
+        this.checkConfNums(confNum);
       }
     }, err => {
       // The initial request failed or there was no confirmation number
       console.error(err);
       saveRef.close();
     });
+  }
+
+  private checkConfNums(confNum: string | undefined) {
+    if (!confNum)
+      return;
+
+    this.confNums.push(confNum);
+    this.uploadProcessed.emit(confNum);
+
+    if (this.initialCount === this.confNums.length)
+      this.alluploadsProcessed.emit(this.confNums);
   }
 
 }

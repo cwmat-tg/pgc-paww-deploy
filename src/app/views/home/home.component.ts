@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { UserMessages } from 'src/app/_shared/models/user-messages.model';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { InfoDialogComponent } from 'src/app/_shared/components/info-dialog/info-dialog.component';
 import { MagicStrings } from 'src/app/_shared/models/magic-strings.model';
 import { ObservationDtoContainer } from 'src/app/_shared/models/observation.model';
 import { LocalStorageService } from 'src/app/_shared/services/local-storage.service';
@@ -13,6 +16,7 @@ export class HomeComponent implements OnInit  {
   // Config
   appName = MagicStrings.AppName;
   appAbbrev = MagicStrings.AppAbbrev;
+  isSuperZoom = false;
 
   // Offline observations
   offlineObs: ObservationDtoContainer[]  = [];
@@ -21,10 +25,22 @@ export class HomeComponent implements OnInit  {
   constructor(
     private router: Router,
     private localStorageService: LocalStorageService,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit() {
     this.loadOfflineObservations();
+    this.onResize(null);
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    console.log('Resize', event);
+    const estimateZoom = (( window.outerWidth - 10 ) / window.innerWidth) * 100;
+      if (estimateZoom >= 300)
+        this.isSuperZoom = true;
+      else
+        this.isSuperZoom = false;
   }
 
   createObservation() {
@@ -36,8 +52,22 @@ export class HomeComponent implements OnInit  {
     this.offlineObsCount = this.offlineObs.length;
   }
 
-  uploadProcessed() {
+  uploadProcessed(confNum: string) {
     this.loadOfflineObservations();
+  }
+
+  alluploadsProcessed(confNums: string[]) {
+    let bullets = '';
+    confNums.forEach(e => {
+      bullets = bullets + `<p><strong>${e}</strong></p>`;
+    });
+
+    const message = `<p>${UserMessages.BulkUploadConfirmation}<p><div>${bullets}</div>`
+    this.dialog.open(InfoDialogComponent, {
+      width: '35rem',
+      data: { title: MagicStrings.ConfirmationHeader, text: message, confirm: 'Close' },
+      disableClose: false
+    });
   }
 
 }

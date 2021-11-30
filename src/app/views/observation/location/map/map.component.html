@@ -86,7 +86,7 @@
     </div>
 
     <!-- Search bar -->
-    <div class="appSearchContainer" *ngIf="!this.isOffline">
+    <div class="appSearchContainer" *ngIf="!this.isOffline" [ngClass]="{appSuperZoom: this.isSuperZoom}">
         <app-geo-search
             (zoomToCandidates)="zoomToCandidates($event)"
             [mapCenter]="this.center">
@@ -94,7 +94,7 @@
     </div>
 
     <!-- Basemap Toggle -->
-    <div id="appBasemapToggle" *ngIf="!this.isOffline">
+    <div id="appBasemapToggle" *ngIf="!this.isOffline" [ngClass]="{appSuperZoom: this.isSuperZoom}">
       <mat-slide-toggle (change)="this.basemapToggle($event)">Aerial Imagery</mat-slide-toggle>
     </div>
 
