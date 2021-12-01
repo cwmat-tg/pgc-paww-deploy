@@ -2,8 +2,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Subscription } from 'rxjs';
-import { debounceTime, first } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
+import { debounceTime, first, map, startWith } from 'rxjs/operators';
 import { Age, AnimalCount, Captive, Classification, Species, YesNo } from 'src/app/_shared/models/config.model';
 import { MagicStrings } from 'src/app/_shared/models/magic-strings.model';
 import { Information, ObservationMediaDto } from 'src/app/_shared/models/observation.model';
@@ -79,6 +79,7 @@ export class AnimalComponent implements OnInit, OnDestroy {
   animalDead = MagicStrings.Hidden;
   speciesSelected = MagicStrings.Hidden;
   mammalSelected = MagicStrings.Hidden;
+  filteredSpeciesOptions!: Observable<Species[]> | undefined;
 
 
   // Forms
@@ -174,6 +175,16 @@ export class AnimalComponent implements OnInit, OnDestroy {
 
     // Init dropdowns
     this.initializeDropdowns();
+
+    // Species form type ahead
+    // this.filteredSpeciesOptions = this.species?.valueChanges.pipe(
+    //   startWith(''),
+    //   // map(value => this._filterSpecies(value)),
+    //   map((data) => {
+    //     console.log(data);
+    //     return this._filterSpecies(data?.Name);
+    //   }),
+    // );
   }
 
   ngOnDestroy() {
@@ -216,6 +227,7 @@ export class AnimalComponent implements OnInit, OnDestroy {
       // Species
       this.api.getSpecies().subscribe(res => {
         this.speciesList = res;
+        this._setupSpeciesEvent();
       },
       error => {
         console.error(error);
@@ -350,6 +362,30 @@ export class AnimalComponent implements OnInit, OnDestroy {
 
   mediaDataChanged(data: ObservationMediaDto[]) {
     this.obsStore.updateObservationMedia(data)
+  }
+
+  private _filterSpecies(value: string): Species[] {
+    debugger;
+    const filterValue = value.toLowerCase();
+
+    // return this.speciesList.filter(option => option?.Name || ''.toLowerCase().includes(filterValue));
+    return this.speciesList.filter(option => {
+      debugger;
+      return option?.Name || ''.toLowerCase().includes(filterValue)
+    });
+  }
+
+  private _setupSpeciesEvent() {
+    // Species form type ahead
+    this.filteredSpeciesOptions = this.species?.valueChanges.pipe(
+      startWith(''),
+      // map(value => this._filterSpecies(value)),
+      map((data) => {
+        // debugger;
+        console.log(data);
+        return this._filterSpecies(data);
+      }),
+    );
   }
 
 }

@@ -6,10 +6,8 @@ export const environment = {
   production: false,
   appVersion: require('../../package.json').version + '-dev',
   esriApiKey: 'AAPK906c33edfc014bb58ad9eccf7243114d6wSECkZmaVfQ719ZvrMOReTtcPuSjk91PfM6KVbRNojvoO6wUSdgrI0SaKXnRf_E',
-  // apiEndpoint: 'https://ghnl4dzvc0.execute-api.us-east-1.amazonaws.com/Prod',
-  // apiEndpoint: 'http://localhost:8010/proxy/Prod',
-  // apiEndpoint: 'http://localhost:3000/PAWWPublicFacing.svc',
   apiEndpoint: 'https://paww-49735-default-rtdb.firebaseio.com',
+  // apiEndpoint: 'http://pgc-mobileapps.beta.pa.gov/PAWWAPI/api/paww',
   useTestApi: true
 };
 
