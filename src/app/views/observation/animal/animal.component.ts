@@ -1,6 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, Subscription } from 'rxjs';
 import { debounceTime, first, map, startWith } from 'rxjs/operators';
@@ -10,6 +10,24 @@ import { Information, ObservationMediaDto } from 'src/app/_shared/models/observa
 import { UserMessages } from 'src/app/_shared/models/user-messages.model';
 import { ApiService } from 'src/app/_shared/services/api.service';
 import { ObservationService } from 'src/app/_shared/services/observation.service';
+
+function autocompleteObjectValidator(): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    if (typeof control.value === 'string') {
+      return { 'invalidAutocompleteObject': { value: control.value } }
+    }
+    return null  /* valid option selected */
+  }
+}
+
+function autocompleteStringValidator(validOptions: Array<string>): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    if (validOptions.indexOf(control.value) !== -1) {
+      return null  /* valid option selected */
+    }
+    return { 'invalidAutocompleteString': { value: control.value } }
+  }
+}
 
 @Component({
   selector: 'app-animal',
@@ -92,6 +110,7 @@ export class AnimalComponent implements OnInit, OnDestroy {
     ]),
     species: new FormControl('', [
       Validators.required,
+      autocompleteObjectValidator(),
     ]),
     alive: new FormControl('', [
       Validators.required,
@@ -165,6 +184,8 @@ export class AnimalComponent implements OnInit, OnDestroy {
                 if (this.animalForm.valid) {
                   const newData = { ...res };
                   newData.information = { ...data as Information};
+                  const speciesData = newData.information?.species as Species || null;
+                  newData.information.species = speciesData?.SpeciesId;
                   this.obsStore.updateObservation(newData);
                 }
                 this.isValid.emit(this.animalForm.valid);
@@ -175,16 +196,6 @@ export class AnimalComponent implements OnInit, OnDestroy {
 
     // Init dropdowns
     this.initializeDropdowns();
-
-    // Species form type ahead
-    // this.filteredSpeciesOptions = this.species?.valueChanges.pipe(
-    //   startWith(''),
-    //   // map(value => this._filterSpecies(value)),
-    //   map((data) => {
-    //     console.log(data);
-    //     return this._filterSpecies(data?.Name);
-    //   }),
-    // );
   }
 
   ngOnDestroy() {
@@ -347,10 +358,8 @@ export class AnimalComponent implements OnInit, OnDestroy {
     }
   }
 
-  public speciesCodeIsMammal(speciesCode: number): boolean {
-    const found = this.speciesList.find(e => e.SpeciesId === speciesCode);
-
-    if (found && found.ClassificationId === this.refMammal)
+  public speciesCodeIsMammal(species: Species): boolean {
+    if (species.ClassificationId === this.refMammal)
       return true;
     else
       return false;
@@ -364,27 +373,27 @@ export class AnimalComponent implements OnInit, OnDestroy {
     this.obsStore.updateObservationMedia(data)
   }
 
-  private _filterSpecies(value: string): Species[] {
-    debugger;
-    const filterValue = value.toLowerCase();
+  getSpeciesDisplay(option: Species) {
+    return option?.Name || '';
+  }
 
-    // return this.speciesList.filter(option => option?.Name || ''.toLowerCase().includes(filterValue));
+  private _filterSpecies(value: string): Species[] {
+    if (typeof value !== 'string')
+      return [];
+
+    const filterValue = value.toLowerCase();
     return this.speciesList.filter(option => {
-      debugger;
-      return option?.Name || ''.toLowerCase().includes(filterValue)
+      const extractName = option?.Name || '';
+      return extractName.toLowerCase().includes(filterValue)
     });
   }
 
   private _setupSpeciesEvent() {
     // Species form type ahead
     this.filteredSpeciesOptions = this.species?.valueChanges.pipe(
+      debounceTime(200),
       startWith(''),
-      // map(value => this._filterSpecies(value)),
-      map((data) => {
-        // debugger;
-        console.log(data);
-        return this._filterSpecies(data);
-      }),
+      map(value => this._filterSpecies(value)),
     );
   }
 
