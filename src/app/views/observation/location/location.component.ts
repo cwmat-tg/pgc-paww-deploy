@@ -23,7 +23,6 @@ export class LocationComponent {
   ) { }
 
   updateLocation(event: PointGeom) {
-    debugger;
     this.obsStore.getObservation()
       .pipe(take(1))
       .subscribe(res => {

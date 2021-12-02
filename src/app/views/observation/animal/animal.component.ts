@@ -99,7 +99,6 @@ export class AnimalComponent implements OnInit, OnDestroy {
   mammalSelected = MagicStrings.Hidden;
   filteredSpeciesOptions!: Observable<Species[]> | undefined;
 
-
   // Forms
   animalForm = new FormGroup({
     date: new FormControl('', [
