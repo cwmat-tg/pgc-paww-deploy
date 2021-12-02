@@ -9,7 +9,8 @@ export const environment = {
   apiEndpoint: 'https://paww-49735-default-rtdb.firebaseio.com',
   // apiEndpoint: 'http://pgc-mobileapps.beta.pa.gov/PAWWAPI/api/paww',
   useTestApi: true,
-  captchaSiteKey: '6LdUuXMdAAAAAFMniF2loADC2sANfLGmkByoDB3u'
+  captchaSiteKey: '6LdUuXMdAAAAAFMniF2loADC2sANfLGmkByoDB3u',
+  tokenApi: ''
 };
 
 /*
