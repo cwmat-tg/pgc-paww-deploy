@@ -12,6 +12,17 @@ import { SharedModule } from './_shared/modules/shared.module';
 import { SplashComponent } from './views/splash/splash.component';
 import { MainComponent } from './main/main.component';
 import { NotFoundComponent } from './views/not-found/not-found.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import {AuthInterceptor} from './auth.interceptor';
+
+const testProviders: any[] = [];
+const prodProviders: any[] = [
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }
+]
 
 @NgModule({
   declarations: [
@@ -34,7 +45,9 @@ import { NotFoundComponent } from './views/not-found/not-found.component';
     StoreModule.forRoot({}, {}),
     SharedModule
   ],
-  providers: [],
+  providers: [
+    ...environment.useTestApi ? testProviders : prodProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

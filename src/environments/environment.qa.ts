@@ -5,5 +5,5 @@ export const environment = {
   apiEndpoint: 'http://pgc-mobileapps.beta.pa.gov/PAWWAPI/api/paww',
   useTestApi: false,
   captchaSiteKey: '6LdUuXMdAAAAAFMniF2loADC2sANfLGmkByoDB3u',
-  tokenApi: ''
+  tokenApi: 'https://pgcapigw.pa.gov/token'
 };

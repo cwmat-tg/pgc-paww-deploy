@@ -5,13 +5,13 @@ import { catchError, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { TokenService } from './token.service';
 
-const OAUTH_CLIENT = 'express-client';
-const OAUTH_SECRET = 'express-secret';
+const OAUTH_CLIENT = environment.clientAccess;
+const OAUTH_SECRET = environment.clientSec;
 const API_URL = environment.tokenApi;
 const HTTP_OPTIONS = {
   headers: new HttpHeaders({
     'Content-Type': 'application/x-www-form-urlencoded',
-    Authorization: 'Basic ' + btoa(OAUTH_CLIENT + ':' + OAUTH_SECRET)
+    // Authorization: 'Basic ' + btoa(OAUTH_CLIENT + ':' + OAUTH_SECRET)
   })
 };
 
@@ -48,9 +48,11 @@ export class AuthService {
     const body = new HttpParams()
       .set('username', loginData.username)
       .set('password', loginData.password)
+      .set('client_id', OAUTH_CLIENT)
+      .set('client_secret', OAUTH_SECRET)
       .set('grant_type', 'password');
 
-    return this.http.post<any>(API_URL + 'oauth/token', body, HTTP_OPTIONS)
+    return this.http.post<any>(API_URL, body, HTTP_OPTIONS)
       .pipe(
         tap(res => {
           this.tokenService.saveToken(res.access_token);

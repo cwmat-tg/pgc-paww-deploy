@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { ApiService } from 'src/app/_shared/services/api.service';
+import { AuthService } from 'src/app/_shared/services/auth.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-splash',
@@ -13,16 +15,31 @@ export class SplashComponent implements OnInit {
   constructor(
     private router: Router,
     private api: ApiService,
+    private auth: AuthService,
   ) { }
 
   ngOnInit(): void {
-    // Cache API lookups
-    this.cacheEndpoints().subscribe(res => {
-      console.log('Cached endpoints');
-    });
+    if (environment.useTestApi) {
+      // Cache API lookups
+      this.cacheEndpoints().subscribe(res => {
+        console.log('Cached endpoints');
+      });
 
-    // Load any necessary app data and then nav to home
-    this.router.navigate(['/app/home']);
+      // Load any necessary app data and then nav to home
+      this.router.navigate(['/app/home']);
+    } else {
+      // Login
+      this.auth.login({username: environment.pawwU, password: environment.pawwP}).subscribe(authRes => {
+        // Cache API lookups
+        this.cacheEndpoints().subscribe(res => {
+          console.log('Cached endpoints');
+        });
+
+        // Load any necessary app data and then nav to home
+        this.router.navigate(['/app/home']);
+      });
+    }
+    
   }
 
   private cacheEndpoints() {
