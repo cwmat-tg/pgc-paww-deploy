@@ -30,7 +30,11 @@
   "dataGroups": [
     {
       "name": "paww-test-api",
-      "urls": ["https://paww-49735-default-rtdb.firebaseio.com"],
+      "urls": [
+        "https://paww-49735-default-rtdb.firebaseio.com",
+        "http://localhost:8010",
+        "https://pgcapigw.pa.gov"
+      ],
       "cacheConfig": {
         "strategy": "performance",
         "maxSize": 1000,

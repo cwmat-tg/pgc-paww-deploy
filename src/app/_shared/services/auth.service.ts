@@ -4,9 +4,11 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { TokenService } from './token.service';
+import * as config from 'src/assets/overrides.json';
 
-const OAUTH_CLIENT = environment.clientAccess;
-const OAUTH_SECRET = environment.clientSec;
+const CONFIG_DATA = config;
+const OAUTH_CLIENT = CONFIG_DATA.clientAccess;
+const OAUTH_SECRET = CONFIG_DATA.clientSec;
 const API_URL = environment.tokenApi;
 const HTTP_OPTIONS = {
   headers: new HttpHeaders({

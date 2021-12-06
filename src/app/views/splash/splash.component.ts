@@ -4,6 +4,9 @@ import { forkJoin } from 'rxjs';
 import { ApiService } from 'src/app/_shared/services/api.service';
 import { AuthService } from 'src/app/_shared/services/auth.service';
 import { environment } from 'src/environments/environment';
+import * as config from 'src/assets/overrides.json';
+
+const CONFIG_DATA = config;
 
 @Component({
   selector: 'app-splash',
@@ -29,7 +32,7 @@ export class SplashComponent implements OnInit {
       this.router.navigate(['/app/home']);
     } else {
       // Login
-      this.auth.login({username: environment.pawwU, password: environment.pawwP}).subscribe(authRes => {
+      this.auth.login({username: CONFIG_DATA.pawwU, password: CONFIG_DATA.pawwP}).subscribe(authRes => {
         // Cache API lookups
         this.cacheEndpoints().subscribe(res => {
           console.log('Cached endpoints');
