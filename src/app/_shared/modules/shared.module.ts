@@ -13,6 +13,7 @@ import { FooterComponent } from '../components/footer/footer.component';
 import { LoadingDialogComponent } from '../components/loading-dialog/loading-dialog.component';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { CaptchaDialogComponent } from '../components/captcha-dialog/captcha-dialog.component';
+import { SpeciesCardComponent } from '../components/species-card/species-card.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { CaptchaDialogComponent } from '../components/captcha-dialog/captcha-dia
     FooterComponent,
     LoadingDialogComponent,
     RecaptchaModule,
-    CaptchaDialogComponent
+    CaptchaDialogComponent,
+    SpeciesCardComponent
   ],
   declarations: [
     VersionComponent,
@@ -47,7 +49,8 @@ import { CaptchaDialogComponent } from '../components/captcha-dialog/captcha-dia
     HeaderComponent,
     FooterComponent,
     LoadingDialogComponent,
-    CaptchaDialogComponent
+    CaptchaDialogComponent,
+    SpeciesCardComponent
   ]
 })
 export class SharedModule {}

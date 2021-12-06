@@ -33,6 +33,17 @@ export class ApiService {
     return this.get(MagicStrings.Species);
   }
 
+  // Species
+  getSpeciesImage(id: number | undefined): Observable<Species> {
+    return this.http.get<Species>(
+      environment.useTestApi ? `${this.apiEndpoint}/${MagicStrings.SpeciesImage}.json` : `${this.apiEndpoint}/${MagicStrings.SpeciesImage}/${id}?includeImage=true`
+    )
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
   // Yes/No
   getYesNo(): Observable<YesNo[]> {
     return this.get(MagicStrings.YesNo);

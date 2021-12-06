@@ -125,6 +125,19 @@
 
                     </div>
 
+                    <div
+                    *ngIf="this.species?.valid"
+                    fxFlex="50"
+                    fxFlex.xs="100"
+                    fxFlex.sm="100"
+                    class="appFormRowContainer">
+
+                        <div class="appFormContainer">
+                            <app-species-card [species]="this.species?.value"></app-species-card>
+                        </div>
+
+                    </div>
+
                 </div>
 
                 <div *ngIf="this.species?.valid" fxLayout="column" [@speciesSelected]="speciesSelected" class="appFieldRow appHide">
