@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { forkJoin, Observable, Subscription } from 'rxjs';
+import { CaptchaDialogComponent } from 'src/app/_shared/components/captcha-dialog/captcha-dialog.component';
 import { InfoDialogComponent } from 'src/app/_shared/components/info-dialog/info-dialog.component';
 import { LoadingDialogComponent } from 'src/app/_shared/components/loading-dialog/loading-dialog.component';
 import { ObservationDtoContainer } from 'src/app/_shared/models/observation.model';
@@ -60,6 +61,21 @@ export class UploadOfflineComponent implements OnDestroy {
     });
 
     confirmDialogRef.afterClosed().subscribe(data => {
+      if (data) {
+        this.preCheck();
+      }
+    });
+  }
+
+  preCheck() {
+    // Open captcha
+    const dialogRef = this.dialog.open(CaptchaDialogComponent, {
+      width: '35rem',
+      data: { title: 'Submit Observation', text: UserMessages.ConfirmSubmit, confirm: 'Confirm Submission', cancel: 'Cancel' },
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(data => {
       if (data) {
         this.offlineObs.forEach(e => {
           this.processUpload({ ...e });

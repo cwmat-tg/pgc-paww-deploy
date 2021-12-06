@@ -5,6 +5,7 @@ import { MatStepper, StepperOrientation } from '@angular/material/stepper';
 import { Router } from '@angular/router';
 import { forkJoin, Observable, Subscription } from 'rxjs';
 import { map} from 'rxjs/operators';
+import { CaptchaDialogComponent } from 'src/app/_shared/components/captcha-dialog/captcha-dialog.component';
 import { InfoDialogComponent } from 'src/app/_shared/components/info-dialog/info-dialog.component';
 import { LoadingDialogComponent } from 'src/app/_shared/components/loading-dialog/loading-dialog.component';
 import { ConfirmationState } from 'src/app/_shared/models/config.model';
@@ -119,6 +120,26 @@ export class ObservationComponent implements AfterViewInit, OnDestroy {
     }
 
     this.cd.detectChanges();
+  }
+
+  preCheck() {
+    // Skip captcha if offline
+    if (this.isOffline) {
+      this.submit();
+    }
+
+    // Open captcha
+    const dialogRef = this.dialog.open(CaptchaDialogComponent, {
+      width: '35rem',
+      data: { title: 'Submit Observation', text: UserMessages.ConfirmSubmit, confirm: 'Confirm Submission', cancel: 'Cancel' },
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(data => {
+      if (data) {
+        this.submit();
+      }
+    });
   }
 
   submit() {

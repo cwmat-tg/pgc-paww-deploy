@@ -11,6 +11,8 @@ import { InfoDialogComponent } from '../components/info-dialog/info-dialog.compo
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { LoadingDialogComponent } from '../components/loading-dialog/loading-dialog.component';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { CaptchaDialogComponent } from '../components/captcha-dialog/captcha-dialog.component';
 
 
 @NgModule({
@@ -19,7 +21,8 @@ import { LoadingDialogComponent } from '../components/loading-dialog/loading-dia
     ReactiveFormsModule,
     FlexLayoutModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    RecaptchaModule
   ],
   exports: [
     CommonModule,
@@ -32,7 +35,9 @@ import { LoadingDialogComponent } from '../components/loading-dialog/loading-dia
     InfoDialogComponent,
     HeaderComponent,
     FooterComponent,
-    LoadingDialogComponent
+    LoadingDialogComponent,
+    RecaptchaModule,
+    CaptchaDialogComponent
   ],
   declarations: [
     VersionComponent,
@@ -41,7 +46,8 @@ import { LoadingDialogComponent } from '../components/loading-dialog/loading-dia
     InfoDialogComponent,
     HeaderComponent,
     FooterComponent,
-    LoadingDialogComponent
+    LoadingDialogComponent,
+    CaptchaDialogComponent
   ]
 })
 export class SharedModule {}

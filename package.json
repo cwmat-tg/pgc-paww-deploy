@@ -1,6 +1,6 @@
 {
   "name": "pgc-paww-frontend",
-  "version": "0.0.11",
+  "version": "0.0.15",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --hmr",
@@ -41,6 +41,7 @@
     "@types/uuid": "^8.3.2",
     "maplibre-gl": ">= 1.15.1",
     "moment": "^2.29.1",
+    "ng-recaptcha": "^9.0.0",
     "ngx-dropzone": "^3.0.0",
     "ngx-maplibre-gl": "^12.0.0",
     "rfs": "^9.0.6",

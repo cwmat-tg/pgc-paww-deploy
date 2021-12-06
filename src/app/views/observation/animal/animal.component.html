@@ -107,13 +107,19 @@
                         <div class="appFormContainer">
                             <mat-form-field>
                                 <mat-label for="observation-species">Species<span class="appRequiredAsterisk">*</span></mat-label>
-                                <mat-select id="observation-species" formControlName="species">
-                                    <mat-option *ngFor="let spec of this.speciesList" [value]="spec?.SpeciesId">
-                                        {{spec?.Name}}
-                                    </mat-option>
-                                </mat-select>
+                                <input type="text"
+                                    placeholder="Type a species name to filter the list"
+                                    aria-label="Number"
+                                    matInput
+                                    formControlName="species"
+                                    [matAutocomplete]="auto">
+                                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="getSpeciesDisplay">
+                                <mat-option *ngFor="let option of filteredSpeciesOptions | async" [value]="option">
+                                    {{option?.Name}}
+                                </mat-option>
+                                </mat-autocomplete>
                                 <mat-hint>What species is the majority of the animals that were observed?</mat-hint>
-                                <mat-error *ngIf="this.species?.invalid && this.species?.errors?.required">This field is required.</mat-error>
+                                <mat-error *ngIf="this.species?.invalid">This field is required and must be selected from the available list.</mat-error>
                             </mat-form-field>
                         </div>
 

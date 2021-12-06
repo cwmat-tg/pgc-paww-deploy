@@ -25,6 +25,8 @@ export class UserMessages {
 
     // Confirmation
     public static BulkUploadConfirmation = 'Your observations have been uploaded.  Here are your confirmation numbers.';
+    public static ConfirmSubmit = 'Please verify using the captcha below and submit your Observation.';
+
 }
 
 export interface ConfirmationSettings {

@@ -1,3 +1,5 @@
+import { Species } from "./config.model";
+
 export interface PointGeom {
     lat?: number;
     long?: number;
@@ -13,7 +15,7 @@ export interface Contact {
 export interface Information {
     date?: Date;
     numberOfAnimals?: string;
-    species?: string;
+    species?: number | Species;
     alive?: number;
     sickOrInjured?: number;
     inYourPossession?: number;
