@@ -13,6 +13,8 @@ import * as moment from 'moment';
 export class ConfirmationComponent implements OnInit {
   // Config
   header = MagicStrings.ConfirmationHeader;
+  meetsAuxQs = false;
+  phoneNumber = 'xxx-xxx-xxxx';
 
   constructor(
     public obsStore: ObservationService,

@@ -60,4 +60,5 @@ export interface ConfirmationState {
     confirmation?: string;
     dateOfObs?: Date;
     success?: boolean;
+    requiresAction?: boolean;
 }

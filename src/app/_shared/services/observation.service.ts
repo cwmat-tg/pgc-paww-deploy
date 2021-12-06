@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ConfirmationState } from '../models/config.model';
+import { MagicStrings } from '../models/magic-strings.model';
 import { Observation, ObservationDto, ObservationDtoContainer, ObservationMediaDto } from '../models/observation.model';
 
 @Injectable({
@@ -81,5 +82,19 @@ export class ObservationService {
       ObservationDescrition: data.information?.details
     } as ObservationDto;
   }
+
+  checkIfRequiresAction(data: ObservationDto): boolean {
+    if (
+      data.Rabies === MagicStrings.RefLookupYes ||
+      data.Possession === MagicStrings.RefLookupYes ||
+      data.Poachingsuspect === MagicStrings.RefLookupYes ||
+      data.SickInjured === MagicStrings.RefLookupYes
+      ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 
 }
