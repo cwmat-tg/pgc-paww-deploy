@@ -25,6 +25,7 @@ export class MagicStrings {
     public static AnimalCount: string = 'GetAnimalCountLookUp';
     public static Affiliation: string = 'GetWildlifeHealthAffilationLookUp';
     public static Species: string = 'GetSpeciesLookUp';
+    public static SpeciesImage: string = 'GetSpeciesItemById';
     public static YesNo: string = 'GetYesNoLookUp';
     public static Age: string = 'GetWildlifeAgeLookUp';
     public static Captive: string = 'GetOriginLookUp';

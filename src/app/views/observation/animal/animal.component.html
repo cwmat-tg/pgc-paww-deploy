@@ -125,6 +125,19 @@
 
                     </div>
 
+                    <div
+                    *ngIf="this.species?.valid"
+                    fxFlex="50"
+                    fxFlex.xs="100"
+                    fxFlex.sm="100"
+                    class="appFormRowContainer">
+
+                        <div class="appFormContainer">
+                            <app-species-card [species]="this.species?.value"></app-species-card>
+                        </div>
+
+                    </div>
+
                 </div>
 
                 <div *ngIf="this.species?.valid" fxLayout="column" [@speciesSelected]="speciesSelected" class="appFieldRow appHide">
@@ -405,7 +418,7 @@
                                     <mat-label for="observation-details">Additional Details</mat-label>
                                     <textarea
                                         id="observation-details"
-                                        formControlName="alive"
+                                        formControlName="details"
                                         matInput placeholder="Additional Details"></textarea>
                                     <mat-hint>Please describe what you observed, including details about the physical appearance and behavior of the animal(s) and the environment. What did each animal look like and what was it doing? What signs of illness or injury did you observe, if any? What time of day or night was your observation made? What was the weather like? Describe the location where the observation was made.</mat-hint>
                                     <mat-error *ngIf="this.details?.invalid && this.details?.errors?.maxLength">This field is limited to 1,500 characters.</mat-error>
