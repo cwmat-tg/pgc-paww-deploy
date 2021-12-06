@@ -15,6 +15,11 @@ export interface Species {
     Name?: string;
     ClassificationId: number;
     SortKey?: number;
+    ContentType?: string;
+    Description?: string;
+    Extension?: string;
+    PhotoCredit?: string;
+    Photo?: string;
 }
 
 export interface YesNo {
