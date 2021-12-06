@@ -19,8 +19,6 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): any {
-        debugger;
-
         const token = this.tokenService.getToken();
         const refreshToken = this.tokenService.getRefreshToken();
     
@@ -60,7 +58,6 @@ export class AuthInterceptor implements HttpInterceptor {
                     location.reload();
                   });
               } else {
-                  debugger;
                 this.authService.login({username: CONFIG_DATA.pawwU, password: CONFIG_DATA.pawwP}).subscribe(res => {
                     this.router.navigate(['/']);
                 });
