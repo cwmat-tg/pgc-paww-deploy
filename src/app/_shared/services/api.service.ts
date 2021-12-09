@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Affiliation, Age, AnimalCount, Captive, Classification, ObsMediaResponse, ObsResponse, Species, YesNo } from '../models/config.model';
+import { Affiliation, Age, AnimalCount, Captive, Classification, ObsMediaResponse, ObsResponse, Species, WildlifeStatus, YesNo } from '../models/config.model';
 import { MagicStrings } from '../models/magic-strings.model';
 import { ObservationDto, ObservationMediaDto } from '../models/observation.model';
 
@@ -62,6 +62,11 @@ export class ApiService {
   // Classification
   getClassification(): Observable<Classification[]> {
     return this.get(MagicStrings.Classification);
+  }
+
+  // Wildlife Status
+  getWildlifeStatus(): Observable<WildlifeStatus[]> {
+    return this.get(MagicStrings.WildlifeStatus);
   }
 
   // Create Observation

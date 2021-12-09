@@ -82,7 +82,9 @@ export class SplashComponent implements OnInit {
       // Classification
       this.api.getClassification(),
       // Affiliation
-      this.api.getAffiliation()
+      this.api.getAffiliation(),
+      // Wildlife
+      this.api.getWildlifeStatus()
     ]);
   }
 

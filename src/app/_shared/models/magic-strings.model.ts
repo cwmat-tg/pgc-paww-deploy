@@ -29,7 +29,8 @@ export class MagicStrings {
     public static YesNo: string = 'GetYesNoLookUp';
     public static Age: string = 'GetWildlifeAgeLookUp';
     public static Captive: string = 'GetOriginLookUp';
-    public static Classification: string = 'GetClassificationLookup';
+    public static Classification: string = 'GetClassificationLookUp';
+    public static WildlifeStatus: string = 'GetWildlifeStatusLookUp';
     public static PostObs: string = 'SubmitPublicObservation';
     public static PostObsMedia: string = 'SubmitPublicObservationImage';
 
