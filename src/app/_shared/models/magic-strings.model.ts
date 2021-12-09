@@ -42,6 +42,7 @@ export class MagicStrings {
     public static RefLookupYes: number = 33535;
     public static RefLookupNo: number = 33536;
     public static RefLookupMammal: number = 2;
+    public static RefLookupAlive: number = 1;
 
     // Local Storage Keys
     public static LocalStorageObsKey: string = 'paww:storedObservations';

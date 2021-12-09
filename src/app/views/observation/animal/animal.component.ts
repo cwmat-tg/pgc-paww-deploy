@@ -148,6 +148,7 @@ export class AnimalComponent implements OnInit, OnDestroy {
   // Refs
   refYes = MagicStrings.RefLookupYes;
   refNo = MagicStrings.RefLookupNo;
+  refAlive = MagicStrings.RefLookupAlive;
   refMammal = MagicStrings.RefLookupMammal;
 
   // Popup messages
@@ -292,7 +293,7 @@ export class AnimalComponent implements OnInit, OnDestroy {
     }
 
     // Animal Alive
-    if (this.alive?.valid && this.alive?.value === this.refYes) {
+    if (this.alive?.valid && this.alive?.value === this.refAlive) {
       // Animations
       this.animalAlive = MagicStrings.Visible;
       this.animalDead = MagicStrings.Hidden;
@@ -309,7 +310,7 @@ export class AnimalComponent implements OnInit, OnDestroy {
 
       // Clear data
       this.poaching?.reset();
-    } else if (this.alive?.valid && this.alive?.value === this.refNo) {
+    } else if (this.alive?.valid && this.alive?.value !== this.refAlive) {
       // Animations
       this.animalAlive = MagicStrings.Hidden;
       this.animalDead = MagicStrings.Visible;
