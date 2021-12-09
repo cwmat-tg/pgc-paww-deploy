@@ -101,7 +101,7 @@ export class UploadOfflineComponent implements OnDestroy {
     this.api.createObservation(payload).subscribe(res => {
       // Will hold any media POST observables for the forkjoin below
       const mediaRequests = [] as Observable<any>[];
-      const confNum = environment.useTestApi ? res.name : res.confirmationnumber;
+      const confNum = environment.useTestApi ? res.name : res as string;
       if (mediaPaylod.length > 0) {
         mediaPaylod.forEach(e => {
           mediaRequests.push(this.api.createObservationMedia({...e, ConfirmationNumber: confNum}));
