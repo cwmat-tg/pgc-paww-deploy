@@ -178,7 +178,7 @@
 
                     <!-- Sick or injured/Possession -->
                     <div
-                        *ngIf="this.alive?.valid && this.alive?.value === this.refYes"
+                        *ngIf="this.alive?.valid && this.alive?.value === this.refAlive"
                         [@animalAlive]="animalAlive"appHide
                         class="appFieldRow appHide"
                         fxLayout="row"
@@ -235,7 +235,7 @@
 
                     <!-- Poaching -->
                     <div
-                        *ngIf="this.alive?.valid && this.alive?.value === this.refNo"
+                        *ngIf="this.alive?.valid && this.alive?.value !== this.refAlive"
                         [@animalDead]="animalDead"
                         class="appFieldRow appHide"
                         fxLayout="row"
