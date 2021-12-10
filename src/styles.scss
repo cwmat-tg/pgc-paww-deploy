@@ -78,3 +78,10 @@ body {
     padding-right: $stepper-padding-mobile;
   }
 }
+
+@media only screen and (max-width: $screen-width-mobile-small) {
+  /* Styles */
+  #appHeader .mat-toolbar-row {
+    padding: 0;
+  }
+}
