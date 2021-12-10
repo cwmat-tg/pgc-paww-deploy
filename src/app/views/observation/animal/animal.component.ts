@@ -4,7 +4,7 @@ import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, Subscription } from 'rxjs';
 import { debounceTime, first, map, startWith } from 'rxjs/operators';
-import { Age, AnimalCount, Captive, Classification, Species, YesNo } from 'src/app/_shared/models/config.model';
+import { Age, AnimalCount, Captive, Classification, Species, WildlifeStatus, YesNo } from 'src/app/_shared/models/config.model';
 import { MagicStrings } from 'src/app/_shared/models/magic-strings.model';
 import { Information, ObservationMediaDto } from 'src/app/_shared/models/observation.model';
 import { UserMessages } from 'src/app/_shared/models/user-messages.model';
@@ -143,10 +143,12 @@ export class AnimalComponent implements OnInit, OnDestroy {
   ageList: Age[] = [];
   captiveList: Captive[] = [];
   classificationList: Classification[] = [];
+  wildlifeStatusList: WildlifeStatus[] = [];
 
   // Refs
   refYes = MagicStrings.RefLookupYes;
   refNo = MagicStrings.RefLookupNo;
+  refAlive = MagicStrings.RefLookupAlive;
   refMammal = MagicStrings.RefLookupMammal;
 
   // Popup messages
@@ -274,6 +276,14 @@ export class AnimalComponent implements OnInit, OnDestroy {
       error => {
         console.error(error);
       });
+
+      // Wildlife Status
+      this.api.getWildlifeStatus().subscribe(res => {
+        this.wildlifeStatusList = res;
+      },
+      error => {
+        console.error(error);
+      });
   }
 
   checkHiddenFields() {
@@ -283,7 +293,7 @@ export class AnimalComponent implements OnInit, OnDestroy {
     }
 
     // Animal Alive
-    if (this.alive?.valid && this.alive?.value === this.refYes) {
+    if (this.alive?.valid && this.alive?.value === this.refAlive) {
       // Animations
       this.animalAlive = MagicStrings.Visible;
       this.animalDead = MagicStrings.Hidden;
@@ -300,7 +310,7 @@ export class AnimalComponent implements OnInit, OnDestroy {
 
       // Clear data
       this.poaching?.reset();
-    } else if (this.alive?.valid && this.alive?.value === this.refNo) {
+    } else if (this.alive?.valid && this.alive?.value !== this.refAlive) {
       // Animations
       this.animalAlive = MagicStrings.Hidden;
       this.animalDead = MagicStrings.Visible;

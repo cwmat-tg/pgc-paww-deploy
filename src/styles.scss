@@ -58,6 +58,16 @@ body {
   margin-left: 0.25rem;
 }
 
+// Material Modals
+.cdk-overlay-pane {
+  max-height: 100vh;
+}
+
+.appConfirmTop {
+  padding-top: 0;
+  margin-bottom: 1rem;
+}
+
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width: $screen-width-mobile) {
   /* Styles */
@@ -66,5 +76,12 @@ body {
     height: 3.5rem;
     padding-left: $stepper-padding-mobile;
     padding-right: $stepper-padding-mobile;
+  }
+}
+
+@media only screen and (max-width: $screen-width-mobile-small) {
+  /* Styles */
+  #appHeader .mat-toolbar-row {
+    padding: 0;
   }
 }

@@ -68,3 +68,11 @@ export interface ObservationDtoContainer {
   uid?: string;
   dbId?: number;
 }
+
+export interface ObservationConfirmatonVm {
+  SpeciesId?: number;
+  SpeciesName?: string;
+  Date?: Date;
+  ConfirmationNumber?: string;
+  ConfirmationAction?: string;
+}

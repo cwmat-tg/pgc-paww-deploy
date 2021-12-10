@@ -7,13 +7,12 @@ import { TokenService } from './token.service';
 import * as config from 'src/assets/overrides.json';
 
 const CONFIG_DATA = config;
-const OAUTH_CLIENT = CONFIG_DATA.clientAccess;
-const OAUTH_SECRET = CONFIG_DATA.clientSec;
+const OAUTH_C = atob(CONFIG_DATA.clientAccess);
+const OAUTH_S = atob(CONFIG_DATA.clientSec);
 const API_URL = environment.tokenApi;
 const HTTP_OPTIONS = {
   headers: new HttpHeaders({
     'Content-Type': 'application/x-www-form-urlencoded',
-    // Authorization: 'Basic ' + btoa(OAUTH_CLIENT + ':' + OAUTH_SECRET)
   })
 };
 
@@ -50,8 +49,8 @@ export class AuthService {
     const body = new HttpParams()
       .set('username', loginData.username)
       .set('password', loginData.password)
-      .set('client_id', OAUTH_CLIENT)
-      .set('client_secret', OAUTH_SECRET)
+      .set('client_id', OAUTH_C)
+      .set('client_secret', OAUTH_S)
       .set('grant_type', 'password');
 
     return this.http.post<any>(API_URL, body, HTTP_OPTIONS)

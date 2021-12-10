@@ -81,8 +81,8 @@
     </mgl-map>
 
     <div class="appSelectLocationContainer">
-        <button mat-flat-button color="basic" *ngIf="!this.isActive" [disabled]="this.isActive" (click)="this.startSelect()">Select Location</button>
-        <button mat-flat-button color="basic"  *ngIf="this.isActive" [disabled]="!this.isActive" (click)="this.saveLocation()">Save Location</button>
+        <button mat-flat-button color="basic" *ngIf="!this.isActive" [disabled]="this.isActive" (click)="this.startSelect()" [ngClass]="{appOfflineButton: this.isOffline}">Select Location</button>
+        <button mat-flat-button color="basic"  *ngIf="this.isActive" [disabled]="!this.isActive" (click)="this.saveLocation()" [ngClass]="{appOfflineButton: this.isOffline}">Save Location</button>
     </div>
 
     <!-- Search bar -->

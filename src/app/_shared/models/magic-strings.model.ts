@@ -20,6 +20,8 @@ export class MagicStrings {
 
     // Confirmation page
     public static ConfirmationHeader: string = 'Confirmation';
+    public static ConfirmationHeaderActionNeeded: string = 'Contact Dispatch';
+    public static ConfirmationHeaderNoActionNeeded: string = 'Submission Complete';
 
     // API endpoints
     public static AnimalCount: string = 'GetAnimalCountLookUp';
@@ -29,7 +31,8 @@ export class MagicStrings {
     public static YesNo: string = 'GetYesNoLookUp';
     public static Age: string = 'GetWildlifeAgeLookUp';
     public static Captive: string = 'GetOriginLookUp';
-    public static Classification: string = 'GetClassificationLookup';
+    public static Classification: string = 'GetClassificationLookUp';
+    public static WildlifeStatus: string = 'GetWildlifeStatusLookUp';
     public static PostObs: string = 'SubmitPublicObservation';
     public static PostObsMedia: string = 'SubmitPublicObservationImage';
 
@@ -41,7 +44,13 @@ export class MagicStrings {
     public static RefLookupYes: number = 33535;
     public static RefLookupNo: number = 33536;
     public static RefLookupMammal: number = 2;
+    public static RefLookupAlive: number = 1;
 
     // Local Storage Keys
     public static LocalStorageObsKey: string = 'paww:storedObservations';
+
+    // Confirmation Status
+    public static ConfFreshNoAction: string = 'paww:freshNoAction';
+    public static ConfFreshActionNeeded: string = 'paww:freshActionNeeded';
+    public static ConfStale: string = 'paww:stale';
 }

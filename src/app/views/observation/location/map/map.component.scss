@@ -38,6 +38,10 @@ mgl-map {
   font-weight: 500;
 }
 
+.appOfflineButton {
+  outline: #000 solid 1px;
+}
+
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width: $screen-width-mobile) {
   /* Styles */

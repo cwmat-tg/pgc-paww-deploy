@@ -4,11 +4,12 @@ import { forkJoin, Observable, Subscription } from 'rxjs';
 import { CaptchaDialogComponent } from 'src/app/_shared/components/captcha-dialog/captcha-dialog.component';
 import { InfoDialogComponent } from 'src/app/_shared/components/info-dialog/info-dialog.component';
 import { LoadingDialogComponent } from 'src/app/_shared/components/loading-dialog/loading-dialog.component';
-import { ObservationDtoContainer } from 'src/app/_shared/models/observation.model';
+import { ObservationConfirmatonVm, ObservationDtoContainer } from 'src/app/_shared/models/observation.model';
 import { UserMessages } from 'src/app/_shared/models/user-messages.model';
 import { ApiService } from 'src/app/_shared/services/api.service';
 import { ConnectionService } from 'src/app/_shared/services/connection.service';
 import { LocalStorageService } from 'src/app/_shared/services/local-storage.service';
+import { ObservationService } from 'src/app/_shared/services/observation.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -20,7 +21,7 @@ export class UploadOfflineComponent implements OnDestroy {
   // Config
   tooltipText = UserMessages.UploadTooltip;
   count = 0;
-  confNums: string[] = [];
+  confNums: ObservationConfirmatonVm[] = [];
   initialCount = 0;
 
   // Inputs
@@ -28,8 +29,8 @@ export class UploadOfflineComponent implements OnDestroy {
   @Input() offlineObsCount: number = 0;
 
   // Outputs
-  @Output() uploadProcessed: EventEmitter<string> = new EventEmitter();
-  @Output() alluploadsProcessed: EventEmitter<string[]> = new EventEmitter();
+  @Output() uploadProcessed: EventEmitter<ObservationConfirmatonVm> = new EventEmitter();
+  @Output() alluploadsProcessed: EventEmitter<ObservationConfirmatonVm[]> = new EventEmitter();
 
   // Connection check
   isOffline!: boolean;
@@ -42,6 +43,7 @@ export class UploadOfflineComponent implements OnDestroy {
     private dialog: MatDialog,
     private connectionService: ConnectionService,
     private localStorageService: LocalStorageService,
+    private obsStore: ObservationService,
   ) {
     this.isOffline = this.connectionService.isOffline;
     this.isOffline$ = this.connectionService.isOffline$().subscribe(res => {
@@ -101,10 +103,15 @@ export class UploadOfflineComponent implements OnDestroy {
     this.api.createObservation(payload).subscribe(res => {
       // Will hold any media POST observables for the forkjoin below
       const mediaRequests = [] as Observable<any>[];
-      const confNum = environment.useTestApi ? res.name : res.confirmationnumber;
+      const confNum: ObservationConfirmatonVm = {
+        ConfirmationNumber: environment.useTestApi ? res.name : res as string,
+        SpeciesId: payload.SpeciesId,
+        Date: payload.ObservationDate,
+        ConfirmationAction: this.obsStore.getConfirmationAction(payload)
+      };
       if (mediaPaylod.length > 0) {
         mediaPaylod.forEach(e => {
-          mediaRequests.push(this.api.createObservationMedia({...e, ConfirmationNumber: confNum}));
+          mediaRequests.push(this.api.createObservationMedia({...e, ConfirmationNumber: confNum.ConfirmationNumber}));
         });
         forkJoin(mediaRequests).subscribe(results => {
           // All uploads succeeded
@@ -130,7 +137,7 @@ export class UploadOfflineComponent implements OnDestroy {
     });
   }
 
-  private checkConfNums(confNum: string | undefined) {
+  private checkConfNums(confNum: ObservationConfirmatonVm) {
     if (!confNum)
       return;
 

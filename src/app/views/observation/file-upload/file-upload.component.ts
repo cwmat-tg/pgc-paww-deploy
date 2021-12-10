@@ -53,10 +53,10 @@ export class FileUploadComponent {
   async onFilesChanged() {
     const tempData: ObservationMediaDto[] = [];
     for (const fileData of this.files) {
-      const fileContents = await this.readFile(fileData);
+      const fileContents = await this.readFile(fileData) as string;
       tempData.push({
         FileName: fileData.name,
-        File: fileContents
+        File: fileContents.split("base64,")[1]
       } as ObservationMediaDto);
     }
 

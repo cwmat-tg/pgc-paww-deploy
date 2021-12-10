@@ -46,6 +46,12 @@ export interface Classification {
     SortKey?: number;
 }
 
+export interface WildlifeStatus {
+    WildlifeStatusId?: number;
+    Name?: string;
+    SortKey?: number;
+}
+
 export interface ObsResponse {
     confirmation?: string;
     name?: string;
