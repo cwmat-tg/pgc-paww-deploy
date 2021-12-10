@@ -53,7 +53,7 @@ export class SplashComponent implements OnInit {
         this.router.navigate(['/app/home']);
       } else {
         // Login
-        this.auth.login({username: CONFIG_DATA.pawwU, password: CONFIG_DATA.pawwP}).subscribe(authRes => {
+        this.auth.login({username: CONFIG_DATA.pawwU, password: atob(CONFIG_DATA.pawwP)}).subscribe(authRes => {
           // Cache API lookups
           this.cacheEndpoints().subscribe(res => {
             console.log('Cached endpoints');

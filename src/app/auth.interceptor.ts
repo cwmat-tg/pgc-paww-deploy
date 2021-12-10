@@ -58,7 +58,7 @@ export class AuthInterceptor implements HttpInterceptor {
                     location.reload();
                   });
               } else {
-                this.authService.login({username: CONFIG_DATA.pawwU, password: CONFIG_DATA.pawwP}).subscribe(res => {
+                this.authService.login({username: CONFIG_DATA.pawwU, password: atob(CONFIG_DATA.pawwP)}).subscribe(res => {
                     this.router.navigate(['/']);
                 });
               }

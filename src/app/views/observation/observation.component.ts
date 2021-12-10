@@ -9,7 +9,6 @@ import { CaptchaDialogComponent } from 'src/app/_shared/components/captcha-dialo
 import { InfoDialogComponent } from 'src/app/_shared/components/info-dialog/info-dialog.component';
 import { LoadingDialogComponent } from 'src/app/_shared/components/loading-dialog/loading-dialog.component';
 import { ConfirmationState } from 'src/app/_shared/models/config.model';
-import { ObservationDtoContainer } from 'src/app/_shared/models/observation.model';
 import { UserMessages } from 'src/app/_shared/models/user-messages.model';
 import { ApiService } from 'src/app/_shared/services/api.service';
 import { ConnectionService } from 'src/app/_shared/services/connection.service';
@@ -126,20 +125,20 @@ export class ObservationComponent implements AfterViewInit, OnDestroy {
     // Skip captcha if offline
     if (this.isOffline) {
       this.submit();
+    } else {
+      // Open captcha
+      const dialogRef = this.dialog.open(CaptchaDialogComponent, {
+        width: '35rem',
+        data: { title: 'Submit Observation', text: UserMessages.ConfirmSubmit, confirm: 'Confirm Submission', cancel: 'Cancel' },
+        disableClose: true
+      });
+
+      dialogRef.afterClosed().subscribe(data => {
+        if (data) {
+          this.submit();
+        }
+      });
     }
-
-    // Open captcha
-    const dialogRef = this.dialog.open(CaptchaDialogComponent, {
-      width: '35rem',
-      data: { title: 'Submit Observation', text: UserMessages.ConfirmSubmit, confirm: 'Confirm Submission', cancel: 'Cancel' },
-      disableClose: true
-    });
-
-    dialogRef.afterClosed().subscribe(data => {
-      if (data) {
-        this.submit();
-      }
-    });
   }
 
   submit() {
