@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import * as moment from 'moment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ConfirmationState } from '../models/config.model';
 import { MagicStrings } from '../models/magic-strings.model';
@@ -93,6 +94,43 @@ export class ObservationService {
       return true;
     } else {
       return false;
+    }
+  }
+
+  isWithinDateRange(data: Date | undefined): boolean {
+    if (data) {
+      const withinRange = moment(data).isSameOrAfter(moment().subtract(2, 'months'));
+      return withinRange;
+    } else {
+      return false;
+    }
+  }
+
+  getConfirmationAction(data: ObservationDto) {
+    if (
+      this.checkIfRequiresAction(data) &&
+      this.isWithinDateRange(data.ObservationDate)
+    ) {
+      // Action needed
+      return MagicStrings.ConfFreshActionNeeded;
+
+    } else if (
+      !this.checkIfRequiresAction(data) &&
+      this.isWithinDateRange(data.ObservationDate)
+    ) {
+      // No action needed
+      return MagicStrings.ConfFreshNoAction;
+
+    } else if (
+      !this.isWithinDateRange(data.ObservationDate)
+    ) {
+      // Stale
+      return MagicStrings.ConfStale;
+
+    } else {
+      console.error('Issue mapping data to confirmation type');
+
+      return 'error';
     }
   }
 

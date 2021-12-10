@@ -24,9 +24,10 @@ export class UserMessages {
     public static UploadTooltip: string = 'Looks like you have some Observations that were saved on your device while you were offline.  Now that you are online again, click to upload them.';
 
     // Confirmation
-    public static BulkUploadConfirmation = 'Your observations have been uploaded.  Here are your confirmation numbers.';
+    public static BulkUploadConfirmation = 'Thank you for submitting an observation to Pennsylvania Wildlife Watch.';
     public static ConfirmSubmit = 'Please verify using the captcha below and submit your Observation.';
-
+    public static ConfirmActionNeededShort = 'Based on your observation details, an additional investigation by the Pennsylvania Game Commission may be required. Please immediately contact the Game Commission at xxx-xxx-xxxx.';
+    public static ConfirmNoActionNeededShort = 'Based on your observation details, you may be contacted by the Pennsylvania Game Commission if you provided your contact information. Follow-up contact is not guaranteed, but recent observations are prioritized.';
 }
 
 export interface ConfirmationSettings {

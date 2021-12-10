@@ -20,6 +20,8 @@ export class MagicStrings {
 
     // Confirmation page
     public static ConfirmationHeader: string = 'Confirmation';
+    public static ConfirmationHeaderActionNeeded: string = 'Contact Dispatch';
+    public static ConfirmationHeaderNoActionNeeded: string = 'Submission Complete';
 
     // API endpoints
     public static AnimalCount: string = 'GetAnimalCountLookUp';
@@ -46,4 +48,9 @@ export class MagicStrings {
 
     // Local Storage Keys
     public static LocalStorageObsKey: string = 'paww:storedObservations';
+
+    // Confirmation Status
+    public static ConfFreshNoAction: string = 'paww:freshNoAction';
+    public static ConfFreshActionNeeded: string = 'paww:freshActionNeeded';
+    public static ConfStale: string = 'paww:stale';
 }

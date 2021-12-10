@@ -292,7 +292,6 @@ export class AnimalComponent implements OnInit, OnDestroy {
       this.state = MagicStrings.Visible;
     }
 
-    debugger;
     // Animal Alive
     if (this.alive?.valid && this.alive?.value === this.refAlive) {
       // Animations
