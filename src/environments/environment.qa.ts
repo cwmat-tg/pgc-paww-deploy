@@ -5,5 +5,6 @@ export const environment = {
   apiEndpoint: 'https://pgcapigw.pa.gov/PAWWService/qa1.0/api/Paww',
   useTestApi: false,
   captchaSiteKey: '6LdUuXMdAAAAAFMniF2loADC2sANfLGmkByoDB3u',
+  captchaSiteKeyV3: '6LcFK50dAAAAABBLQ5jf47PVEEmvQx8Dn3_ekrv8',
   tokenApi: 'https://pgcapigw.pa.gov/token'
 };

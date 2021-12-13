@@ -14,6 +14,8 @@ import { LoadingDialogComponent } from '../components/loading-dialog/loading-dia
 import { RecaptchaModule } from 'ng-recaptcha';
 import { CaptchaDialogComponent } from '../components/captcha-dialog/captcha-dialog.component';
 import { SpeciesCardComponent } from '../components/species-card/species-card.component';
+import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from "ng-recaptcha";
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { SpeciesCardComponent } from '../components/species-card/species-card.co
     FlexLayoutModule,
     MaterialModule,
     HttpClientModule,
-    RecaptchaModule
+    RecaptchaModule,
+    RecaptchaV3Module
   ],
   exports: [
     CommonModule,
@@ -39,7 +42,8 @@ import { SpeciesCardComponent } from '../components/species-card/species-card.co
     LoadingDialogComponent,
     RecaptchaModule,
     CaptchaDialogComponent,
-    SpeciesCardComponent
+    SpeciesCardComponent,
+    RecaptchaV3Module
   ],
   declarations: [
     VersionComponent,
@@ -51,6 +55,7 @@ import { SpeciesCardComponent } from '../components/species-card/species-card.co
     LoadingDialogComponent,
     CaptchaDialogComponent,
     SpeciesCardComponent
-  ]
+  ],
+  providers: [{ provide: RECAPTCHA_V3_SITE_KEY, useValue: environment.captchaSiteKeyV3 }],
 })
 export class SharedModule {}

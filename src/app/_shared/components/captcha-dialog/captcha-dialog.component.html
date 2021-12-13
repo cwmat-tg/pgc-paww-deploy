@@ -9,7 +9,13 @@
             <h3 class="appMainText" style="text-overflow: ellipsis; overflow:hidden;" [innerHtml]="data.text">
             </h3>
             <div class="appCaptcha">
-                <re-captcha (resolved)="this.resolved($event)" [siteKey]="this.siteKey"></re-captcha>
+                <re-captcha *ngIf="this.captchaValid === false && this.captchaV3Triggered === true" (resolved)="this.resolved($event)" [siteKey]="this.siteKey"></re-captcha>
+            </div>
+            <div>
+                <small>This site is protected by reCAPTCHA and the Google 
+                    <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+                    <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+                </small>
             </div>
         </div>
 
