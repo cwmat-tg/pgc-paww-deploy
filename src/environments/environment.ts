@@ -12,6 +12,7 @@ export const environment = {
   useTestApi: false,
   // useTestApi: true,
   captchaSiteKey: '6LdUuXMdAAAAAFMniF2loADC2sANfLGmkByoDB3u',
+  captchaSiteKeyV3: '6LcFK50dAAAAABBLQ5jf47PVEEmvQx8Dn3_ekrv8',
   tokenApi: 'https://pgcapigw.pa.gov/token',
   // tokenApi: 'http://localhost:8010/proxy/token'
 };

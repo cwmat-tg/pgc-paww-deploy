@@ -25,7 +25,7 @@ export class UserMessages {
 
     // Confirmation
     public static BulkUploadConfirmation = 'Thank you for submitting an observation to Pennsylvania Wildlife Watch.';
-    public static ConfirmSubmit = 'Please verify using the captcha below and submit your Observation.';
+    public static ConfirmSubmit = 'Please confirm your Observation Submission.';
     public static ConfirmActionNeededShort = 'Based on your observation details, an additional investigation by the Pennsylvania Game Commission may be required. Please immediately contact the Game Commission at xxx-xxx-xxxx.';
     public static ConfirmNoActionNeededShort = 'Based on your observation details, you may be contacted by the Pennsylvania Game Commission if you provided your contact information. Follow-up contact is not guaranteed, but recent observations are prioritized.';
 }
