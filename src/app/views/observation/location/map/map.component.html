@@ -46,6 +46,36 @@
         >
         </mgl-geojson-source>
 
+        <mgl-geojson-source
+            id="region"
+            [data]="this.region"
+        >
+        </mgl-geojson-source>
+
+        <mgl-geojson-source
+            id="stateForest"
+            [data]="this.stateForest"
+        >
+        </mgl-geojson-source>
+
+        <mgl-geojson-source
+            id="statePark"
+            [data]="this.statePark"
+        >
+        </mgl-geojson-source>
+
+        <mgl-geojson-source
+            id="sgl"
+            [data]="this.sgl"
+        >
+        </mgl-geojson-source>
+
+        <mgl-geojson-source
+            id="road"
+            [data]="this.road"
+        >
+        </mgl-geojson-source>
+
         <!-- Offline Map Layers -->
         <ng-container *ngIf="this.offlineLayersOn">
             <mgl-layer
@@ -54,6 +84,46 @@
                 type="fill"
                 source="paCounty"
                 [paint]="paCountyPaint"
+            ></mgl-layer>
+
+            <mgl-layer
+                #targetLayerSgl
+                id="sgl"
+                type="fill"
+                source="sgl"
+                [paint]="sglPaint"
+            ></mgl-layer>
+
+            <mgl-layer
+                #targetLayerStateForest
+                id="stateForest"
+                type="fill"
+                source="stateForest"
+                [paint]="stateForestPaint"
+            ></mgl-layer>
+
+            <mgl-layer
+                #targetLayerStatePark
+                id="statePark"
+                type="fill"
+                source="statePark"
+                [paint]="stateParkPaint"
+            ></mgl-layer>
+
+            <mgl-layer
+                #targetLayerStateForest
+                id="road"
+                type="line"
+                source="road"
+                [paint]="roadPaint"
+            ></mgl-layer>
+
+            <mgl-layer
+                #targetLayerRegion
+                id="region"
+                type="line"
+                source="region"
+                [paint]="regionPaint"
             ></mgl-layer>
 
             <mgl-layer
