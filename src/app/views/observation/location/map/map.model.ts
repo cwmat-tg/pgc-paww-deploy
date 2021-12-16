@@ -38,8 +38,8 @@ export class MapModel {
 
     // SGL
     public static FillSGLPaintStyle: any = {
-        'fill-color': 'rgba(85, 255, 0, 1)',
-        'fill-outline-color': 'rgba(85, 255, 0, 1)'
+        'fill-color': 'rgba(255, 212, 97, 1)',
+        'fill-outline-color': 'rgba(255, 212, 97, 1)'
     }
 
     // Roads

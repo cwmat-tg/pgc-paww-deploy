@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { Candidate, Candidates, SearchTypes } from './geo-search.model';
 import { GeoSearchService } from './geo-search.service';
 
@@ -35,7 +36,11 @@ export class GeoSearchComponent implements OnInit, OnDestroy {
       this.candidates = candidates;
     });
 
-    this.valuesChange$ = this.searchCtrl.valueChanges.subscribe(_ => {
+    this.valuesChange$ = this.searchCtrl.valueChanges
+    .pipe(
+      debounceTime(200)
+    )
+    .subscribe(_ => {
       let value = this.searchCtrl.value
       if (value === '' || !value) {
         this.geoSearchService.clearCandidates();
