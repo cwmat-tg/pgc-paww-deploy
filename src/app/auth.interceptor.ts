@@ -6,19 +6,29 @@ import { catchError, map } from "rxjs/operators";
 import { AuthService } from "./_shared/services/auth.service";
 import { TokenService } from "./_shared/services/token.service";
 import * as config from 'src/assets/overrides.json';
+import { ConnectionService } from "./_shared/services/connection.service";
 
 const CONFIG_DATA = config;
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+    isOffline: boolean;
 
     constructor(
         private router: Router,
         private tokenService: TokenService,
-        private authService: AuthService) {
+        private authService: AuthService,
+        private connectionService: ConnectionService,
+        ) {
+            this.isOffline = this.connectionService.isOffline;
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): any {
+        if (this.isOffline) {
+            console.log('Offline request');
+            return next.handle(request);
+        }
+
         const token = this.tokenService.getToken();
         const refreshToken = this.tokenService.getRefreshToken();
     
@@ -59,7 +69,7 @@ export class AuthInterceptor implements HttpInterceptor {
                   });
               } else {
                 this.authService.login({username: CONFIG_DATA.pawwU, password: atob(CONFIG_DATA.pawwP)}).subscribe(res => {
-                    this.router.navigate(['/']);
+                    location.reload();
                 });
               }
             }
