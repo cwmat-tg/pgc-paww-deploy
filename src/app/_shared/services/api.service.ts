@@ -79,6 +79,7 @@ export class ApiService {
     return this.post(MagicStrings.PostObsMedia, data) as Observable<ObsMediaResponse>;
   }
 
+  // Used as a backup check to see if offline
   async canaryTest() {
     try {
       await this.http.get('/index.html', {responseType: 'text'}).toPromise();
