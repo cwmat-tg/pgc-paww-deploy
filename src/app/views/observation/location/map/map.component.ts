@@ -7,6 +7,11 @@ import booleanIntersects from '@turf/boolean-intersects';
 import * as turf from '@turf/turf';
 import * as paBoundary from 'src/assets/gis/pa.json';
 import * as paCounties from 'src/assets/gis/pa_county.json';
+import * as regions from 'src/assets/gis/regions.json';
+import * as stateForests from 'src/assets/gis/state_forest.json';
+import * as stateParks from 'src/assets/gis/state_park.json';
+import * as sgls from 'src/assets/gis/sgl.json';
+import * as roads from 'src/assets/gis/roads.json';
 import { ControlComponent, Position } from 'ngx-maplibre-gl';
 import { Subscription } from 'rxjs';
 import { ConnectionService } from 'src/app/_shared/services/connection.service';
@@ -53,7 +58,17 @@ export class MapComponent implements OnInit, OnDestroy {
   // Offline Layers
   offlineLayersOn = false;
   paCounty: any = paCounties;
+  region: any = regions;
+  stateForest: any = stateForests;
+  statePark: any = stateParks;
+  sgl: any = sgls;
+  road: any = roads;
   paCountyPaint: any = MapModel.FillCountyPaintStyle;
+  regionPaint: any = MapModel.LineRegionPaintStyle;
+  stateForestPaint: any = MapModel.FillStateForestPaintStyle;
+  stateParkPaint: any = MapModel.FillStateParkPaintStyle;
+  sglPaint: any = MapModel.FillSGLPaintStyle;
+  roadPaint: any = MapModel.LineRoadsPaintStyle;
 
   // Connection check
   isOffline!: boolean;

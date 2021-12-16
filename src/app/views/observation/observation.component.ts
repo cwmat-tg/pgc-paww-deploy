@@ -9,8 +9,10 @@ import { CaptchaDialogComponent } from 'src/app/_shared/components/captcha-dialo
 import { InfoDialogComponent } from 'src/app/_shared/components/info-dialog/info-dialog.component';
 import { LoadingDialogComponent } from 'src/app/_shared/components/loading-dialog/loading-dialog.component';
 import { ConfirmationState } from 'src/app/_shared/models/config.model';
+import { ObservationDtoContainer } from 'src/app/_shared/models/observation.model';
 import { UserMessages } from 'src/app/_shared/models/user-messages.model';
 import { ApiService } from 'src/app/_shared/services/api.service';
+import { AuthService } from 'src/app/_shared/services/auth.service';
 import { ConnectionService } from 'src/app/_shared/services/connection.service';
 import { LocalStorageService } from 'src/app/_shared/services/local-storage.service';
 import { ObservationService } from 'src/app/_shared/services/observation.service';
@@ -55,6 +57,7 @@ export class ObservationComponent implements AfterViewInit, OnDestroy {
     private connectionService: ConnectionService,
     private localStorageService: LocalStorageService,
     private cd: ChangeDetectorRef,
+    private authService: AuthService,
   ) {
     this.stepperOrientation = breakpointObserver.observe('(min-width: 800px)')
       .pipe(map(({matches}) => matches ? 'horizontal' : 'vertical'));
@@ -141,7 +144,7 @@ export class ObservationComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  submit() {
+  async submit() {
     // Open loading spinner
     const saveRef = this.dialog.open(LoadingDialogComponent, {
       width: '25rem',
@@ -158,27 +161,13 @@ export class ObservationComponent implements AfterViewInit, OnDestroy {
     if (this.isOffline) {
       saveRef.close();
 
-      const confirmDialogRef = this.dialog.open(InfoDialogComponent, {
-        width: '35rem',
-        data: { title: 'Currently Offline', text: UserMessages.CurrentlyOffline, confirm: 'Save and Return Home', cancel: 'Close' },
-        disableClose: true
-      });
-
-      confirmDialogRef.afterClosed().subscribe(data => {
-        if (data) {
-          // Save offline
-          this.localStorageService.setObservation(obsContainer);
-
-          // Then reset and reroute home and reset
-          this.obsStore.resetObservation();
-          this.router.navigate(['/']);
-        } else {
-          // Stay on the page
-        }
-      });
+      this.offlineDialog(obsContainer);
 
       return;
     }
+
+    // Refresh token
+    await this.authService.login().toPromise();
 
     // POST to API
     this.api.createObservation(payload).subscribe(res => {
@@ -209,7 +198,10 @@ export class ObservationComponent implements AfterViewInit, OnDestroy {
     }, err => {
       // The initial request failed or there was no confirmation number
       console.error(err);
+
       saveRef.close();
+
+      this.offlineDialog(obsContainer);
     });
 
   }
@@ -217,6 +209,27 @@ export class ObservationComponent implements AfterViewInit, OnDestroy {
   private routeToConfirmation(data: ConfirmationState) {
     this.obsStore.setObservationSubmitState({ ...data});
     this.router.navigate(['/app/observation/confirmation']);
+  }
+
+  private offlineDialog(obsContainer: ObservationDtoContainer) {
+    const confirmDialogRef = this.dialog.open(InfoDialogComponent, {
+      width: '35rem',
+      data: { title: 'Currently Offline', text: UserMessages.CurrentlyOffline, confirm: 'Save and Return Home', cancel: 'Close' },
+      disableClose: true
+    });
+
+    confirmDialogRef.afterClosed().subscribe(data => {
+      if (data) {
+        // Save offline
+        this.localStorageService.setObservation(obsContainer);
+
+        // Then reset and reroute home and reset
+        this.obsStore.resetObservation();
+        this.router.navigate(['/']);
+      } else {
+        // Stay on the page
+      }
+    });
   }
 
 }

@@ -7,6 +7,7 @@ import { LoadingDialogComponent } from 'src/app/_shared/components/loading-dialo
 import { ObservationConfirmatonVm, ObservationDtoContainer } from 'src/app/_shared/models/observation.model';
 import { UserMessages } from 'src/app/_shared/models/user-messages.model';
 import { ApiService } from 'src/app/_shared/services/api.service';
+import { AuthService } from 'src/app/_shared/services/auth.service';
 import { ConnectionService } from 'src/app/_shared/services/connection.service';
 import { LocalStorageService } from 'src/app/_shared/services/local-storage.service';
 import { ObservationService } from 'src/app/_shared/services/observation.service';
@@ -44,6 +45,7 @@ export class UploadOfflineComponent implements OnDestroy {
     private connectionService: ConnectionService,
     private localStorageService: LocalStorageService,
     private obsStore: ObservationService,
+    private auth: AuthService,
   ) {
     this.isOffline = this.connectionService.isOffline;
     this.isOffline$ = this.connectionService.isOffline$().subscribe(res => {
@@ -86,7 +88,7 @@ export class UploadOfflineComponent implements OnDestroy {
     });
   }
 
-  processUpload(obsContainer: ObservationDtoContainer) {
+  async processUpload(obsContainer: ObservationDtoContainer) {
     // Open loading spinner
     const saveRef = this.dialog.open(LoadingDialogComponent, {
       width: '25rem',
@@ -98,6 +100,9 @@ export class UploadOfflineComponent implements OnDestroy {
     const mediaPaylod = obsContainer.media;
 
     this.initialCount = this.offlineObsCount;
+
+    // Refresh token
+    await this.auth.login().toPromise();
 
     // POST to API
     this.api.createObservation(payload).subscribe(res => {

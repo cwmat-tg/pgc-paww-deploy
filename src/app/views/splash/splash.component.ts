@@ -34,37 +34,44 @@ export class SplashComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.handleLoad();
+    
+  }
+
+  async handleLoad() {
+    // Sometimes navigator.onLine has trouble on first load so test a GET with this canary
+    const canary = await this.api.canaryTest();
+
+    // Bypass login if using a dev/test API
     if (environment.useTestApi) {
-      // Cache API lookups
-      this.cacheEndpoints().subscribe(res => {
-        console.log('Cached endpoints');
-      });
-
-      // Load any necessary app data and then nav to home
-      this.router.navigate(['/app/home']);
+      this.cacheAndReroute();
     } else {
-      if (this.isOffline) {
-        // Cache API lookups
-        this.cacheEndpoints().subscribe(res => {
-          console.log('Cached endpoints');
-        });
-
-        // Load any necessary app data and then nav to home
-        this.router.navigate(['/app/home']);
+      // If offline, skip login and pull endpoints from service worker cache
+      if (this.isOffline || canary === false) {
+        console.log('Offline, skipping login');
+        this.cacheAndReroute();
       } else {
-        // Login
-        this.auth.login({username: CONFIG_DATA.pawwU, password: atob(CONFIG_DATA.pawwP)}).subscribe(authRes => {
-          // Cache API lookups
-          this.cacheEndpoints().subscribe(res => {
-            console.log('Cached endpoints');
-          });
-
-          // Load any necessary app data and then nav to home
-          this.router.navigate(['/app/home']);
+        // Try login, still might fail if the above canary was holding on to cache so
+        // try one last attempt to cache without login just in case
+        console.log('Online, login');
+        this.auth.login().subscribe(authRes => {
+          this.cacheAndReroute();
+        }, err => {
+          console.error('May be offline attempting cache', err);
+          this.cacheAndReroute();
         });
       }
     }
-    
+  }
+
+  private cacheAndReroute() {
+    // Cache API lookups
+    this.cacheEndpoints().subscribe(res => {
+      console.log('Cached endpoints');
+    });
+
+    // Load any necessary app data and then nav to home
+    this.router.navigate(['/app/home']);
   }
 
   private cacheEndpoints() {

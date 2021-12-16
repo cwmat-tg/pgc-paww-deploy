@@ -75,6 +75,7 @@ export class GeoSearchService {
         authentication: this.authentication,
         location: `${biasCoord[0]},${biasCoord[1]}`,
         countryCode: 'USA',
+        maxSuggestions: 3
       } as IEndpointOptions)
       .then(suggestResult => {
       if (suggestResult.suggestions.length < 1) {

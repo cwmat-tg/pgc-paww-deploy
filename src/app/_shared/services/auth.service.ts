@@ -43,12 +43,12 @@ export class AuthService {
     console.log(message);
   }
 
-  login(loginData: any): Observable<any> {
+  login(): Observable<any> {
     this.tokenService.removeToken();
     this.tokenService.removeRefreshToken();
     const body = new HttpParams()
-      .set('username', loginData.username)
-      .set('password', loginData.password)
+      .set('username', CONFIG_DATA.pawwU)
+      .set('password', atob(CONFIG_DATA.pawwP))
       .set('client_id', OAUTH_C)
       .set('client_secret', OAUTH_S)
       .set('grant_type', 'password');

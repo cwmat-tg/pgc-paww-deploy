@@ -23,12 +23,12 @@
 </div>
 
 <div mat-dialog-actions style="width: 100%; margin-bottom: 0.5rem;">
+    <div fxFlex fxLayout="column" fxLayoutAlign="center center" *ngIf="data?.cancel">
+        <button [mat-dialog-close]="false" mat-flat-button color="accent"
+          class="appConfirmButton appSquareButton appSkinnyFontButton" style="margin-right: 1rem;">{{data.cancel}}</button>
+      </div>
     <div fxFlex fxLayout="column" fxLayoutAlign="center center" *ngIf="data?.confirm">
       <button [disabled]="!this.captchaValid" [mat-dialog-close]="true" mat-flat-button color="accent"
         class="appConfirmButton appSquareButton appSkinnyFontButton" style="margin-right: 1rem;">{{data.confirm}}</button>
-    </div>
-    <div fxFlex fxLayout="column" fxLayoutAlign="center center" *ngIf="data?.cancel">
-      <button [mat-dialog-close]="false" mat-flat-button color="accent"
-        class="appConfirmButton appSquareButton appSkinnyFontButton" style="margin-right: 1rem;">{{data.cancel}}</button>
     </div>
 </div>
