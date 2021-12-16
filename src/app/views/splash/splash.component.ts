@@ -54,7 +54,7 @@ export class SplashComponent implements OnInit {
         // Try login, still might fail if the above canary was holding on to cache so
         // try one last attempt to cache without login just in case
         console.log('Online, login');
-        this.auth.login({username: CONFIG_DATA.pawwU, password: atob(CONFIG_DATA.pawwP)}).subscribe(authRes => {
+        this.auth.login().subscribe(authRes => {
           this.cacheAndReroute();
         }, err => {
           console.error('May be offline attempting cache', err);

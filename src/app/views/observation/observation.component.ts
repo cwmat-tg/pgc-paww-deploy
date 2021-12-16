@@ -11,6 +11,7 @@ import { LoadingDialogComponent } from 'src/app/_shared/components/loading-dialo
 import { ConfirmationState } from 'src/app/_shared/models/config.model';
 import { UserMessages } from 'src/app/_shared/models/user-messages.model';
 import { ApiService } from 'src/app/_shared/services/api.service';
+import { AuthService } from 'src/app/_shared/services/auth.service';
 import { ConnectionService } from 'src/app/_shared/services/connection.service';
 import { LocalStorageService } from 'src/app/_shared/services/local-storage.service';
 import { ObservationService } from 'src/app/_shared/services/observation.service';
@@ -55,6 +56,7 @@ export class ObservationComponent implements AfterViewInit, OnDestroy {
     private connectionService: ConnectionService,
     private localStorageService: LocalStorageService,
     private cd: ChangeDetectorRef,
+    private authService: AuthService,
   ) {
     this.stepperOrientation = breakpointObserver.observe('(min-width: 800px)')
       .pipe(map(({matches}) => matches ? 'horizontal' : 'vertical'));
@@ -141,7 +143,7 @@ export class ObservationComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  submit() {
+  async submit() {
     // Open loading spinner
     const saveRef = this.dialog.open(LoadingDialogComponent, {
       width: '25rem',
@@ -179,6 +181,9 @@ export class ObservationComponent implements AfterViewInit, OnDestroy {
 
       return;
     }
+
+    // Refresh token
+    await this.authService.login().toPromise();
 
     // POST to API
     this.api.createObservation(payload).subscribe(res => {
