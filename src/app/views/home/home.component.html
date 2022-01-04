@@ -24,14 +24,25 @@
                     fxFlex.sm="100"
                     id="appHeroContainer">
 
-                    <h1 class="appHomepageText" id="appHeroHeader">{{ this.appName }}</h1>
+                    <!-- <h1 class="appHomepageText" id="appHeroHeader">{{ this.appName }}</h1> -->
 
                     <div class="appHomepageText" id="appHeroContent">
-                        {{this.appName}} ({{ this.appAbbrev }}) is lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore magna aliqua. Lobortis mattis aliquam faucibus purus in massa
-                        tempor. Quam quisque id diam vel quam. Cursus eget nunc scelerisque
-                        viverra mauris. Aliquam purus sit amet luctus venenatis.
+                        <p>
+                            You can play a critical role in wildlife health surveillance!
+                        </p>
+
+                        <p>
+                            {{this.appName}} ({{ this.appAbbrev }}) is the Pennsylvania Game Commission's online tool for public reporting of wildlife health issues within the Commonwealth. 
+                            Please submit observations of wild birds or mammals that have died, appear injured or sick, or are acting abnormally. Remember to always remain at a safe distance when observing wildlife and do not handle injured, sick, or dead wildlife. 
+                            
+                        </p>
+                        <p>
+                            If your observation requires immediate assistance, please contact the <a class="appHomeLink" href="https://www.pgc.pa.gov/InformationResources/AboutUs/ContactInformation/Pages/default.aspx" target="_blank">Game Commission office in your region</a>. 
+                        </p>
+
+                        <p>
+                            Thank you for using {{ this.appAbbrev }}! With your help, the Game Commission can quickly track, respond to, and investigate wildlife health events.
+                        </p>
                     </div>
 
                     <button mat-flat-button color="basic" id="appObservationButton" type="button" (click)="this.createObservation()">
