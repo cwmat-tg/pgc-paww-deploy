@@ -26,8 +26,8 @@ export class UserMessages {
     // Confirmation
     public static BulkUploadConfirmation = 'Thank you for submitting an observation to Pennsylvania Wildlife Watch.';
     public static ConfirmSubmit = 'Please confirm your Observation Submission.';
-    public static ConfirmActionNeededShort = 'Based on your observation details, an additional investigation by the Pennsylvania Game Commission may be required. Please immediately contact the Game Commission at xxx-xxx-xxxx.';
-    public static ConfirmNoActionNeededShort = 'Based on your observation details, you may be contacted by the Pennsylvania Game Commission if you provided your contact information. Follow-up contact is not guaranteed, but recent observations are prioritized.';
+    public static ConfirmActionNeededShort = '<p>Based on your observation details, an additional investigation by the Pennsylvania Game Commission may be required.</p><p>Please immediately contact the Game Commission at 717-787-4250 and provide your PAWW confirmation number to the dispatcher.</p><p>More information about the Game Commission can be found on their website at <a href="https://www.pgc.pa.gov/" target="_blank">pgc.pa.gov</a>.</p>';
+    public static ConfirmNoActionNeededShort = '<p>Based on your observation details, the Pennsylvania Game Commission or <a href="https://www.vet.upenn.edu/research/centers-laboratories/research-initiatives/wildlife-futures-program" target="_blank">Wildlife Futures Program</a> may contact you for additional information.</p><p>Follow-up contact is not guaranteed but recent observations are prioritized.</p><p>More information about the Game Commission can be found on their website at <a href="https://www.pgc.pa.gov/" target="_blank">pgc.pa.gov</a>.</p>';
 }
 
 export interface ConfirmationSettings {
