@@ -3,7 +3,7 @@ export class UserMessages {
     public static LocationHelperText: string = 'Use the map below to draw a point at the location at which the observation you wish to report was made.';
 
     // Contact page
-    public static ContactHelperText: string = 'Please complete the following fields below for your observation report. Providing contact information will enable the Game Commission to contact you should they need to discuss your observation.';
+    public static ContactHelperText: string = 'Please provide your contact information in case the Game Commission needs to contact you to discuss your observation.';
 
     // Map page
     public static OfflineMap: string = 'Looks like you currently have limited network connection.  Loading a simplified offline map view until connection is restored.';
