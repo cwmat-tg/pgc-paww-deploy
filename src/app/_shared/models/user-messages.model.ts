@@ -9,7 +9,7 @@ export class UserMessages {
     public static OfflineMap: string = 'Looks like you currently have limited network connection.  Loading a simplified offline map view until connection is restored.';
 
     // Animal page
-    public static AnimalHelperText: string = 'Please complete all of the following fields below in order to proceed with your observation report. Fish, amphibian, or reptile observations should be directed to the Pennsylvania Fish and Boat Commission (provide URL link or phone number).';
+    public static AnimalHelperText: string = 'Please provide the details of your bird or mammal observation. Any amphibian, fish, or reptile observations should be directed to the Pennsylvania Fish and Boat Commission. * Denotes Required Field.';
     public static PhotosHelperText: string = 'Optionally, upload photos and/or videos of your observation.  Combined photos/videos cannot exceed 25MB.';
     public static RabiesPopup: string = 'Signs that an animal might have rabies: aggressive behavior, drooling, lack of fear of humans, walking in circles or otherwise appearing disoriented, biting or chewing on itself. These signs may also occur with other diseases.';
     public static CaptivePopup: string = 'Captive - animal is usually kept inside an enclosure and is there now or may have escaped, Free-Ranging Wild - the animal is not contained and does not appear to have escaped from captivity.';
