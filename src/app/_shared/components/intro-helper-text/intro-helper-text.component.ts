@@ -9,4 +9,5 @@ export class IntroHelperTextComponent {
   // Inputs
   @Input() header: string = '';
   @Input() content: string = '';
+  @Input() centerHeader: boolean = false;
 }
