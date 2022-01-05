@@ -60,7 +60,7 @@
                                     {{animalNum?.Name}}
                                 </mat-option>
                             </mat-select>
-                            <mat-hint>How many animals did you see?</mat-hint>
+                            <mat-hint>How many animals did you observe?</mat-hint>
                             <mat-error *ngIf="this.numberOfAnimals?.invalid && this.numberOfAnimals?.errors?.required">This field is required.</mat-error>
                         </mat-form-field>
                     </div>
@@ -118,7 +118,7 @@
                                     {{option?.Name}}
                                 </mat-option>
                                 </mat-autocomplete>
-                                <mat-hint>What species is the majority of the animals that were observed?</mat-hint>
+                                <mat-hint>What animal species did you observe? Select majority if more than one.</mat-hint>
                                 <mat-error *ngIf="this.species?.invalid">This field is required and must be selected from the available list.</mat-error>
                             </mat-form-field>
                         </div>
@@ -167,7 +167,7 @@
                                             {{item?.Name}}
                                         </mat-option>
                                     </mat-select>
-                                    <mat-hint>Was the animal alive at time of observation?</mat-hint>
+                                    <mat-hint>Was the animal alive or dead?</mat-hint>
                                     <mat-error *ngIf="this.alive?.invalid && this.alive?.errors?.required">This field is required.</mat-error>
                                 </mat-form-field>
                             </div>
@@ -203,7 +203,7 @@
                                             {{item?.Name}}
                                         </mat-option>
                                     </mat-select>
-                                    <mat-hint>Does animal appear to be sick or injured?</mat-hint>
+                                    <mat-hint>Did the animal appear sick or injured?</mat-hint>
                                     <mat-error *ngIf="this.sickOrInjured?.invalid && this.sickOrInjured?.errors?.required">This field is required.</mat-error>
                                 </mat-form-field>
                             </div>
@@ -294,7 +294,7 @@
                                             {{item?.Name}}
                                         </mat-option>
                                     </mat-select>
-                                    <mat-hint>What age is the majority of the wildlife?</mat-hint>
+                                    <mat-hint>What age was the animal? Select majority if more than one.</mat-hint>
                                     <mat-error *ngIf="this.age?.invalid && this.age?.errors?.required">This field is required.</mat-error>
                                 </mat-form-field>
                             </div>
@@ -315,7 +315,7 @@
                                             {{item?.Name}}
                                         </mat-option>
                                     </mat-select>
-                                    <mat-hint>Is this a captive animal or a free-ranging wild animal? <app-info-popup [title]="'Captive or Wild'" [text]="this.messageCaptive"></app-info-popup></mat-hint>
+                                    <mat-hint>Was the animal captive or wild?<app-info-popup [title]="'Captive or Wild'" [text]="this.messageCaptive"></app-info-popup></mat-hint>
                                     <mat-error *ngIf="this.captiveWild?.invalid && this.captiveWild?.errors?.required">This field is required.</mat-error>
                                 </mat-form-field>
                             </div>
@@ -343,13 +343,13 @@
 
                             <div class="appFormContainer">
                                 <mat-form-field>
-                                    <mat-label for="observation-zoonotic">Zoonotic Exposure<span class="appRequiredAsterisk">*</span></mat-label>
+                                    <mat-label for="observation-zoonotic">Exposure<span class="appRequiredAsterisk">*</span></mat-label>
                                     <mat-select id="observation-zoonotic" formControlName="zoonotic">
                                         <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
                                             {{item?.Name}}
                                         </mat-option>
                                     </mat-select>
-                                    <mat-hint>Were any people or domestic animals potentially exposed to any of the animals included in this report?</mat-hint>
+                                    <mat-hint>Did any humans or domestic animals directly contact the animal?</mat-hint>
                                     <mat-error *ngIf="this.zoonotic?.invalid && this.zoonotic?.errors?.required">This field is required.</mat-error>
                                 </mat-form-field>
                             </div>
@@ -420,7 +420,7 @@
                                         id="observation-details"
                                         formControlName="details"
                                         matInput placeholder="Additional Details"></textarea>
-                                    <mat-hint>Please describe what you observed, including details about the physical appearance and behavior of the animal(s) and the environment. What did each animal look like and what was it doing? What signs of illness or injury did you observe, if any? What time of day or night was your observation made? What was the weather like? Describe the location where the observation was made.</mat-hint>
+                                    <mat-hint>Describe the animal's physical appearance, behavior, and any signs of illness or injury. Describe the time of day when the observation was made, if it occurred over more than one day, the location, environmental conditions (e.g., weather), and any other pertinent details.</mat-hint>
                                     <mat-error *ngIf="this.details?.invalid && this.details?.errors?.maxLength">This field is limited to 1,500 characters.</mat-error>
                                 </mat-form-field>
                             </div>

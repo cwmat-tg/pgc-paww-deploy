@@ -75,7 +75,7 @@ export class UploadOfflineComponent implements OnDestroy {
     // Open captcha
     const dialogRef = this.dialog.open(CaptchaDialogComponent, {
       width: '35rem',
-      data: { title: 'Submit Observation', text: UserMessages.ConfirmSubmit, confirm: 'Confirm Submission', cancel: 'Cancel' },
+      data: { title: 'Submit Observation', text: UserMessages.ConfirmSubmit, confirm: 'Yes', cancel: 'No' },
       disableClose: true
     });
 

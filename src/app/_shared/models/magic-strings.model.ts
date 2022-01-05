@@ -13,7 +13,7 @@ export class MagicStrings {
 
     // Animal page
     public static AnimalHeader: string = 'Observation Details';
-    public static PhotosHeader: string = 'Add Photos/Video';
+    public static PhotosHeader: string = 'Add Photos/Videos';
 
     // Out of state page
     public static OutOfStateHeader: string = 'Out-of-State Confirmation';
