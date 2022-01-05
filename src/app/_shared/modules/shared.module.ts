@@ -16,6 +16,7 @@ import { CaptchaDialogComponent } from '../components/captcha-dialog/captcha-dia
 import { SpeciesCardComponent } from '../components/species-card/species-card.component';
 import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from "ng-recaptcha";
 import { environment } from 'src/environments/environment';
+import { PhoneMaskDirective } from '../directives/phone-mask.directive';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { environment } from 'src/environments/environment';
     RecaptchaModule,
     CaptchaDialogComponent,
     SpeciesCardComponent,
-    RecaptchaV3Module
+    RecaptchaV3Module,
+    PhoneMaskDirective,
   ],
   declarations: [
     VersionComponent,
@@ -54,7 +56,8 @@ import { environment } from 'src/environments/environment';
     FooterComponent,
     LoadingDialogComponent,
     CaptchaDialogComponent,
-    SpeciesCardComponent
+    SpeciesCardComponent,
+    PhoneMaskDirective,
   ],
   providers: [{ provide: RECAPTCHA_V3_SITE_KEY, useValue: environment.captchaSiteKeyV3 }],
 })

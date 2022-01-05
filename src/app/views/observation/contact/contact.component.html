@@ -67,11 +67,9 @@
                 <div class="appFormContainer">
                     <mat-form-field>
                         <mat-label for="contact-phone">Phone</mat-label>
-                        <input matInput id="contact-phone" type="number" formControlName="phone">
+                        <input matInput id="contact-phone" appPhoneMask type="tel" maxlength="14" formControlName="phone">
                         <mat-hint>10 digit phone number, numbers only</mat-hint>
-                        <mat-error *ngIf="this.phone?.invalid && this.phone?.errors?.required">This field is required.</mat-error>
-                        <mat-error *ngIf="this.phone?.invalid && this.phone?.errors?.pattern">Please enter 10 digits, numbers only.</mat-error>
-                        <mat-error *ngIf="this.phone?.invalid && this.phone?.errors?.maxLength">Please only enter 10 digits.</mat-error>
+                        <mat-error *ngIf="this.phone?.invalid && this.phone?.errors">This field is required and must be 10 digits.</mat-error>
                     </mat-form-field>
                 </div>
 
@@ -82,5 +80,3 @@
     </form>
 
 </div>
-
-<!-- <div>{{ this.obsStore.getObservation() | async | json }}</div> -->
