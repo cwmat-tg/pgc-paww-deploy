@@ -31,15 +31,15 @@
                     fxFlex="50"
                     fxFlex.xs="100"
                     fxFlex.sm="100"
-                    class="appFormRowContainer">
+                    class="appFormRowContainer appMobileMarginBottom">
 
                     <div class="appFormContainer">
                         <mat-form-field>
                             <mat-label for="observation-date">Date<span class="appRequiredAsterisk">*</span></mat-label>
-                            <input matInput id="observation-date" formControlName="date" [max]="this.maxDate" [matDatepicker]="picker">
+                            <input matInput id="observation-date" formControlName="date" [max]="this.maxDate" [min]="this.minDate" [matDatepicker]="picker">
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
-                            <mat-hint>Enter the date of observation</mat-hint>
+                            <mat-hint>Enter observation date. If observation occurred over multiple days, select the most recent date. If observation occurred more than 6 months ago, please submit to <a href="mailto:pgccomments@pa.gov">pgccomments@pa.gov</a>.</mat-hint>
                             <mat-error *ngIf="this.date?.invalid">This field is required and cannot be a future date.</mat-error>
                         </mat-form-field>
                     </div>

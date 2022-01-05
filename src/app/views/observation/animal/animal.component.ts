@@ -158,6 +158,7 @@ export class AnimalComponent implements OnInit, OnDestroy {
 
   // Date Validation
   maxDate = new Date();
+  minDate = new Date();
 
   // Subscriptions
   formChangeSub!: Subscription;
@@ -169,7 +170,9 @@ export class AnimalComponent implements OnInit, OnDestroy {
     public obsStore: ObservationService,
     public api: ApiService,
     private _snackBar: MatSnackBar,
-  ) { }
+  ) { 
+    this.minDate.setMonth(new Date().getMonth() - 6)
+  }
 
   ngOnInit(): void {
     // Sub to form changes to update store on valid entries
