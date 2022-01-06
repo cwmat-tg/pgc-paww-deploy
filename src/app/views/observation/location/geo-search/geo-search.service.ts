@@ -15,6 +15,8 @@ export class GeoSearchService {
 
   private readonly defaultMaxCandidates: number = 10;
 
+  private readonly webMercatorExtentOffset: number = 32000;  // Will only be valid for a projected coordinate system using meters as base unit (ex: Web Mercator)
+
   // @ts-ignore
   private candidates$: BehaviorSubject<Candidate[]> = new BehaviorSubject([]);
 
@@ -32,6 +34,47 @@ export class GeoSearchService {
 
   private setCandidates(inCandidates: Candidate[]) {
     this.candidates$.next(inCandidates);
+  }
+
+  private isCoordinate(inString: string) {
+    const trimString = inString.trim();
+    const isInCoordForm = /^(-?\d+(\.\d+)?),\s*(-?\d+(\.\d+)?)$/.test(trimString);
+    const containsLatLong = inString.includes('Lat: ') && inString.includes('Long: ');
+
+    if (
+      (trimString &&
+      isInCoordForm &&
+      trimString.length >= 5) ||
+      containsLatLong) 
+    {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  private getCoordFromString(inCoordString: string): IPoint {
+    const containsLatLong = inCoordString.includes('Lat: ') && inCoordString.includes('Long: ');
+    let newCoord;
+    if (containsLatLong) {
+      const splitReplaceString = inCoordString
+        .replace('Lat: ', '')
+        .replace('Long: ', '')
+        .trim().split(',');
+      newCoord = {
+        x: parseFloat(splitReplaceString[1]),
+        y: parseFloat(splitReplaceString[0])
+      } as IPoint;
+    } else {
+      // Assumes that the string has already been verified as a valid coord
+      const splitString = inCoordString.trim().split(',');
+      newCoord = {
+        x: parseFloat(splitString[1]),
+        y: parseFloat(splitString[0])
+      } as IPoint;
+    }
+
+    return newCoord || null
   }
 
   searchCandidates(
@@ -63,6 +106,24 @@ export class GeoSearchService {
     let resultsSubject: Subject<Candidate[]> = new Subject<Candidate[]>();
 
     let res: any[] = [];
+
+    if (this.isCoordinate(inString)) {
+      const coordPoint: IPoint = this.getCoordFromString(inString);
+      const coordCandidate = {
+        name: `Lat: ${coordPoint.y}, Long: ${coordPoint.x}`,
+        location: { x: coordPoint.x, y: coordPoint.y },
+        extent: {
+          xmax: coordPoint.x + this.webMercatorExtentOffset,
+          xmin: coordPoint.x - this.webMercatorExtentOffset,
+          ymax: coordPoint.y + this.webMercatorExtentOffset,
+          ymin: coordPoint.y - this.webMercatorExtentOffset
+        } as IExtent,
+        source: SearchTypes.DDCoordinate
+      } as Candidate;
+
+      this.setCandidates([coordCandidate]);
+      return;
+    }
 
     let resultSub = resultsSubject.subscribe(result => {
       res = res.concat(result);
