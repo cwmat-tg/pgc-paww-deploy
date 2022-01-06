@@ -178,8 +178,8 @@
 
                     <!-- Sick or injured/Possession -->
                     <div
-                        *ngIf="this.alive?.valid && this.alive?.value === this.refAlive"
                         [@animalAlive]="animalAlive"appHide
+                        *ngIf="this.alive?.valid && this.alive?.value === this.refAlive"
                         class="appFieldRow appHide"
                         fxLayout="row"
                         fxLayout.xs="column"
@@ -262,6 +262,27 @@
                                     </mat-select>
                                     <mat-hint>Is poaching suspected? <app-info-popup [title]="'Poaching'" [text]="this.messagePoaching"></app-info-popup></mat-hint>
                                     <mat-error *ngIf="this.poaching?.invalid && this.poaching?.errors?.required">This field is required.</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+
+                        <div
+                        fxFlex="50"
+                        fxFlex.xs="100"
+                        fxFlex.sm="100"
+                        class="appFormRowContainer">
+
+                            <div class="appFormContainer">
+                                <mat-form-field>
+                                    <mat-label for="observation-inYourPossession">Possession<span class="appRequiredAsterisk">*</span></mat-label>
+                                    <mat-select id="observation-inYourPossession" formControlName="inYourPossession">
+                                        <mat-option *ngFor="let item of this.yesNoList" [value]="item?.RefTableDataId">
+                                            {{item?.Name}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-hint>Is the animal in your possession?</mat-hint>
+                                    <mat-error *ngIf="this.inYourPossession?.invalid && this.inYourPossession?.errors?.required">This field is required.</mat-error>
                                 </mat-form-field>
                             </div>
 
