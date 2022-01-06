@@ -172,5 +172,5 @@
 
 <!-- Show Coordinates -->
 <div *ngIf="this.coordinates?.length && this.coordinates.length > 0">
-    {{ this.coordinates[0] | number }}, {{ this.coordinates[1] | number }}
+    Lat: {{ this.coordinates[1] | number }}, Long: {{ this.coordinates[0] | number }}
 </div>
