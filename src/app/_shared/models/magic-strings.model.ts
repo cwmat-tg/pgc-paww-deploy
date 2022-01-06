@@ -12,8 +12,8 @@ export class MagicStrings {
     public static ContactHeader: string = 'Contact Information';
 
     // Animal page
-    public static AnimalHeader: string = 'Observation Information';
-    public static PhotosHeader: string = 'Add Photos/Video';
+    public static AnimalHeader: string = 'Observation Details';
+    public static PhotosHeader: string = 'Add Photos/Videos';
 
     // Out of state page
     public static OutOfStateHeader: string = 'Out-of-State Confirmation';
@@ -45,6 +45,7 @@ export class MagicStrings {
     public static RefLookupNo: number = 33536;
     public static RefLookupMammal: number = 2;
     public static RefLookupAlive: number = 1;
+    public static RefLookupPublicAffiliation: number = 554359;
 
     // Local Storage Keys
     public static LocalStorageObsKey: string = 'paww:storedObservations';

@@ -4,6 +4,7 @@ import { ConfirmationState } from 'src/app/_shared/models/config.model';
 import { MagicStrings } from 'src/app/_shared/models/magic-strings.model';
 import { ObservationService } from 'src/app/_shared/services/observation.service';
 import * as moment from 'moment';
+import { UserMessages } from 'src/app/_shared/models/user-messages.model';
 
 @Component({
   selector: 'app-confirmation',
@@ -14,7 +15,8 @@ export class ConfirmationComponent implements OnInit {
   // Config
   header = MagicStrings.ConfirmationHeader;
   meetsAuxQs = false;
-  phoneNumber = 'xxx-xxx-xxxx';
+  messageActionRequired = UserMessages.ConfirmActionNeededShort;
+  messageNoActionRequired = UserMessages.ConfirmNoActionNeededShort;
 
   constructor(
     public obsStore: ObservationService,

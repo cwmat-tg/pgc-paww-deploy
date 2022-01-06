@@ -1,6 +1,10 @@
 <div class="appHelperContainer">
 
-    <h2 class="appHelperHeader appHelperText">{{ this.header }}</h2>
+    <h2 [ngClass]="this.centerHeader ? 
+        'appHelperHeader appHelperText appCenterText': 
+        'appHelperHeader appHelperText'">
+        {{ this.header }}
+    </h2>
 
     <mat-divider></mat-divider>
 

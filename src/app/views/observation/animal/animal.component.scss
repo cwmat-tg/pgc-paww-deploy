@@ -65,6 +65,10 @@
     .appPhotoContainer {
         margin-top: 5rem;
     }
+
+    .appMobileMarginBottom {
+        margin-bottom: 2rem;
+    }
 }
 
 /* Smartphones (landscape) ----------- */
@@ -85,6 +89,10 @@
 
     .appPhotoContainer {
         margin-top: 5rem;
+    }
+
+    .appMobileMarginBottom {
+        margin-bottom: 2rem;
     }
 }
 
@@ -107,6 +115,10 @@
     .appPhotoContainer {
         margin-top: 1.5rem;
     }
+
+    .appMobileMarginBottom {
+        margin-bottom: 0;
+    }
 }
 
 /* Large screens ----------- */
@@ -127,5 +139,9 @@
 
     .appPhotoContainer {
         margin-top: 1.5rem;
+    }
+
+    .appMobileMarginBottom {
+        margin-bottom: 0;
     }
 }

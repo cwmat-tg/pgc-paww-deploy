@@ -2,13 +2,14 @@
 
     <app-intro-helper-text
         [header]="this.header"
+        [centerHeader]="true"
     ></app-intro-helper-text>
 
     <!-- If the user gets here and the obs is out of state -->
     <div *ngIf="this.obsStore.getObservation() | async as obsData;" class="appOutOfStateContent">
         <div *ngIf="!obsData.inState">
-            <p>Observations occurring outside of Pennsylvania should be directed to the appropriate state agency.</p>
-            <p>A list of agencies can be found on the <a target="_blank" href="https://www.fishwildlife.org/landing/membership/member-list">Association of Fish & Wildlife Agencies website</a>.</p>
+            <p>Observations occurring outside of Pennsylvania should be directed to the <a href="https://www.fishwildlife.org/landing/membership/member-list" target="_blank">appropriate state wildlife management agency</a>.</p>
+            <p>More information about the Game Commission can be found on their website at <a href="https://www.pgc.pa.gov/" target="_blank">pgc.pa.gov</a>.</p>
             <button 
                 mat-flat-button color="accent" 
                 class="appBackToHomeButton" 

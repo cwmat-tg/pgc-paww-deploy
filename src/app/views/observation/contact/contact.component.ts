@@ -31,9 +31,8 @@ export class ContactComponent implements OnInit, OnDestroy {
       Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
     ]),
     phone: new FormControl('', [
-      Validators.maxLength(10),
-      Validators.minLength(10),
-      Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$'),
+      Validators.maxLength(14),
+      Validators.minLength(14),
     ]),
   });
 
@@ -64,6 +63,14 @@ export class ContactComponent implements OnInit, OnDestroy {
               .subscribe(res => {
                 if (this.contactForm.valid) {
                   const newData = { ...res };
+                  const cleanPhone = parseInt(
+                    contact.phone
+                      .replace(')', '')
+                      .replace('(', '')
+                      .replace(' ', '')
+                      .replace('-', '')
+                  );
+                  contact.phone = cleanPhone;
                   newData.contact = { ...contact as Contact};
                   this.obsStore.updateObservation(newData);
                 }
@@ -91,6 +98,9 @@ export class ContactComponent implements OnInit, OnDestroy {
   initializeDropdowns() {
       this.api.getAffiliation().subscribe(res => {
         this.affiliations = res;
+        const found = this.affiliations.find(e => e.RefTableDataId === MagicStrings.RefLookupPublicAffiliation);
+        if (found)
+          this.affiliation?.setValue(found.RefTableDataId);
       },
       error => {
         console.error(error);

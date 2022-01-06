@@ -2,15 +2,15 @@
 
     <app-intro-helper-text
         [header]="this.header"
+        [centerHeader]="true"
     ></app-intro-helper-text>
 
     <!-- If the user gets here and the obs is fresh -->
     <div *ngIf="this.confirmationState?.success && this.isWithinDateRange()  && !this.confirmationState?.requiresAction" class="appConfirmationContent">
             <div>
-            <p>Thank you for submitting an observation to Pennsylvania Wildlife Watch.</p>
-            <p>Based on your observation details, you may be contacted by the Pennsylvania Game Commission if you provided your contact information.</p>
-            <p>Follow-up contact is not guaranteed, but recent observations are prioritized.</p>
-            <p>Your confirmation number is: <span class="appConfirmationNumber">{{ this.confirmationState?.confirmation || '' }}</span></p>
+                <p>Thank you for submitting an observation to Pennsylvania Wildlife Watch.</p>
+                <p>Your confirmation number is: <span class="appConfirmationNumber">{{ this.confirmationState?.confirmation || '' }}</span></p>
+                <div [innerHtml]="this.messageNoActionRequired"></div>
             <button 
                 mat-flat-button color="accent" 
                 class="appBackToHomeButton" 
@@ -25,9 +25,8 @@
     <div *ngIf="this.confirmationState?.success && this.isWithinDateRange() && this.confirmationState?.requiresAction" class="appConfirmationContent">
         <div>
             <p>Thank you for submitting an observation to Pennsylvania Wildlife Watch.</p>
-            <p>Based on your observation details, an additional investigation by the Pennsylvania Game Commission may be required. Please immediately contact the Game Commission at {{ this.phoneNumber }}.</p>
             <p>Your confirmation number is: <span class="appConfirmationNumber">{{ this.confirmationState?.confirmation || '' }}</span></p>
-            <p>Please provide this number to the Game Commission dispatcher when you call.</p>
+            <div [innerHtml]="this.messageActionRequired"></div>
             <button 
                 mat-flat-button color="accent" 
                 class="appBackToHomeButton" 
@@ -42,8 +41,8 @@
     <div *ngIf="this.confirmationState?.success && !this.isWithinDateRange()" class="appConfirmationContent">
         <div>
             <p>Thank you for submitting an observation to Pennsylvania Wildlife Watch.</p>
-            <p>Based on the date of your observation, Pennsylvania Game Commission may not contact you.</p>
             <p>Your confirmation number is: <span class="appConfirmationNumber">{{ this.confirmationState?.confirmation || '' }}</span></p>
+            <div [innerHtml]="this.messageNoActionRequired"></div>
             <button 
                 mat-flat-button color="accent" 
                 class="appBackToHomeButton" 

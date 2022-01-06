@@ -2,6 +2,11 @@
 
     <mat-stepper [linear]="this.isLinear" [orientation]="(this.stepperOrientation | async)!" #stepper>
 
+        <!-- Change default 'edit' icon -->
+        <ng-template matStepperIcon="edit">
+          <mat-icon>done</mat-icon>
+        </ng-template>
+
         <!-- Step 1 -->
         <mat-step [completed]="this.locationIsValid">
 
@@ -12,7 +17,7 @@
         </mat-step>
 
         <!-- Step 2 -->
-        <mat-step [completed]="this.contactIsValid">
+        <mat-step [completed]="this.contactIsValid && this.locationIsValid && this.hasVisitedContactTab">
 
             <ng-template matStepLabel>Contact</ng-template>
 

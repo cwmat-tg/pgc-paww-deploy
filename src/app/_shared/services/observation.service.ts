@@ -89,7 +89,8 @@ export class ObservationService {
       data.Rabies === MagicStrings.RefLookupYes ||
       data.Possession === MagicStrings.RefLookupYes ||
       data.Poachingsuspect === MagicStrings.RefLookupYes ||
-      data.SickInjured === MagicStrings.RefLookupYes
+      data.SickInjured === MagicStrings.RefLookupYes ||
+      data.ZoonoticExposure === MagicStrings.RefLookupYes
       ) {
       return true;
     } else {
