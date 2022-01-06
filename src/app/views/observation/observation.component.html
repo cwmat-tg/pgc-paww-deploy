@@ -17,7 +17,7 @@
         </mat-step>
 
         <!-- Step 2 -->
-        <mat-step [completed]="this.contactIsValid && this.locationIsValid">
+        <mat-step [completed]="this.contactIsValid && this.locationIsValid && this.hasVisitedContactTab">
 
             <ng-template matStepLabel>Contact</ng-template>
 

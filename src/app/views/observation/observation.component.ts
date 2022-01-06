@@ -41,6 +41,7 @@ export class ObservationComponent implements AfterViewInit, OnDestroy {
   contactIsValid = true;
   observationIsValid = false;
   isValid = false;
+  hasVisitedContactTab = false;
 
   // Connection check
   isOffline!: boolean;
@@ -107,6 +108,7 @@ export class ObservationComponent implements AfterViewInit, OnDestroy {
         }
         break;
       case 1:
+        this.hasVisitedContactTab = true;
         if (this.contactIsValid) {
           this.isValid = true;
         } else {
