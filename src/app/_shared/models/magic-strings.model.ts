@@ -45,6 +45,7 @@ export class MagicStrings {
     public static RefLookupNo: number = 33536;
     public static RefLookupMammal: number = 2;
     public static RefLookupAlive: number = 1;
+    public static RefLookupPublicAffiliation: number = 554359;
 
     // Local Storage Keys
     public static LocalStorageObsKey: string = 'paww:storedObservations';

@@ -98,6 +98,9 @@ export class ContactComponent implements OnInit, OnDestroy {
   initializeDropdowns() {
       this.api.getAffiliation().subscribe(res => {
         this.affiliations = res;
+        const found = this.affiliations.find(e => e.RefTableDataId === MagicStrings.RefLookupPublicAffiliation);
+        if (found)
+          this.affiliation?.setValue(found.RefTableDataId);
       },
       error => {
         console.error(error);
