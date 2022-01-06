@@ -14,6 +14,7 @@ export class LocationComponent {
   // Config
   header = MagicStrings.LocationHeader;
   content = UserMessages.LocationHelperText;
+  mapIsActive = false;
 
   // Outputs
   @Output() isValid = new EventEmitter<boolean>(false);
@@ -44,8 +45,14 @@ export class LocationComponent {
     });
   }
 
+  newActiveMapEvent(isActive: boolean) {
+    this.mapIsActive = isActive;
+    if (this.mapIsActive)
+      this.checkValid({});
+  }
+
   checkValid(data: Observation) {
-    if (data && data?.geometry && data?.geometry?.lat && data?.geometry?.long) {
+    if (data && data?.geometry && data?.geometry?.lat && data?.geometry?.long && !this.mapIsActive) {
       this.isValid.emit(true);
     } else {
       this.isValid.emit(false);

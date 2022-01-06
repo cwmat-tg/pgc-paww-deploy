@@ -42,6 +42,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
   // Location Select State
   isActive = false;
+  @Output() isActiveEvent: EventEmitter<boolean> = new EventEmitter(this.isActive);
   showPoint = true;
   coordinates: number[] = [];
   layerPaint = MapModel.PointPaintStyle;
@@ -108,6 +109,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
   activate() {
     this.isActive = true;
+    this.isActiveEvent.emit(this.isActive);
     this.cursorStyle = 'pointer';
   }
 
@@ -119,6 +121,7 @@ export class MapComponent implements OnInit, OnDestroy {
   endSelect() {
     // End active session
     this.isActive = false;
+    this.isActiveEvent.emit(this.isActive);
     this.cursorStyle = '';
   }
 
