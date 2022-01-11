@@ -68,7 +68,7 @@ export class ObservationService {
       ObserverAffiliation: data.contact?.affiliation,
       ObserverEmail: data.contact?.email,
       ObserverPhone: data.contact?.phone,
-      ObserverDate: data.information?.date,
+      ObserverDate: new Date(),
       ObservationDate: data.information?.date,
       AnimalCountId: data.information?.numberOfAnimals,
       SpeciesId: data.information?.species,
