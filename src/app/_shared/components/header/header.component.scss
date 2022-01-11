@@ -14,6 +14,7 @@
     height: $header-bar-image-max-height;
     max-height: $header-bar-image-max-height;
     width: 64px;
+    min-width: 40px;
     margin-top: 0.5rem;
 }
 
@@ -59,6 +60,13 @@
         font-size: 1rem;
         font-weight: 500;
         line-height: 1rem;
+    }
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width: $screen-width-mobile-small) {    
+    #appHeaderH1 {
+        font-size: 1rem;
     }
 }
 
