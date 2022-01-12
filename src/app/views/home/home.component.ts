@@ -1,5 +1,5 @@
 import { UserMessages } from 'src/app/_shared/models/user-messages.model';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { InfoDialogComponent } from 'src/app/_shared/components/info-dialog/info-dialog.component';
@@ -14,7 +14,7 @@ import * as moment from 'moment';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit  {
+export class HomeComponent implements OnInit, AfterViewInit {
   // Config
   appName = MagicStrings.AppName;
   appAbbrev = MagicStrings.AppAbbrev;
@@ -24,11 +24,19 @@ export class HomeComponent implements OnInit  {
   offlineObs: ObservationDtoContainer[]  = [];
   offlineObsCount: number = 0;
 
+  // Elements
+  @ViewChild('mainContents') mainContents!: ElementRef;
+  basePageHeight: number = 900;
+  basePageOffsetSmall = 175;
+  basePageOffsetExtraSmall = 300;
+  basePageHeightStyle: string = 'height: 100vh;'
+
   constructor(
     private router: Router,
     private localStorageService: LocalStorageService,
     private dialog: MatDialog,
     private api: ApiService,
+    private cd: ChangeDetectorRef 
   ) { }
 
   ngOnInit() {
@@ -36,14 +44,43 @@ export class HomeComponent implements OnInit  {
     this.onResize(null);
   }
 
+  ngAfterViewInit() {
+    this.setPageHeight();
+  }
+
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     console.log('Resize', event);
+    this.setPageHeight();
     const estimateZoom = (( window.outerWidth - 10 ) / window.innerWidth) * 100;
       if (estimateZoom >= 300)
         this.isSuperZoom = true;
       else
         this.isSuperZoom = false;
+  }
+
+  setPageHeight(): void {
+    if (!this.mainContents)
+      return;
+
+    this.basePageHeightStyle = 'height: 100vh;';
+    this.cd.detectChanges();
+
+    const width = window.innerWidth;
+    const contentHeight: number = this.mainContents?.nativeElement?.clientHeight || null;
+    
+    if (width < 1200 && width >= 361) {
+      this.basePageHeight = contentHeight + this.basePageOffsetSmall;
+      this.basePageHeightStyle = `height: ${this.basePageHeight}px`;
+    } else if (width < 361) {
+      this.basePageHeight = contentHeight + this.basePageOffsetExtraSmall;
+      this.basePageHeightStyle = `height: ${this.basePageHeight}px`;
+    } else {
+      // 1200 +
+      this.basePageHeightStyle = 'height: 100vh;';
+    }
+
+    this.cd.detectChanges();
   }
 
   createObservation() {

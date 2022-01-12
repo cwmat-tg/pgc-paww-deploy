@@ -7,10 +7,11 @@
     position: absolute;
     top: 0;
     left: 0;
+    overflow: hidden;
 }
 
 #appHomeImage {
-    height: 100vh;
+    height: 100%;
     background-image: url("~src/assets/images/homepage.jpg");
     background-size: cover;
     background-position: center;
@@ -20,12 +21,13 @@
     position: absolute;
     top: 0;
     left: 0;
-    height: 100vh;
+    height: 100%;
     width: 100vw;
 }
 
 .appFillContainer {
     background: linear-gradient(270deg, #2a381e 0%, rgba(42,56,30,0.25) 100%);
+    height: 100%
 }
 
 #appHeroContainer {
@@ -121,12 +123,8 @@ $disclaimerSpacing: 2rem;
         padding-top: $header-bar-height;
     }
 
-    :host ::ng-deep app-footer.appOnHomepage {
-        bottom: auto;
-    }
-
     #appHomeContainer.appSuperZoom {
-        height: 500vh;
+        height: 600vh !important;
     }
 }
 
@@ -134,10 +132,6 @@ $disclaimerSpacing: 2rem;
 @media only screen and (min-width: $screen-width-mobile-small-landscape) {
     #appHomepageContent {
         padding-top: $header-bar-height;
-    }
-
-    :host ::ng-deep app-footer.appOnHomepage {
-        bottom: auto;
     }
 
     :host ::ng-deep app-footer.appOnHomepage.appSuperZoom {

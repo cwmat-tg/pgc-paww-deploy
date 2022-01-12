@@ -1,11 +1,11 @@
-<div id="appHomeContainer" [ngClass]="{appSuperZoom: this.isSuperZoom}">
+<div id="appHomeContainer" [ngClass]="{appSuperZoom: this.isSuperZoom}" [style]="this.basePageHeightStyle">
     <!-- Header bar -->
     <app-header></app-header>
 
     <!-- Full page image defined in SCSS -->
     <div id="appHomeImage"></div>
 
-    <div id="appHomepageContent">
+    <div id="appHomepageContent" #mainContents>
 
         <div class="appFillContainer">
 
@@ -23,8 +23,6 @@
                     fxFlex.xs="100"
                     fxFlex.sm="100"
                     id="appHeroContainer">
-
-                    <!-- <h1 class="appHomepageText" id="appHeroHeader">{{ this.appName }}</h1> -->
 
                     <div class="appHomepageText" id="appHeroContent">
                         <p>
