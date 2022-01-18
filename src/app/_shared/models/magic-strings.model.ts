@@ -41,11 +41,11 @@ export class MagicStrings {
     public static Visible: string = 'visible';
 
     // Lookup Values
-    public static RefLookupYes: number = 33535;
-    public static RefLookupNo: number = 33536;
+    public static RefLookupYes: number = 1;
+    public static RefLookupNo: number = 2;
     public static RefLookupMammal: number = 2;
     public static RefLookupAlive: number = 1;
-    public static RefLookupPublicAffiliation: number = 554359;
+    public static RefLookupPublicAffiliation: number = 7;
 
     // Local Storage Keys
     public static LocalStorageObsKey: string = 'paww:storedObservations';
