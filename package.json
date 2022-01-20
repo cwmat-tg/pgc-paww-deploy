@@ -6,7 +6,7 @@
     "start": "ng serve --hmr",
     "prebuild": "npm --no-git-tag-version version patch",
     "build": "ng build",
-    "build-qa": "ng build --configuration=qa --base-href=/PAWW/",
+    "build-qa": "ng build --configuration=qa --base-href=/WHS/",
     "minor-version": "npm --no-git-tag-version version patch",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",

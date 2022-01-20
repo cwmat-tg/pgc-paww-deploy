@@ -17,6 +17,7 @@ export class ConfirmationComponent implements OnInit {
   meetsAuxQs = false;
   messageActionRequired = UserMessages.ConfirmActionNeededShort;
   messageNoActionRequired = UserMessages.ConfirmNoActionNeededShort;
+  appName = MagicStrings.AppName;
 
   constructor(
     public obsStore: ObservationService,

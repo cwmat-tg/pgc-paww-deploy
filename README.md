@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 See the project's Teams wiki for more details on the app.
 
-PGC PAWW is a public (anonymous access) animal observation app.  The app is PWA enabled and has several offline features.  It collects a location point from the user and a series of dropdown questions.
+PGC PAWW (app name changed to WHS - Wildlife Health Survey) is a public (anonymous access) animal observation app.  The app is PWA enabled and has several offline features.  It collects a location point from the user and a series of dropdown questions.
 
 It works in conjunction with an API and a companion internal only review app maintained by PGC.
 

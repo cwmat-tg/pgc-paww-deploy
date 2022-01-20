@@ -7,7 +7,7 @@ import { AppUpdateService } from './_shared/services/app-update.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'pgc-paww-frontend';
+  title = 'pgc-whs-frontend';
 
   constructor(
     private appUpdate: AppUpdateService,

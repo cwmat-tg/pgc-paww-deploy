@@ -69,14 +69,17 @@ export class HomeComponent implements OnInit, AfterViewInit {
     const width = window.innerWidth;
     const contentHeight: number = this.mainContents?.nativeElement?.clientHeight || null;
     
-    if (width < 1200 && width >= 361) {
+    if (width < 1200 && width >= 376) {
+      console.log('m detected');
       this.basePageHeight = contentHeight + this.basePageOffsetSmall;
       this.basePageHeightStyle = `height: ${this.basePageHeight}px`;
-    } else if (width < 361) {
+    } else if (width < 376) {
+      console.log('xs detected');
       this.basePageHeight = contentHeight + this.basePageOffsetExtraSmall;
       this.basePageHeightStyle = `height: ${this.basePageHeight}px`;
     } else {
       // 1200 +
+      console.log('l detected');
       this.basePageHeightStyle = 'height: 100vh;';
     }
 

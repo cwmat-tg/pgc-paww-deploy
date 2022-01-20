@@ -1,9 +1,9 @@
 export class MagicStrings {
     // Name of the application
-    public static AppName: string = 'Pennsylvania Wildlife Watch';
+    public static AppName: string = 'Wildlife Health Survey';
 
     // Abbreviation for app
-    public static AppAbbrev: string = 'PAWW';
+    public static AppAbbrev: string = 'WHS';
 
     // Location page
     public static LocationHeader: string = 'Observation Location';

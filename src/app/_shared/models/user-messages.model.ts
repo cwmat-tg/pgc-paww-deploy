@@ -1,3 +1,5 @@
+import { MagicStrings } from "./magic-strings.model";
+
 export class UserMessages {
     // Location page
     public static LocationHelperText: string = 'Use the map below to draw a point at the location at which the observation you wish to report was made.';
@@ -24,9 +26,9 @@ export class UserMessages {
     public static UploadTooltip: string = 'Looks like you have some Observations that were saved on your device while you were offline.  Now that you are online again, click to upload them.';
 
     // Confirmation
-    public static BulkUploadConfirmation = 'Thank you for submitting an observation to Pennsylvania Wildlife Watch.';
+    public static BulkUploadConfirmation = `Thank you for submitting an observation to ${MagicStrings.AppName}.`;
     public static ConfirmSubmit = 'Are you sure you want to submit your wildlife observation?';
-    public static ConfirmActionNeededShort = '<p>Based on your observation details, an additional investigation by the Pennsylvania Game Commission may be required.</p><p>Please immediately contact the Game Commission at <a href="tel:717-787-4250">717-787-4250</a> and provide your PAWW confirmation number to the dispatcher.</p><p>More information about the Game Commission can be found on their website at <a href="https://www.pgc.pa.gov/" target="_blank">pgc.pa.gov</a>.</p>';
+    public static ConfirmActionNeededShort = `<p>Based on your observation details, an additional investigation by the Pennsylvania Game Commission may be required.</p><p>Please immediately contact the Game Commission at <a href="tel:717-787-4250">717-787-4250</a> and provide your ${MagicStrings.AppAbbrev} confirmation number to the dispatcher.</p><p>More information about the Game Commission can be found on their website at <a href="https://www.pgc.pa.gov/" target="_blank">pgc.pa.gov</a>.</p>`;
     public static ConfirmNoActionNeededShort = '<p>Based on your observation details, the Pennsylvania Game Commission or <a href="https://www.vet.upenn.edu/research/centers-laboratories/research-initiatives/wildlife-futures-program" target="_blank">Wildlife Futures Program</a> may contact you for additional information.</p><p>Follow-up contact is not guaranteed but recent observations are prioritized.</p><p>More information about the Game Commission can be found on their website at <a href="https://www.pgc.pa.gov/" target="_blank">pgc.pa.gov</a>.</p>';
 }
 
