@@ -66,9 +66,9 @@
 
                 <div class="appFormContainer">
                     <mat-form-field>
-                        <mat-label for="contact-phone">Phone</mat-label>
+                        <mat-label for="contact-phone">Phone Number</mat-label>
                         <input matInput id="contact-phone" appPhoneMask type="tel" maxlength="14" formControlName="phone">
-                        <mat-hint>10 digit phone number, numbers only</mat-hint>
+                        <mat-hint>Must be 10 digits</mat-hint>
                         <mat-error *ngIf="this.phone?.invalid && this.phone?.errors">This field is required and must be 10 digits.</mat-error>
                     </mat-form-field>
                 </div>

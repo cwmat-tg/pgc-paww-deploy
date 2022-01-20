@@ -8,7 +8,7 @@
     <!-- If the user gets here and the obs is fresh -->
     <div *ngIf="this.confirmationState?.success && this.isWithinDateRange()  && !this.confirmationState?.requiresAction" class="appConfirmationContent">
             <div>
-                <p>Thank you for submitting an observation to {{ this.appName }}.</p>
+                <p>Thank you for submitting an observation to the Pennsylvania Game Commission's {{ this.appName }}.</p>
                 <p>Your confirmation number is: <span class="appConfirmationNumber">{{ this.confirmationState?.confirmation || '' }}</span></p>
                 <div [innerHtml]="this.messageNoActionRequired"></div>
             <button 
@@ -24,7 +24,7 @@
     <!-- If the user gets here and the obs is fresh and meets additional Qs -->
     <div *ngIf="this.confirmationState?.success && this.isWithinDateRange() && this.confirmationState?.requiresAction" class="appConfirmationContent">
         <div>
-            <p>Thank you for submitting an observation to {{ this.appName }}.</p>
+            <p>Thank you for submitting an observation to the Pennsylvania Game Commission's {{ this.appName }}.</p>
             <p>Your confirmation number is: <span class="appConfirmationNumber">{{ this.confirmationState?.confirmation || '' }}</span></p>
             <div [innerHtml]="this.messageActionRequired"></div>
             <button 
@@ -40,7 +40,7 @@
     <!-- If the user gets here and the obs is too old -->
     <div *ngIf="this.confirmationState?.success && !this.isWithinDateRange()" class="appConfirmationContent">
         <div>
-            <p>Thank you for submitting an observation to {{ this.appName }}.</p>
+            <p>Thank you for submitting an observation to the Pennsylvania Game Commission's {{ this.appName }}.</p>
             <p>Your confirmation number is: <span class="appConfirmationNumber">{{ this.confirmationState?.confirmation || '' }}</span></p>
             <div [innerHtml]="this.messageNoActionRequired"></div>
             <button 

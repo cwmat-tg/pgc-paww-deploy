@@ -13,7 +13,7 @@
     </div>
 
     <!--  Not image data or an issue occured -->
-    <div *ngIf="!this.hasImage || (this.hasImage && !this.imageData)" class="appSpeciesNoImage">Sorry, this species does not have an image available or you may be offline.  Please use the description below to help identify the species.</div>
+    <div *ngIf="!this.hasImage || (this.hasImage && !this.imageData)" class="appSpeciesNoImage">Sorry, this species does not have a photo available or you may be offline. Please refer to the description below to assist with species identification.</div>
 
     <mat-card-content>
       <p>
@@ -23,7 +23,7 @@
     <mat-divider inset></mat-divider>
     <mat-card-footer>
         <p class="appSpeciesFooter">
-            Does the picture/description shown appear similar to the species of the observation? If not, try selecting a different species.
+          If this doesn't appear to be the species you observed, try selecting a different species.
         </p>
     </mat-card-footer>
 </mat-card>

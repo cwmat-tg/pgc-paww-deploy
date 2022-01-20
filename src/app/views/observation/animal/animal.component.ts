@@ -153,7 +153,6 @@ export class AnimalComponent implements OnInit, OnDestroy {
 
   // Popup messages
   messageRabies = UserMessages.RabiesPopup;
-  messageCaptive = UserMessages.CaptivePopup;
   messagePoaching = UserMessages.PoachingPopup;
 
   // Date Validation

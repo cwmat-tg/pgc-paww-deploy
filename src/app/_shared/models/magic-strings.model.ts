@@ -54,4 +54,7 @@ export class MagicStrings {
     public static ConfFreshNoAction: string = 'paww:freshNoAction';
     public static ConfFreshActionNeeded: string = 'paww:freshActionNeeded';
     public static ConfStale: string = 'paww:stale';
+
+    // Phone
+    public static GameCommissionPhone: string = '717-787-4250';
 }

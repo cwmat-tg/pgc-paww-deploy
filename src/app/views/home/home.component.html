@@ -30,16 +30,15 @@
                         </p>
 
                         <p>
-                            {{this.appName}} ({{ this.appAbbrev }}) is the Pennsylvania Game Commission's online tool for public reporting of wildlife health issues within the Commonwealth. 
-                            Please submit observations of wild birds or mammals that have died, appear injured or sick, or are acting abnormally. Remember to always remain at a safe distance when observing wildlife and do not handle injured, sick, or dead wildlife. 
+                            The Pennsylvania Game Commission's {{ this.appName }} enables the public to easily report observations of wildlife health issues occurring within the Commonwealth. Any wild birds or mammals that appear abnormal, injured, sick, or are found dead should be reported. Remember to always remain at a safe distance when observing wildlife and do not handle wildlife unless you are hunting, trapping, or authorized to do so. 
                             
                         </p>
                         <p>
-                            If your observation requires immediate assistance, please contact the <a class="appHomeLink" href="https://www.pgc.pa.gov/InformationResources/AboutUs/ContactInformation/Pages/default.aspx" target="_blank">Game Commission office in your region</a>. 
+                            If you require immediate assistance, please call the Game Commission at <a class="appHomeLink" [href]="'tel:' + this.gameCommissionPhone">{{ this.gameCommissionPhone }}</a>. 
                         </p>
 
                         <p>
-                            Thank you for using {{ this.appAbbrev }}! With your help, the Game Commission can quickly track, respond to, and investigate wildlife health events.
+                            Thank you for helping the Game Commission track and respond to wildlife health events! More information can be found at <a href="https://www.pgc.pa.gov/wildlifehealth" target="_blank" class="appHomeLink">pgc.pa.gov/wildlifehealth</a>.
                         </p>
                     </div>
 

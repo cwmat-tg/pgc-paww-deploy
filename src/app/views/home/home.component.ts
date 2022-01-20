@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   appName = MagicStrings.AppName;
   appAbbrev = MagicStrings.AppAbbrev;
   isSuperZoom = false;
+  gameCommissionPhone = MagicStrings.GameCommissionPhone;
 
   // Offline observations
   offlineObs: ObservationDtoContainer[]  = [];
