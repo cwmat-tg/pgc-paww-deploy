@@ -88,9 +88,9 @@ $disclaimerSpacing: 2rem;
 }
 
 #appUploadButtonContainer {
-    position: absolute;
+    position: fixed;
     left: 2rem;
-    bottom: 5rem;
+    bottom: 7rem;
 }
 
 .appFillContainer div {
@@ -126,6 +126,10 @@ $disclaimerSpacing: 2rem;
     #appHomeContainer.appSuperZoom {
         height: 600vh !important;
     }
+
+    #appUploadButtonContainer {
+        bottom: 7rem;
+    }
 }
 
 /* Smartphones (landscape) ----------- */
@@ -136,6 +140,10 @@ $disclaimerSpacing: 2rem;
 
     :host ::ng-deep app-footer.appOnHomepage.appSuperZoom {
         bottom: 0;
+    }
+
+    #appUploadButtonContainer {
+        bottom: 7rem;
     }
 }
 
@@ -148,6 +156,10 @@ $disclaimerSpacing: 2rem;
     :host ::ng-deep app-footer.appOnHomepage {
         bottom: 0;
     }
+
+    #appUploadButtonContainer {
+        bottom: 5rem;
+    }
   }
   
   /* Large screens ----------- */
@@ -158,5 +170,9 @@ $disclaimerSpacing: 2rem;
 
     :host ::ng-deep app-footer.appOnHomepage {
         bottom: 0;
+    }
+
+    #appUploadButtonContainer {
+        bottom: 5rem;
     }
   }

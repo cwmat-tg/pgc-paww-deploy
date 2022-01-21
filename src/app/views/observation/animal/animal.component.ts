@@ -318,7 +318,7 @@ export class AnimalComponent implements OnInit, OnDestroy {
       this.animalDead = MagicStrings.Visible;
 
       // Change validation
-      this.sickOrInjured?.setValidators([]);
+      this.sickOrInjured?.setValidators([Validators.required]);
       this.inYourPossession?.setValidators([Validators.required]);
       this.poaching?.setValidators([Validators.required]);
 
@@ -326,16 +326,13 @@ export class AnimalComponent implements OnInit, OnDestroy {
       this.sickOrInjured?.updateValueAndValidity();
       this.inYourPossession?.updateValueAndValidity();
       this.poaching?.updateValueAndValidity();
-
-      // Clear data
-      this.sickOrInjured?.reset();
     } else {
       // Animations
       this.animalAlive = MagicStrings.Hidden;
       this.animalDead = MagicStrings.Hidden;
 
       // Change validation
-      this.sickOrInjured?.setValidators([]);
+      this.sickOrInjured?.setValidators([Validators.required]);
       this.inYourPossession?.setValidators([]);
       this.poaching?.setValidators([]);
 
@@ -346,7 +343,6 @@ export class AnimalComponent implements OnInit, OnDestroy {
 
       // Clear data
       this.poaching?.reset();
-      this.sickOrInjured?.reset();
       this.inYourPossession?.reset();
     }
 
