@@ -28,8 +28,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   // Elements
   @ViewChild('mainContents') mainContents!: ElementRef;
   basePageHeight: number = 900;
-  basePageOffsetSmall = 175;
-  basePageOffsetExtraSmall = 300;
+  basePageOffsetSmall = 500;
+  basePageOffsetExtraSmall = 500;
   basePageHeightStyle: string = 'height: 100vh;'
 
   constructor(
