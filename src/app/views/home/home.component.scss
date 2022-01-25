@@ -10,9 +10,14 @@
     overflow: hidden;
 }
 
+$imgKey: random(14);
+
+$list: homepage_01, homepage_02, homepage_03, homepage_04, homepage_05, homepage_06, homepage_07, homepage_08, homepage_09, homepage_10, homepage_11, homepage_12, homepage_13, homepage_14;
+$nth: nth($list, $imgKey);
+
 #appHomeImage {
     height: 100%;
-    background-image: url("~src/assets/images/homepage.jpg");
+    // background-image: url("~src/assets/images/#{$nth}.png");
     background-size: cover;
     background-position: center;
 }

@@ -3,7 +3,7 @@
     <app-header></app-header>
 
     <!-- Full page image defined in SCSS -->
-    <div id="appHomeImage"></div>
+    <div id="appHomeImage" [ngStyle]="{'background-image': 'url(' + this.currentBgImg + ')'}"></div>
 
     <div id="appHomepageContent" #mainContents>
 

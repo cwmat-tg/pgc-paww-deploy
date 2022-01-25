@@ -8,6 +8,7 @@ import { ObservationConfirmatonVm, ObservationDtoContainer } from 'src/app/_shar
 import { LocalStorageService } from 'src/app/_shared/services/local-storage.service';
 import { ApiService } from 'src/app/_shared/services/api.service';
 import * as moment from 'moment';
+import { LocationStrategy } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -32,13 +33,20 @@ export class HomeComponent implements OnInit, AfterViewInit {
   basePageOffsetExtraSmall = 500;
   basePageHeightStyle: string = 'height: 100vh;'
 
+  // BG Images
+  bgImg = ['homepage_01', 'homepage_02', 'homepage_03', 'homepage_04', 'homepage_05', 'homepage_06', 'homepage_07', 'homepage_08', 'homepage_09', 'homepage_10', 'homepage_11', 'homepage_12', 'homepage_13', 'homepage_14'];
+  currentBgImg: string;
+
   constructor(
     private router: Router,
     private localStorageService: LocalStorageService,
     private dialog: MatDialog,
     private api: ApiService,
-    private cd: ChangeDetectorRef 
-  ) { }
+    private cd: ChangeDetectorRef,
+    private locationStrategy: LocationStrategy,
+  ) {
+    this.currentBgImg = `${window.location.origin}${this.locationStrategy.getBaseHref()}assets/images/${this.bgImg[Math.floor(Math.random() * this.bgImg.length)]}.png`;
+  }
 
   ngOnInit() {
     this.loadOfflineObservations();
