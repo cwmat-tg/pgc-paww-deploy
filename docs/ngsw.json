@@ -1,0 +1,152 @@
+{
+  "configVersion": 1,
+  "timestamp": 1643206965789,
+  "index": "/pgc-paww-deploy/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/pgc-paww-deploy/296.e2c96edd419858a896a2.js",
+        "/pgc-paww-deploy/680.7ec230d390243e601673.js",
+        "/pgc-paww-deploy/683.16ec7946d083948e48c1.js",
+        "/pgc-paww-deploy/772.1c94956c56764f1e0160.js",
+        "/pgc-paww-deploy/favicon.ico",
+        "/pgc-paww-deploy/index.html",
+        "/pgc-paww-deploy/main.37be5fb6c34b7e6cea6f.js",
+        "/pgc-paww-deploy/manifest.webmanifest",
+        "/pgc-paww-deploy/polyfills.95435e4fdf0e9219940f.js",
+        "/pgc-paww-deploy/runtime.f0f4cbd345a4728df7c0.js",
+        "/pgc-paww-deploy/styles.bd69cce6a9daa037eb7c.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/pgc-paww-deploy/assets/gis/pa.json",
+        "/pgc-paww-deploy/assets/gis/pa_county.json",
+        "/pgc-paww-deploy/assets/gis/regions.json",
+        "/pgc-paww-deploy/assets/gis/roads.json",
+        "/pgc-paww-deploy/assets/gis/sgl.json",
+        "/pgc-paww-deploy/assets/gis/state_forest.json",
+        "/pgc-paww-deploy/assets/gis/state_park.json",
+        "/pgc-paww-deploy/assets/icons/icon-128x128.png",
+        "/pgc-paww-deploy/assets/icons/icon-144x144.png",
+        "/pgc-paww-deploy/assets/icons/icon-152x152.png",
+        "/pgc-paww-deploy/assets/icons/icon-192x192.png",
+        "/pgc-paww-deploy/assets/icons/icon-384x384.png",
+        "/pgc-paww-deploy/assets/icons/icon-512x512.png",
+        "/pgc-paww-deploy/assets/icons/icon-72x72.png",
+        "/pgc-paww-deploy/assets/icons/icon-96x96.png",
+        "/pgc-paww-deploy/assets/images/homepage_01.png",
+        "/pgc-paww-deploy/assets/images/homepage_02.png",
+        "/pgc-paww-deploy/assets/images/homepage_03.png",
+        "/pgc-paww-deploy/assets/images/homepage_04.png",
+        "/pgc-paww-deploy/assets/images/homepage_05.png",
+        "/pgc-paww-deploy/assets/images/homepage_06.png",
+        "/pgc-paww-deploy/assets/images/homepage_07.png",
+        "/pgc-paww-deploy/assets/images/homepage_08.png",
+        "/pgc-paww-deploy/assets/images/homepage_09.png",
+        "/pgc-paww-deploy/assets/images/homepage_10.png",
+        "/pgc-paww-deploy/assets/images/homepage_11.png",
+        "/pgc-paww-deploy/assets/images/homepage_12.png",
+        "/pgc-paww-deploy/assets/images/homepage_13.png",
+        "/pgc-paww-deploy/assets/images/homepage_14.png",
+        "/pgc-paww-deploy/assets/images/pgc_logo.svg",
+        "/pgc-paww-deploy/assets/overrides.json"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "paww-test-api",
+      "patterns": [
+        "https:\\/\\/paww-49735-default-rtdb\\.firebaseio\\.com",
+        "http:\\/\\/localhost:8010",
+        "https:\\/\\/pgcapigw\\.pa\\.gov"
+      ],
+      "strategy": "performance",
+      "maxSize": 1000,
+      "maxAge": 259200000,
+      "timeoutMs": 5000,
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "version": 1
+    }
+  ],
+  "hashTable": {
+    "/pgc-paww-deploy/296.e2c96edd419858a896a2.js": "78186eb9ec232cde02ffa6896e5e630e1ef6c01c",
+    "/pgc-paww-deploy/680.7ec230d390243e601673.js": "5d9fdd4923e92fc6f0b40782cbfa133a2bdf9ccc",
+    "/pgc-paww-deploy/683.16ec7946d083948e48c1.js": "c36669a364eabe8c54d7e5f0b85e40360d7b17b7",
+    "/pgc-paww-deploy/772.1c94956c56764f1e0160.js": "13b6b62b2879e6ee07dd6b378b5d0f09759fd1c4",
+    "/pgc-paww-deploy/assets/gis/pa.json": "3d3855fbb4fbbb34ded5b8d10ac245ef042c098c",
+    "/pgc-paww-deploy/assets/gis/pa_county.json": "61ec33f36dde25b052e5ef5fd03361909d0bda1d",
+    "/pgc-paww-deploy/assets/gis/regions.json": "fcc538f0a73447d5b24adc66b56ce70b8eaa7285",
+    "/pgc-paww-deploy/assets/gis/roads.json": "2fc2db28593540d8a5a17a24b630c1b9d866fff1",
+    "/pgc-paww-deploy/assets/gis/sgl.json": "106a08a14510f99f2e6ac02720d90afe6b09973e",
+    "/pgc-paww-deploy/assets/gis/state_forest.json": "cd51c1eb86059474ba3fbfde1318ec5f9f04e5b0",
+    "/pgc-paww-deploy/assets/gis/state_park.json": "295fe1f7aed7f6ff79a256d0fd5c3cc510acb921",
+    "/pgc-paww-deploy/assets/icons/icon-128x128.png": "edf33490a5af377025993569cc66aba94b3fd056",
+    "/pgc-paww-deploy/assets/icons/icon-144x144.png": "ac14e1055108c67a12c1e0fdd4d518a79dfd0cba",
+    "/pgc-paww-deploy/assets/icons/icon-152x152.png": "b2507ab901d713746eec644fe880cef29192788f",
+    "/pgc-paww-deploy/assets/icons/icon-192x192.png": "8181ea877e305ee6cee2979dc87b574dd05ee02d",
+    "/pgc-paww-deploy/assets/icons/icon-384x384.png": "23efddbb85f550f39d4cca5007878998636c6109",
+    "/pgc-paww-deploy/assets/icons/icon-512x512.png": "ba2d805aec29a6a40ffcfae75f815b895794e8b7",
+    "/pgc-paww-deploy/assets/icons/icon-72x72.png": "ad71ef03d14d85516c9528adab68f89a6ec4366d",
+    "/pgc-paww-deploy/assets/icons/icon-96x96.png": "e4213cdea54305a6f48a639e90ce45659093c1c3",
+    "/pgc-paww-deploy/assets/images/homepage_01.png": "037441a2a05d7e85de3c753a2867b0326fde60ad",
+    "/pgc-paww-deploy/assets/images/homepage_02.png": "3447df9f79ea9830c80cad5992bde04c27c4854f",
+    "/pgc-paww-deploy/assets/images/homepage_03.png": "cdb837786fb948fe6c5123f60305551b36092464",
+    "/pgc-paww-deploy/assets/images/homepage_04.png": "8065e8f9948948bd654683372c0e3709b41b42bc",
+    "/pgc-paww-deploy/assets/images/homepage_05.png": "e1c71c51bf433b8275e9791b67b66047cbdd4bdb",
+    "/pgc-paww-deploy/assets/images/homepage_06.png": "7c8150125e92a9adabf8ad969bfad6fe7562183a",
+    "/pgc-paww-deploy/assets/images/homepage_07.png": "4ad617121cae16fdb237497c3a812942e2b1064c",
+    "/pgc-paww-deploy/assets/images/homepage_08.png": "0131e1eb6e5ad369793eefb6b6041e0c6b01a24b",
+    "/pgc-paww-deploy/assets/images/homepage_09.png": "d929e9ee39a8daa88d5398f7ab3e547c1812ca8d",
+    "/pgc-paww-deploy/assets/images/homepage_10.png": "b647d8f7ae5090f9685d4fbdaaef2cb977eabd6c",
+    "/pgc-paww-deploy/assets/images/homepage_11.png": "110393e7f3871057c54873723e33786b9130c02b",
+    "/pgc-paww-deploy/assets/images/homepage_12.png": "b800546b2f689a66f67bd3cea3985dac8ceb7893",
+    "/pgc-paww-deploy/assets/images/homepage_13.png": "687f1c4c86058bc99461a06c377cd05fc3651ad6",
+    "/pgc-paww-deploy/assets/images/homepage_14.png": "f2a23ec5e89ea193f13b1aeaf3b8e823acb0d20d",
+    "/pgc-paww-deploy/assets/images/pgc_logo.svg": "e4b4838d2a044dc4c9b5dd3454969b9685c89918",
+    "/pgc-paww-deploy/assets/overrides.json": "542d76f063512cd43647fe6f8bb1e41fdbc4e84f",
+    "/pgc-paww-deploy/favicon.ico": "25a8faa0e002344f277c8f7d04c77b560af2b37d",
+    "/pgc-paww-deploy/index.html": "b5247d4444b7a18a978d52eb55f7b4372ee53274",
+    "/pgc-paww-deploy/main.37be5fb6c34b7e6cea6f.js": "ab41e96ce9d7cf7ef232a22ee65c199360db6382",
+    "/pgc-paww-deploy/manifest.webmanifest": "34de1ffd1fed02b9c364327c01cd9288af463d96",
+    "/pgc-paww-deploy/polyfills.95435e4fdf0e9219940f.js": "36c2d3b2a206d7d09548ea685cb442687a52ff9e",
+    "/pgc-paww-deploy/runtime.f0f4cbd345a4728df7c0.js": "8aa2e046ae651548058bcafa0c6f5de95b307f3e",
+    "/pgc-paww-deploy/styles.bd69cce6a9daa037eb7c.css": "d755ee689c31299ecf6e97c7a479b4ef9bd2cf34"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
